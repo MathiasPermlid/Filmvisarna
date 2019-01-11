@@ -1,6 +1,6 @@
-# Vue Boilerplate
-Vue boilerplate with bootstrap 4 
-and vue routes
+# Filmvisarna
+Created with Vue boilerplate 
+https://github.com/Aarkan1/Vue_Boilerplate
 
 
 ```
@@ -27,4 +27,4 @@ as a mean to let components communicate with eachother.
 Use "this.$store.**variableName**" to add a global in a component.
 
 
-© 2019 Aarkan, MIT License
+© 2019 Filmvisarna
