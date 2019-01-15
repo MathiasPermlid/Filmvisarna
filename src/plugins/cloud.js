@@ -1,6 +1,5 @@
 import firebase from "firebase/app";
 import "firebase/database";
-import "firebase/firestore";
 
 // connect to firebase database
 firebase.initializeApp({
@@ -13,20 +12,8 @@ firebase.initializeApp({
 });
 
 let dbRef = firebase.database();
-let fbRef = firebase.firestore();
-fbRef.settings({
-  timestampsInSnapshots: true
-});
+
 // export the ref to the todos list
-export const db = dbRef.ref("todos");
-
-export const fb = fbRef.collection("movies");
-
-fb.get().then(query => {
-  query.forEach(doc => {
-    let data = doc.data();
-    console.log(data.test);
-  });
-});
-
-// fb.doc('test').set(object)
+export const dbMovies = dbRef.ref("movies");
+export const dbAuditoriums = dbRef.ref("auditorium");
+export const dbShows = dbRef.ref("shows");
