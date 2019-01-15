@@ -1,7 +1,7 @@
 <template>
-  <div id="graphicList">
+  <div id="graphicList ">
     <ul class="movieList">
-      <li v-for="(data, index) in movies" :key="index" class="movieItem, col-6, col-lg-4">
+      <li v-for="(data, index) in movies" :key="index" class="movieItem ">
         <img v-bind:src="data.image" class="movie-image">        
         
       </li>
@@ -31,7 +31,7 @@ export default {
           description:
             "Filmen utspelas i norra Italien sommaren 1983. En ung amerikansk-italienare blir förälskad i en amerikansk student som kommer för att studera och bo hos hans familj. Tillsammans upplever de en oförglömlig sommar - full av musik, mat och kärlek - som för evigt kommer att förändra dem.",
           image:
-            "https://bookshelf.ca/i/size/o/media--2152c737-28ca-44fe-6bf8-539128d2c3ac/w/200/h/300",
+            "https://www.mauvais-genres.com/22093/call-me-by-your-name-movie-poster-15x21-in-2017-luca-guadagnino-armie-hammer.jpg",
           youtubeTrailers: ["Z9AYPxH5NTM"],
           reviews: [
             {
@@ -174,23 +174,16 @@ export default {
 <style scoped>
 .movieList {
     display: flex;
-    flex-direction: row;
+    width: 100vw;
     list-style: none;
-    justify-content: center;
-}
-
-.movieItem {
-    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .movie-image {
   max-width: 100%;
-  height: auto;
+  height: 30%;
   border: 8px black solid;
+  object-fit: cover;
 }
 
-.movie-title {
-    font-size: 1.3em;
-    font-weight: bolder;
-}
 </style>
