@@ -6,8 +6,8 @@
 // for easy log and access to globals
 
 export default class store {
-    constructor(){
-        // use this.$store.exampleVariable to access this reactive variable
-        this.exampleVariable = 'example string';
-    }
+  constructor() {
+    // use this.$store.exampleVariable to access this reactive variable
+    this.exampleVariable = "example string";
+  }
 }

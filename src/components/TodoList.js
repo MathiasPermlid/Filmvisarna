@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {db} from "@/main";
+import {db} from "@/plugins/cloud";
 
 export default {
     name: 'TodoList',
