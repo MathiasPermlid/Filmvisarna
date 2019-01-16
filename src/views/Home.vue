@@ -13,6 +13,10 @@ export default {
   name: "home",
   components: {
     Home
+  },
+  created(){
+    console.log('test globals from gome');
+    console.log(this.$store.movies); 
   }
 };
 </script>

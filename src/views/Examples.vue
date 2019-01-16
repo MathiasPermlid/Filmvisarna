@@ -15,7 +15,10 @@ export default {
   components: {
     Example1,
     Example2
-
+  },
+  created(){
+    console.log('test global from examples');
+    console.log(this.$store.movies); 
   }
 };
 </script>
