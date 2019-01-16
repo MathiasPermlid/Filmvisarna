@@ -1,12 +1,11 @@
 <template>
-<div class="home">
-    <h1>Start Page</h1>
+<div class="home row container mx-auto content-bg">
+    <div class="col-12 pt-3">
 
-    <div class="alert col-8 alert-success alert-dismissible fade show" role="alert">
-        With Bootstrap!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span></button>
+    <h1 class="">Start Page</h1>
     </div>
+
+    
 </div>
 </template>
 

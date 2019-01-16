@@ -1,6 +1,9 @@
 <template>
-  <div class="todo">
+  <div class="todo container row mx-auto content-bg">
+    <div class="col-12 pt-3">
     <TodoList />
+
+    </div>
   </div>
 </template>
 
