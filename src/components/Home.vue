@@ -26,7 +26,11 @@
                 >
                 <div class="carousel-caption d-none d-md-block">
                   <h2 class="animated fadeInUp" id="light">Aquaman</h2>
-                  <h4 class="animated fadeInUp" id="light">Premiär 18 jan</h4>
+                  <button
+                    class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
+                    data-toggle="modal"
+                    data-target="#buyModal"
+                  >Biljetter</button>
                 </div>
               </div>
               <div class="carousel-item">
@@ -36,8 +40,12 @@
                   alt="Second Slide"
                 >
                 <div class="carousel-caption d-none d-md-block">
-                  <h2 class="animated fadeInUp" id="dark">Frozen</h2>
-                  <h4 class="animated fadeInUp" id="dark">Premiär 21 jan</h4>
+                  <h2 class="animated fadeInUp" id="light">Frozen</h2>
+                  <button
+                    class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
+                    data-toggle="modal"
+                    data-target="#buyModal"
+                  >Biljetter</button>
                 </div>
               </div>
               <div class="carousel-item">
@@ -47,7 +55,11 @@
                 >
                 <div class="carousel-caption d-none d-md-block">
                   <h2 class="animated fadeInUp" id="light">A Quiet Place</h2>
-                  <h4 class="animated fadeInUp" id="light">Premiär 25 jan</h4>
+                  <button
+                    class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
+                    data-toggle="modal"
+                    data-target="#buyModal"
+                  >Biljetter</button>
                 </div>
               </div>
             </div>
@@ -86,13 +98,6 @@ export default {
 } */
 
 /* ### Carousel CSS START ### */
-#slider4 {
-  border-style: solid;
-  border-color: #be2627;
-  border-width: 1vw;
-  width: 50vw;
-  box-shadow: 3px 3px rgb(87, 8, 8);
-}
 #dark {
   color: rgb(0, 11, 31);
 }
@@ -106,13 +111,6 @@ h2 {
 
 h4 {
   animation-delay: 1.5s;
-}
-
-
-@media only screen and (max-width: 777px) {
-  .container {
-    display: none;
-  }
 }
 /* ### Carousel CSS END ### */
 
@@ -136,5 +134,10 @@ a {
 
 .alert {
   margin: 10% auto;
+}
+.buy:hover {
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  background-color: #f8f8f846;
 }
 </style>
