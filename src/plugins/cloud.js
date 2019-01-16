@@ -11,9 +11,6 @@ firebase.initializeApp({
   messagingSenderId: "727232800872"
 });
 
-let dbRef = firebase.database();
-
-// export the ref to the todos list
-export const dbMovies = dbRef.ref("movies");
-export const dbAuditoriums = dbRef.ref("auditorium");
-export const dbShows = dbRef.ref("shows");
+// exports database connection to use with events and
+// to get data from server
+export const db = firebase.database();

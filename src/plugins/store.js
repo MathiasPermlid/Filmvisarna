@@ -9,5 +9,13 @@ export default class store {
   constructor() {
     // use this.$store.exampleVariable to access this reactive variable
     this.exampleVariable = "example string";
+
+    // at startup these 3 arrays are filled with 
+    // data from the database.
+    // check App.vue for how data from database 
+    // is collected and stored
+    this.movies = [];
+    this.shows = [];
+    this.auditoriums = [];
   }
 }
