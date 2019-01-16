@@ -14,8 +14,8 @@ import GraphicList from "@/components/GraphicList.vue";
 export default {
   name: "home",
   components: {
-    GraphicList
-    Home,
+    GraphicList,
+    Home
   }
 };
 </script>
