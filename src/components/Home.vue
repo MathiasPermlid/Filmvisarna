@@ -40,7 +40,7 @@
                   alt="Second Slide"
                 >
                 <div class="carousel-caption d-none d-md-block">
-                  <h2 class="animated fadeInUp" id="dark">Frozen</h2>
+                  <h2 class="animated fadeInUp" id="light">Frozen</h2>
                   <button
                     class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
                     data-toggle="modal"
@@ -134,5 +134,10 @@ a {
 
 .alert {
   margin: 10% auto;
+}
+.buy:hover {
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  background-color: #f8f8f846;
 }
 </style>
