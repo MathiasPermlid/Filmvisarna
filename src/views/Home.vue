@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Home />
     <GraphicList />
   </div>
 </template>
