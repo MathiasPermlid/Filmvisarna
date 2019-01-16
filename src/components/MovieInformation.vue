@@ -5,7 +5,7 @@
     <div class="col-6">
         <span class="img-first row">
         <picture class>
-          <img src="../assets/Gallowwalkers/poster-1.jpg" alt>
+          <img src="../assets/movies/Gallowwalkers/poster-1.jpg" alt>
         </picture>
       </span>
     </div>
@@ -35,13 +35,13 @@
         <h3>Bilder</h3>
         <div class="row justify-content-around">
             <picture class="col-4">
-                <img src="../assets/Gallowwalkers/poster-1.jpg" alt>
+                <img src="../assets/movies/Gallowwalkers/poster-1.jpg" alt>
         </picture>
                 <picture class="col-4">
-                    <img src="../assets/Gallowwalkers/poster-2.jpg" alt>
+                    <img src="../assets/movies/Gallowwalkers/poster-2.jpg" alt>
         </picture>
                     <picture class="col-4">
-                        <img src="../assets/Gallowwalkers/poster-3.jpg" alt>
+                        <img src="../assets/movies/Gallowwalkers/poster-3.jpg" alt>
         </picture>
         </div>
     </div>
