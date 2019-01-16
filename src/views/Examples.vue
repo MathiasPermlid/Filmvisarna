@@ -1,7 +1,10 @@
 <template>
-  <div class="examples">
+  <div class="examples container row mx-auto content-bg">
+    <div class="col-12 pt-3">
     <Example1 />
     <Example2 />
+
+    </div>
   </div>
 </template>
 

@@ -2,16 +2,14 @@
     When creating new pages you need to update the navbar
  -->
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-    <router-link class="navbar-brand" to="/">
-        <img alt="Vue logo" src="../assets/logo.png">
-      My app
-    </router-link>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-0 container row align-self-center">
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav justify-content-center">
                 <li class="nav-item active">
                     <router-link to="/">Home</router-link>
                 </li>
@@ -45,8 +43,7 @@ export default {
 <style>
 nav {
     padding: 30px;
-    background-image: linear-gradient(lightgray, white);
-    box-shadow: 0 0 10px;
+    background-image: linear-gradient(#be2627);
 }
 
 nav img {
@@ -57,7 +54,7 @@ nav img {
 
 nav a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #fff;
 }
 
 .navbar>a {
@@ -84,10 +81,10 @@ li>a {
 
 li>a:hover {
     text-decoration: none;
-    color: green;
+    color: rgb(92, 91, 91);
 }
 
 nav a.router-link-exact-active {
-    color: #42b983;
+    color: #000;
 }
 </style>
