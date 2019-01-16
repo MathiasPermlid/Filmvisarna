@@ -7,9 +7,9 @@
     </ul>
   </div>-->
   <div class="graphicList">
-    <ul class="movieList container-fluid">
-      <li v-for="(data, index) in movies" :key="index" class="movieItem col-xs-6">
-        <img v-bind:src="data.images[0]" class="image-fluid">
+    <ul class="movieList">
+      <li v-for="(data, index) in movies" :key="index" class="movieItem">
+        <img v-bind:src="data.images[0]" class="movie-image"> 
       </li>
     </ul> 
   </div>
@@ -261,7 +261,6 @@ export default {
 
 <style>
 .graphicList {
-  max-height: 100vh;
   display: flex;
 }
 
@@ -269,16 +268,25 @@ export default {
   display: flex;
   list-style: none;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .movieItem {
-  flex: 1;
+  width: 25vw;
+  padding-top: 2vh;
 }
 
 .movie-image {
-  max-width: 100%;
+  width: 100%;
   height: 100%;
-  border: 6px black solid;
+  border: 5px black solid;
   object-fit: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .movieItem {
+    flex-direction: column;
+    width: 90vw;
+  }
 }
 </style>
