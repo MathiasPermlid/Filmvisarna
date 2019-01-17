@@ -552,21 +552,11 @@ export default {
     name: "MovieInformation",
     data() {
         return {
-            movies: [],
-            shows: [],
-            auditoriums: []
+            movies: this.$store.movies,
+            shows: this.$store.shows,
+            auditoriums: this.$store.auditoriums
         };
-    },
-    created() {
-        this.movies = this.$store.movies;
-        this.shows = this.$store.shows;
-        this.auditoriums = this.$store.auditoriums;
-
-        console.log(this.$store.movies);
-        console.log(this.$store.auditoriums);
-        console.log(this.$store.shows);
-    },
-    methods: {}
+    }
 };
 </script>
 

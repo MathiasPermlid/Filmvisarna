@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import Todo from "./views/Todo.vue";
 import Examples from "./views/Examples.vue";
 import About from "./views/About.vue";
 import MissingPage from "./views/MissingPage.vue";
@@ -16,11 +15,6 @@ export default new Router({
       path: "/",
       name: "Home",
       component: Home
-    },
-    {
-      path: "/todo",
-      name: "Todo List",
-      component: Todo
     },
     {
       path: "/examples",

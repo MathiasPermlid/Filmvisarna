@@ -1,8 +1,16 @@
 <template>
   <div class="about container row mx-auto content-bg">
-    <div class="col-12 pt-3">
-    <h1>This is an about page</h1>
-
+    <div class="col-12 pt-5">
+      <h1>Om oss</h1>
+      <article class="col-11 col-md-7 m-auto">
+        <p>Filmvisarna AB är en liten biografkedja i Småstad. Vi har ett par biografsalonger: 
+          Stora Salongen, som rymmer 81 biogäster, och
+          Lilla Salongen, som har 56 platser.
+        </p>
+        <p>Det går att köpa popcorn, godis och läsk.</p>
+        <p>I våra salonger finns det plats att resarvera för rullstol</p>
+        <p>och vi har sittdynor för de små åskådarna</p>
+      </article>
     </div>
   </div>
 </template>
@@ -20,6 +28,9 @@ export default {
 .body {
   margin: 60px;
   background: #111;
+}
+.about{
+  display: flex;
 }
 .theatre {
   display: flex;

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Carousel />
-    <ShowSchedule/>
+    <!-- <ShowSchedule/> -->
     <GraphicList/>
   </div>
 </template>
