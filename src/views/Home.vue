@@ -1,8 +1,10 @@
 <template>
-  <div class="home">
-    <Carousel />
-    <!-- <ShowSchedule/> -->
-    <GraphicList/>
+  <div class="home container content-bg">
+    <Carousel/>
+    <div class="movie-content d-flex">
+      <GraphicList id="graphic-list"/>
+      <ShowSchedule id="schedule-comp"/>
+    </div>
   </div>
 </template>
 
@@ -19,7 +21,27 @@ export default {
     GraphicList,
     Carousel,
     ShowSchedule
-  
   }
 };
 </script>
+
+<style>
+.movie-content {
+  display: flex;
+  flex-direction: row;
+}
+#schedule-comp {
+  width: 25vw;
+}
+@media screen and (max-width: 676px) {
+  .movie-content {
+    flex-direction: column;
+  }
+  #graphic-list {
+    padding-top: 5%;
+  }
+  #schedule-comp {
+    width: 100%;
+  }
+}
+</style>
