@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <GraphicList/>
+    
     <ShowSchedule/>
   </div>
 </template>

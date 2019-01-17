@@ -7,10 +7,8 @@
             </div>
         </div>
     </div>
-    -->
-
     
-<table class="table table-hover table-dark col-4">
+<table class="table table-hover table-dark col-4" id="test">
   <thead>
     <tr>
       <th scope="col">Datum</th>
@@ -27,14 +25,37 @@
       <td>{{show.auditorium}}</td>
     </tr>
   </tbody>
-</table>
+</table> 
 
+-->
+    <div id="accordion" class="col-4">
+    <div v-for="(day, index)  in this.showsList" v-bind:key="day.date" class="card">
+        <div class="card-header dark" :id="day.date">
+        <h5 class="mb-0">
+            <button class="btn btn-link dark" data-toggle="collapse"  :data-target="'#box' + index" aria-expanded="true" :aria-controls="'box' + index">
+            {{day.date}}
+            </button>
+        </h5>
+        </div>
+
+        <div :id="'box' + index" v-bind:class="{ show: index === 0 }" class="collapse grey" :aria-labelledby="day.date" data-parent="#accordion">
+        <div class="card-body">
+            <div v-for="(show, index) in day.shows" v-bind:key="index">
+                {{show.time}} 
+                Film: {{show.film}} 
+                Salong: {{show.auditorium}}
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+    </div>
 </div>
  
 </template>
 
 <script>
-
 
 export default {
     name: "showSchedule",
@@ -74,5 +95,11 @@ export default {
 </script>
 
 <style scoped>
-
+.dark{
+    background-color:rgb(48, 48, 48);
+    color: white;
+}
+.grey{
+     background-color:rgb(73, 73, 73); 
+}
 </style>
