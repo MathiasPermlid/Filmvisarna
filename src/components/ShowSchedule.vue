@@ -77,7 +77,7 @@ export default {
     };
   },
   created() {
-    console.log(this.shows);
+    // console.log(this.shows);
 
     // konstruerar en hash av shows, med ett array-element per datum
     this.showsHash = {};
@@ -87,7 +87,7 @@ export default {
       }
       this.showsHash[show.date].push(show);
     }
-    console.log("showsHash", this.showsHash);
+    // console.log("showsHash", this.showsHash);
 
     // konverterar hashen eventsHash till en array som Vue gärna itererar
     this.showsList = [];
@@ -97,7 +97,7 @@ export default {
         shows: this.showsHash[date]
       });
     }
-    console.log("showsList", this.showsList);
+    // console.log("showsList", this.showsList);
   }
 };
 </script>

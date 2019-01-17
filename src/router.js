@@ -17,7 +17,7 @@ export default new Router({
       component: Home
     },
     {
-      path: "/movieinfo",
+      path: "/movieinfo/:link",
       name: "MovieInfo",
       component: MovieInfo
     },
