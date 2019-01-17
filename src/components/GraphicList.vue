@@ -7,9 +7,9 @@
     </ul>
   </div>-->
   <div class="graphicList">
-    <ul class="movieList container-fluid">
+    <ul class="movieList container row content-bg mx-auto">
       <li v-for="(data, index) in movies" :key="index" class="movieItem col-xs-6">
-        <img v-bind:src="data.images[0]" class="image-fluid">
+        <img v-bind:src="data.images[0]" class="img-fluid">
       </li>
     </ul> 
   </div>

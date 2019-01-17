@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Carousel class="mt-3"/>
+    <Carousel />
     <ShowSchedule/>
     <GraphicList/>
   </div>

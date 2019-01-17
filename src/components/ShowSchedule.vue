@@ -1,15 +1,7 @@
 <template>
-<div> 
-   <!-- <div v-for="day in this.showsList" v-bind:key="day.date">
-        <div v-for="(show, index) in day.shows" v-bind:key="index">
-            <div><h2>{{day.date}}</h2>
-                <div><h3><em>{{show.time}}</em> {{show.film}} {{show.auditorium}}</h3></div>
-            </div>
-        </div>
-    </div>
-    -->
+<div class="row container mx-auto content-bg"> 
+    <div class="col-12">
 
-    
 <table class="table table-hover table-dark col-4">
   <thead>
     <tr>
@@ -28,6 +20,17 @@
     </tr>
   </tbody>
 </table>
+    </div>
+   <!-- <div v-for="day in this.showsList" v-bind:key="day.date">
+        <div v-for="(show, index) in day.shows" v-bind:key="index">
+            <div><h2>{{day.date}}</h2>
+                <div><h3><em>{{show.time}}</em> {{show.film}} {{show.auditorium}}</h3></div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    
 
 </div>
  

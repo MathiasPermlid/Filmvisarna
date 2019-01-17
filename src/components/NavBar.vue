@@ -17,7 +17,7 @@
                     <router-link to="/todo">Todo List</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/examples">Examples</router-link>
+                    <router-link to="/examples">Showcase MoviePage</router-link>
                 </li>
                 
                 <li class="nav-item">
