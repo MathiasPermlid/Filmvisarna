@@ -54,7 +54,7 @@
         <h2 class>{{ movie.title }}</h2>
       </div>
       <div class="row">
-        <p class="mobile-p">Speltid: {{ movie.length }} min</p>
+        <p class="mobile-p mr-4">Speltid: {{ movie.length }} min</p>
         <p class="mobile-p">Genre: {{ movie.genre }}</p>
       </div>
       <div class="row">
@@ -88,7 +88,7 @@
         <div class="embed-responsive embed-responsive-16by9">
           <iframe
             class="embeded-responsive embeded-responsive-16by9"
-            src="https://www.youtube.com/embed/l7N649DFaCA"
+            :src="trailers[movie.link]"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
@@ -136,7 +136,7 @@ export default {
   name: "MovieInformation",
   data() {
     return {
-      trailers: []
+      trailers: {}
     };
   },
   computed: {
