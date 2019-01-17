@@ -1,5 +1,5 @@
 <template>
-  <div class="Carousel row container mx-auto content-bg">
+  <div class="Carousel row container mx-auto ">
     <!--  <div id="slider">  ### SLIDER ###
       <infinite-slide-bar :barStyle="{ background: '#CC0020', padding: '5px 0' }">
         <span

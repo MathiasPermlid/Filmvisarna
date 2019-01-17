@@ -1,6 +1,6 @@
 <template>
   <div class="graphicList">
-    <ul class="movieList container row content-bg mx-auto">
+    <ul class="movieList container row mx-auto">
       <li v-for="(data, index) in movies" :key="index" class="movieItem col-6 col-md-3 m-0">
         <figure class="posters">
           <img v-bind:src="data.poster" class="img-fluid">
