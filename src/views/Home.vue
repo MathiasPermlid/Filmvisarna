@@ -9,6 +9,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 // need to import components to add to the view
 // @ is an alias to /src
 import GraphicList from "@/components/GraphicList.vue";

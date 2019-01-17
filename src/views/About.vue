@@ -16,6 +16,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   data() {
     $(".cinema-seats .seat").on("click", function() {

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import Examples from "./views/Examples.vue";
+import MovieInfo from "./views/MovieInfo.vue";
 import About from "./views/About.vue";
 import MissingPage from "./views/MissingPage.vue";
 
@@ -17,9 +17,9 @@ export default new Router({
       component: Home
     },
     {
-      path: "/examples",
-      name: "Examples",
-      component: Examples
+      path: "/movieinfo",
+      name: "MovieInfo",
+      component: MovieInfo
     },
     {
       path: "/about",

@@ -11,7 +11,7 @@
 #####################################################################
 -->
     <!-- Gallowwalkers -->
-    <div class="row col-sm-12 col-md-12 pt-4 mx-auto">
+    <div id="gallowalkers" class="row col-sm-12 col-md-12 pt-4 mx-auto">
         <div class="col-sm-12 col-md-6 row">
             <picture class="img-fluid hide-trailer-poster">
                 <img src="../assets/movies/Gallowwalkers/poster-1.jpg" alt>
@@ -120,7 +120,7 @@
 #####################################################################
 -->
     <!-- Emperors New Groove -->
-    <div class="row col-sm-12 col-md-12 pt-4 mx-auto pt-5">
+    <div id="Emperor" class="row col-sm-12 col-md-12 pt-4 mx-auto pt-5">
         <div class="col-sm-12 col-md-6 row">
             <picture class="img-fluid hide-trailer-poster">
                 <img src="../assets/movies/Emperors-Groove/poster-3.jpg" alt>
@@ -228,7 +228,7 @@
 #####################################################################
 -->
     <!-- Luzhin Defence -->
-    <div class="row col-sm-12 col-md-12 pt-4 mx-auto pt-5">
+    <div id="Luzhin-Defence" class="row col-sm-12 col-md-12 pt-4 mx-auto pt-5">
         <div class="col-sm-12 col-md-6 row">
             <picture class="img-fluid hide-trailer-poster">
                 <img src="../assets/movies/Luzhin-Defence/poster-3.jpg" alt>
@@ -336,7 +336,7 @@
 #####################################################################
 -->
     <!-- So Ends Our Night -->
-    <div class="row col-sm-12 col-md-12 pt-4 mx-auto pt-5">
+    <div id="So-Ends-Our-Night" class="row col-sm-12 col-md-12 pt-4 mx-auto pt-5">
         <div class="col-sm-12 col-md-6 row">
             <picture class="img-fluid hide-trailer-poster">
                 <img src="../assets/movies/So-Ends-Our-Night/poster-2.jpg" alt>
@@ -444,7 +444,7 @@
 #####################################################################
 -->
     <!-- Declaration of War -->
-    <div class="row col-sm-12 col-md-12 pt-4 mx-auto pt-5">
+    <div id="Declaration-of-War" class="row col-sm-12 col-md-12 pt-4 mx-auto pt-5">
         <div class="col-sm-12 col-md-6 row">
             <picture class="img-fluid hide-trailer-poster">
                 <img src="../assets/movies/Declaration-of-War/poster-1.jpg" alt>

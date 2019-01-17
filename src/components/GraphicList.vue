@@ -1,9 +1,12 @@
 <template>
   <div class="graphicList">
+    <h3>PÅ BION JUST NU</h3>
     <ul class="movieList container row mx-auto">
       <li v-for="(data, index) in movies" :key="index" class="movieItem col-6 col-md-3 m-0">
         <figure class="posters">
-          <img v-bind:src="data.poster" class="img-fluid">
+          <router-link v-bind:to="'/movieinfo/#' + movies[index].link">
+            <img v-bind:src="data.poster" class="img-fluid">
+          </router-link>
         </figure>
       </li>
     </ul>
@@ -11,6 +14,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   name: "graphicList",
   data() {
@@ -22,12 +26,10 @@ export default {
 </script>
 
 <style>
-.posters{
-  
+.posters {
 }
 .posters img {
   border: 6px black solid;
-  
 }
 .graphicList ul {
   display: flex;
@@ -35,6 +37,5 @@ export default {
 }
 .graphicList li {
   list-style: none;
-
 }
 </style>

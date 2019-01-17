@@ -7,11 +7,12 @@
 </template>
 
 <script>
+/* eslint-disable */
 // @ is an alias to /src
 import MovieInformation from "@/components/MovieInformation.vue";
 
 export default {
-  name: "examples",
+  name: "MovieInfo",
   components: {
     MovieInformation
   }
