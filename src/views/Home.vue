@@ -33,7 +33,7 @@ export default {
 #schedule-comp {
   width: 25vw;
 }
-@media screen and (max-width: 676px) {
+@media screen and (max-width: 776px) {
   .movie-content {
     flex-direction: column;
   }
