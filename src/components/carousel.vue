@@ -99,6 +99,13 @@ export default {
 } */
 
 /* ### Carousel CSS START ### */
+#slider4 {
+  border-style: solid;
+  border-color: #be2627;
+  border-width: 1vw;
+  width: 50vw;
+  box-shadow: 3px 3px rgb(87, 8, 8);
+}
 #dark {
   color: rgb(0, 11, 31);
 }
@@ -141,5 +148,11 @@ a {
 
 .alert {
   margin: 10% auto;
+}
+</style>
+@media only screen and (max-width: 777px) {
+  .container {
+    display: none;
+  }
 }
 </style>
