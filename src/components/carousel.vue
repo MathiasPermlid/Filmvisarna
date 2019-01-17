@@ -11,7 +11,7 @@
     <div class="container mt-4">
       <div class="row">
         <div class="col-sm-8 m-auto">
-          <div id="slider4" class="carousel slide mb-5" data-ride="carousel">
+          <div id="slider4" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <li class="active" data-target="#slider4" data-slide-to="0"></li>
               <li data-target="#slider4" data-slide-to="1"></li>

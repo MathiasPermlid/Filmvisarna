@@ -21,7 +21,7 @@
 /* eslint-disable */
 export default {
   name: "graphicList",
-  props:{
+  props: {
     searchedMovies: {
       type: Array,
       required: true
@@ -36,6 +36,9 @@ export default {
 </script>
 
 <style>
+.graphicList {
+  width: 100%;
+}
 .movie-title {
   position: relative;
   padding: 13% 0;
@@ -45,7 +48,7 @@ export default {
 }
 .movie-title h5 {
   position: absolute;
-  font-size: .8em;
+  font-size: 0.8em;
   top: 0;
   width: 100%;
 }
@@ -85,5 +88,4 @@ export default {
     height: 70%;
   }
 }
-
 </style>
