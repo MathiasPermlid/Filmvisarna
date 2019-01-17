@@ -1,6 +1,6 @@
 <template>
   <div class="home container content-bg">
-    <Carousel/>
+    <Carousel id="carousel"/>
     <div class="movie-content d-flex">
       <GraphicList id="graphic-list"/>
       <ShowSchedule id="schedule-comp"/>
@@ -34,7 +34,7 @@ export default {
 #schedule-comp {
   width: 25vw;
 }
-@media screen and (max-width: 776px) {
+@media screen and (max-width: 777px) {
   .movie-content {
     flex-direction: column;
   }

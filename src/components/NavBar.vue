@@ -2,7 +2,7 @@
     When creating new pages you need to update the navbar
  -->
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-0 container row align-self-center">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-0 container row rounded align-self-center">
     <button
       class="navbar-toggler"
       type="button"
@@ -23,9 +23,6 @@
         <li class="nav-item">
           <router-link to="/about">Om oss</router-link>
         </li>
-        <!-- <li class="nav-item">
-          <router-link to="/movieinfo">Showcase MoviePage</router-link>
-        </li> -->
       </ul>
     </div>
   </nav>
@@ -48,7 +45,8 @@ export default {
 nav {
   position: absolute;
   padding: 30px;
-  background-image: linear-gradient(#be2627);
+  border: 2px solid rgba(77, 0, 0, 0.712);
+  background-image: linear-gradient(rgba(119, 27, 27, 0.8), rgba(148, 5, 5, 0.9), rgb(119, 27, 27,8));
 }
 
 nav img {
@@ -65,7 +63,7 @@ nav a {
 nav > a {
   position: absolute;
   font-size: 1.8em;
-  top: 3%;
+  top: 0;
   right: 3%;
 }
 nav > a:hover {

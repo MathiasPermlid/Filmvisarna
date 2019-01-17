@@ -1,5 +1,5 @@
 <template>
-  <div class="Carousel row container mx-auto ">
+  <div class="Carousel row container mx-auto">
     <!--  <div id="slider">  ### SLIDER ###
       <infinite-slide-bar :barStyle="{ background: '#CC0020', padding: '5px 0' }">
         <span
@@ -99,12 +99,14 @@ export default {
 } */
 
 /* ### Carousel CSS START ### */
+
 #slider4 {
   border-style: solid;
-  border-color: #be2627;
-  border-width: 1vw;
-  width: 50vw;
-  box-shadow: 3px 3px rgb(87, 8, 8);
+  border-color: rgba(141, 5, 5, 0.9);
+  border-width: 8px;
+  /* width: 50vw; */
+  box-shadow: 3px 3px rgba(114, 4, 4, 0.973);
+  border-radius: 10px;
 }
 #dark {
   color: rgb(0, 11, 31);

@@ -1,5 +1,5 @@
 <template>
-<div class="row container mx-auto content-bg">
+<div class="row container mx-auto">
 
     <!-- 
 #####################################################################
