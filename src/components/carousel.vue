@@ -149,7 +149,6 @@ a {
 .alert {
   margin: 10% auto;
 }
-</style>
 @media only screen and (max-width: 777px) {
   .container {
     display: none;
