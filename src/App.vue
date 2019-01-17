@@ -21,7 +21,7 @@ export default {
     NavBar,
     Footer
   }
-}
+};
 </script>
 
 <style src="./style.css"></style>

@@ -14,9 +14,9 @@ footer {
     width: 100%;
     margin-top: 20px;
     padding-top: 8px;
-    border-top: 1px solid gray;
-    background-image: linear-gradient(lightgray, white);
-    box-shadow: 0 0 5px;
+    border-top: 0.25px solid rgba(255, 255, 255, 0.719);
+    background-color: transparent;
+    box-shadow: 0 0 1px;
 }
 footer>p{
     font-size: 1em;

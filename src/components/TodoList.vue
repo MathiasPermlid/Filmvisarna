@@ -2,7 +2,7 @@
 <div class="holder col-8 col-lg-6 p-0">
     <!-- the @submit calls the method addItem on submit 
         .prevent blocks render, so animations can be played-->
-    <form @submit.prevent="addItem">
+    <form>
         <!-- v-bind:class can change class on variable condition -->
         <input type="text" autocomplete="off" placeholder="Enter an item to add.." v-model="item" name="item" v-bind:class="!items[0] ? 'shadow' : ''">
         <!-- transition is used when animating content with css -->
@@ -18,8 +18,9 @@
                 v-for loops through items, and create a <li> for every item -->
         <li v-for="(list, index) in items" :key='index / 1'
         class="d-flex align-items-center justify-content-between shadow">
-            {{index + 1}}: {{ list.item }}
-            <i class="fa fa-minus-circle" v-on:click="removeItem(list.key)"></i>
+            {{index + 1}}: {{ list.title }}
+            <i class="fa fa-minus-circle"></i>
+            <!-- v-on:click="removeItem(list.key)" -->
         </li>
     </transition-group>
 </div>
