@@ -1,5 +1,5 @@
 <template>
-  <div class="Carousel">
+  <div class="Carousel row container mx-auto content-bg">
     <!--  <div id="slider">  ### SLIDER ###
       <infinite-slide-bar :barStyle="{ background: '#CC0020', padding: '5px 0' }">
         <span
@@ -8,7 +8,7 @@
       </infinite-slide-bar>
     </div>-->
     <!-- ### Carousel START ### -->
-    <div class="container">
+    <div class="container mt-4">
       <div class="row">
         <div class="col-sm-8 m-auto">
           <div id="slider4" class="carousel slide mb-5" data-ride="carousel">
