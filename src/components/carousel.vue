@@ -110,7 +110,7 @@ h2 {
   animation-delay: 1s;
 }
 
-h4 {
+.buy {
   animation-delay: 1.5s;
 }
 
@@ -142,3 +142,4 @@ a {
 .alert {
   margin: 10% auto;
 }
+</style>
