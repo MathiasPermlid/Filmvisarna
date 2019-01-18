@@ -1,6 +1,5 @@
 <template>
   <div class="row container mx-auto">
-    <!-- Gallowwalkers -->
     <div class="row col-sm-12 col-md-12 pt-4 mx-auto">
       <div class="col-sm-12 col-md-6 row">
         <picture class="img-fluid hide-trailer-poster">
@@ -8,15 +7,6 @@
         </picture>
       </div>
       <div class="col-sm-12 col-md-6 hide-trailer-poster">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe
-            class="embeded-responsive embeded-responsive-16by9"
-            :src="trailers[movie.link]"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
         <div class="pt-4">
           <p class="mobile-p lead">{{ movie.reviews[0].source }}</p>
           <p class="mobile-p">
@@ -24,7 +14,6 @@
           </p>
           <p class="mobile-p lead">
             {{ movie.reviews[0].stars }} / {{ movie.reviews[0].max }}
-            <i class="far fa-star"></i>
           </p>
         </div>
         <div class="pt-2">
@@ -34,7 +23,6 @@
           </p>
           <p class="mobile-p lead">
             {{ movie.reviews[1].stars }} / {{ movie.reviews[0].max }}
-            <i class="far fa-star"></i>
           </p>
         </div>
         <div class="pt-2">
@@ -44,7 +32,6 @@
           </p>
           <p class="mobile-p lead">
             {{ movie.reviews[2].stars }} / {{ movie.reviews[0].max }}
-            <i class="far fa-star"></i>
           </p>
         </div>
       </div>
@@ -101,7 +88,6 @@
           </p>
           <p class="mobile-p lead">
             {{ movie.reviews[0].stars }} / {{ movie.reviews[0].max }}
-            <i class="far fa-star"></i>
           </p>
         </div>
         <div class="pt-2">
@@ -111,7 +97,6 @@
           </p>
           <p class="mobile-p lead">
             {{ movie.reviews[1].stars }} / {{ movie.reviews[0].max }}
-            <i class="far fa-star"></i>
           </p>
         </div>
         <div class="pt-2">
@@ -121,7 +106,6 @@
           </p>
           <p class="mobile-p lead">
             {{ movie.reviews[2].stars }} / {{ movie.reviews[0].max }}
-            <i class="far fa-star"></i>
           </p>
         </div>
       </div>
