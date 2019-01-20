@@ -46,7 +46,13 @@ nav {
   position: absolute;
   padding: 30px;
   border: 2px solid rgba(77, 0, 0, 0.712);
-  background-image: linear-gradient(rgba(119, 27, 27, 0.8), rgba(148, 5, 5, 0.9), rgb(119, 27, 27,8));
+  /* background-image: linear-gradient(rgba(119, 27, 27, 0.8), rgba(148, 5, 5, 0.9), rgb(119, 27, 27,8)); */
+  background: linear-gradient(to right top, 
+  #36454f 10%, 
+  #4b5e6b 50%,
+   #4c5f6b 51%, 
+   #36454f 81%,
+   #36454f 10%);
 }
 
 nav img {

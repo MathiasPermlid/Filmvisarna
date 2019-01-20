@@ -10,6 +10,8 @@ export default class store {
     // use this.$store.exampleVariable to access this reactive variable
     this.exampleVariable = "example string";
 
+    this.apikey = '&apikey=1be55ddb';
+
     // at startup these 3 arrays are filled with 
     // data from the database.
     // check App.vue for how data from database 

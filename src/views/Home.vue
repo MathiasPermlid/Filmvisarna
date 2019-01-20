@@ -11,6 +11,7 @@
 
 <script>
 /* eslint-disable */
+import { db } from "@/plugins/cloud";
 // need to import components to add to the view
 // @ is an alias to /src
 import GraphicList from "@/components/GraphicList.vue";
@@ -21,28 +22,65 @@ export default {
   name: "home",
   data() {
     return {
-      searchMovie: ""
+      searchMovie: "",
+      movies: []
     };
   },
   computed: {
     filteredMovies() {
       let filter = new RegExp(this.searchMovie, "i");
-      return this.$store.movies.filter(el => el.title.match(filter));
+      return this.movies.filter(el => el.Title.match(filter));
+    }
+  },
+  watch:{
+    movies(){
+      this.$store.movies = this.movies;
     }
   },
   components: {
     GraphicList,
     Carousel,
     ShowSchedule
+  },
+  created() {
+    let movielist = [
+      "Fantastic+Beasts-+The+Crimes+of+Grindelwald",
+      "Glass",
+      "Hunter+Killer",
+      "The+Grinch",
+      "A+Star+Is+Born",
+      "Bohemian+Rhapsody",
+      "Lego+movie+2",
+      "Ralph+Breaks+the+Internet",
+      "Aquaman",
+      "A+Dog's+Way+Home",
+      "Bumblebee",
+      "On+the+Basis+of+Sex",
+      "Mary+Poppins+Returns",
+      "Escape+room&y=2018",
+      "Vice&y=2018",
+      "Spider-Man%3A+Into+the+Spider-Verse"
+    ];
+
+    for (let query of movielist) {
+      fetch("https://www.omdbapi.com/?t=" + query + this.$store.apikey)
+        .then(res => {
+          return res.json();
+        })
+        .then(res => {
+          res.Link = query;
+          this.movies.push(res);
+        });
+    }
   }
 };
 </script>
 
 <style>
-.home input:focus{
+.home input:focus {
   outline: none;
 }
-.home input{
+.home input {
   margin: 5%;
   color: white;
   border-radius: 20px;
