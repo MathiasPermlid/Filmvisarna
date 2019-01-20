@@ -2,7 +2,10 @@
     When creating new pages you need to update the navbar
  -->
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-0 container row rounded align-self-center">
+  <nav
+    v-if="!mobile"
+    class="navbar navbar-expand-lg navbar-light bg-light mb-0 container row rounded align-self-center"
+  >
     <button
       class="navbar-toggler"
       type="button"
@@ -20,11 +23,19 @@
         <li class="nav-item active">
           <router-link to="/">Start</router-link>
         </li>
+        <li class="nav-item active">
+          <router-link to="/kalender">Kalender</router-link>
+        </li>
         <li class="nav-item">
           <router-link to="/about">Om oss</router-link>
         </li>
       </ul>
     </div>
+  </nav>
+  <nav v-else id="nav-mobile">
+    <router-link to="/" class="col-4">Start</router-link>
+    <router-link to="/kalender" class="col-4">Kalender</router-link>
+    <router-link to="/about" class="col-4">Om oss</router-link>
   </nav>
 </template>
 
@@ -33,6 +44,21 @@
 import $ from "jquery";
 
 export default {
+  data() {
+    return {
+      mobile: this.startMobile()
+    };
+  },
+  methods: {
+    startMobile() {
+      return window.innerWidth < 600 ? true : false;
+    }
+  },
+  created() {
+    $(window).on("resize", () => {
+      this.mobile = window.innerWidth < 600 ? true : false;
+    });
+  },
   mounted() {
     $("nav a").on("click", () => {
       $("#navbarNav").removeClass("show");
@@ -45,27 +71,32 @@ export default {
 nav {
   position: absolute;
   padding: 30px;
-  border: 2px solid rgba(77, 0, 0, 0.712);
+  border: 2px solid #4c5f6b;
   /* background-image: linear-gradient(rgba(119, 27, 27, 0.8), rgba(148, 5, 5, 0.9), rgb(119, 27, 27,8)); */
-  background: linear-gradient(to right top, 
-  #36454f 10%, 
-  #4b5e6b 50%,
-   #4c5f6b 51%, 
-   #36454f 81%,
-   #36454f 10%);
+  background: linear-gradient(
+    to right top,
+    #36454f 10%,
+    #4b5e6b 50%,
+    #4c5f6b 51%,
+    #36454f 81%,
+    #36454f 10%
+  );
 }
-
+#nav-mobile {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
 nav img {
   width: 1.5em;
   height: 1.5em;
   margin-right: 5px;
 }
-
 nav a {
   font-weight: bold;
   color: #fff;
 }
-
 nav > a {
   position: absolute;
   font-size: 1.8em;
@@ -76,29 +107,23 @@ nav > a:hover {
   text-decoration: none;
   color: #fff;
 }
-
 .navbar-expand-lg li {
   text-align: start;
   margin-left: 3%;
 }
-
 ul {
   width: 100%;
 }
-
 li {
   margin-right: 3%;
 }
-
 li > a {
   font-size: 1.4em;
 }
-
 li > a:hover {
   text-decoration: none;
   color: rgb(92, 91, 91);
 }
-
 li a.router-link-exact-active {
   color: #000;
 }

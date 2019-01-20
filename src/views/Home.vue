@@ -3,8 +3,13 @@
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
     <div class="movie-content d-flex">
-      <GraphicList :searchedMovies="[...filteredMovies]" id="graphic-list"/>
-      <ShowSchedule id="schedule-comp" class="ml-auto col-12 col-md-3"/>
+      <MovieSwiper :posters="movies"/>
+      <br>
+      <MovieSwiper :posters="movies"/>
+      <br>
+      <MovieSwiper :posters="movies"/>
+      <!-- <GraphicList :searchedMovies="[...filteredMovies]" id="graphic-list"/> -->
+      <!-- <ShowSchedule id="schedule-comp" class="ml-auto col-12 col-md-3"/> -->
     </div>
   </div>
 </template>
@@ -17,6 +22,7 @@ import { db } from "@/plugins/cloud";
 import GraphicList from "@/components/GraphicList.vue";
 import Carousel from "@/components/carousel.vue";
 import ShowSchedule from "@/components/ShowSchedule.vue";
+import MovieSwiper from "@/components/MovieSwiper.vue";
 
 export default {
   name: "home",
@@ -40,7 +46,8 @@ export default {
   components: {
     GraphicList,
     Carousel,
-    ShowSchedule
+    ShowSchedule,
+    MovieSwiper
   },
   created() {
     let movielist = [

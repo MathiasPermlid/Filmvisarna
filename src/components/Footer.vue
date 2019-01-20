@@ -14,7 +14,6 @@ footer {
     width: 100%;
     padding-top: 8px;
     background-color: #36454f;
-    border-top: 0.25px solid rgba(255, 255, 255, 0.719);
 }
 footer>p{
     font-size: 1em;
