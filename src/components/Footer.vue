@@ -1,5 +1,5 @@
 <template>
-<footer id="footer" class="container">
+<footer id="footer" class="">
     <p>© 2019 Filmvisarna</p>
 </footer>
 </template>

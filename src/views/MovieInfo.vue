@@ -1,5 +1,5 @@
 <template>
-  <div class="examples container row mx-auto content-bg">
+  <div class="examples row mx-auto">
     <div class="col-12 pt-3">
       <MovieInformation/>
     </div>

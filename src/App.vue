@@ -1,9 +1,16 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <!-- HEADER -->
     <NavBar/>
     <!-- MAIN VIEW -->
-    <router-view/>
+    <transition
+      name="animate-route"
+      mode="out-in"
+      enter-active-class="animated slideInUp"
+      leave-active-class="animated slideOutDown"
+    >
+      <router-view/>
+    </transition>
     <!-- FOOTER -->
     <Footer/>
   </div>
@@ -14,7 +21,6 @@
 // @ is an alias to /src
 import NavBar from "@/components/NavBar.vue";
 import Footer from "@/components/Footer.vue";
-
 
 export default {
   name: "app",

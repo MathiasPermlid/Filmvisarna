@@ -1,6 +1,5 @@
 <template>
   <div class="graphicList mx-auto">
-    <h3>PÅ BION JUST NU</h3>
     <h3 v-if="!searchedMovies[0]" class="mb-5">Inga filmer matchade din sökning</h3>
     <ul v-else class="movieList container row mx-auto">
       <li v-for="(data, index) in searchedMovies" :key="index" class="movieItem col-6 col-md-3 m-0">

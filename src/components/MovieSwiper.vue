@@ -8,7 +8,6 @@
           </router-link>
         </figure>
       </swiper-slide>
-      <!-- <div class="swiper-pagination" slot="pagination"></div> -->
     </swiper>
   </div>
 </template>
@@ -16,6 +15,7 @@
 <script>
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/dist/css/swiper.css";
+import $ from "jquery";
 
 export default {
   props: {
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       swiperOption: {
-        slidesPerView: 3.3,
+        slidesPerView: this.startMobile(),
         spaceBetween: 2,
         freeMode: true,
         loop: true
@@ -37,6 +37,16 @@ export default {
   components: {
     swiper,
     swiperSlide
+  },
+  methods: {
+    startMobile() {
+      return window.innerWidth < 600 ? 3.3 : 5.3;
+    }
+  },
+  created() {
+    $(window).on("resize", () => {
+      this.mobile = window.innerWidth < 600 ? 3.3 : 5.3;
+    });
   }
 };
 </script>
@@ -46,7 +56,7 @@ export default {
   height: 30vmax;
   overflow: hidden;
 }
-.swipe-item{
+.swipe-item {
   height: 100%;
 }
 .posters {

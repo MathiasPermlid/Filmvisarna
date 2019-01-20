@@ -4,7 +4,7 @@
 <template>
   <nav
     v-if="!mobile"
-    class="navbar navbar-expand-lg navbar-light bg-light mb-0 container row rounded align-self-center"
+    class="navbar navbar-expand-lg navbar-light bg-light mb-0 row rounded align-self-center"
   >
     <button
       class="navbar-toggler"
@@ -18,6 +18,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <router-link to="/">Filmvisarna</router-link>
+    <div class="category-line mt-4"></div>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav justify-content-center">
         <li class="nav-item active">
@@ -69,6 +70,7 @@ export default {
 
 <style>
 nav {
+  width: 100%;
   position: absolute;
   padding: 30px;
   border: 2px solid #4c5f6b;

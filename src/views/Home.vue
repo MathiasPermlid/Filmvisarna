@@ -1,16 +1,27 @@
 <template>
-  <div class="home container content-bg">
+  <div class="home">
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
-    <div class="movie-content d-flex">
-      <MovieSwiper :posters="movies"/>
+    <!-- <div class="movie-content d-flex"> -->
+    <div v-if="!searchMovie">
+      <h3 class="category-text mb-0">Kategori 1</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :posters="movies" class="col-12"/>
       <br>
-      <MovieSwiper :posters="movies"/>
+      <h3 class="category-text mb-0">Kategori 2</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :posters="movies" class="col-12"/>
       <br>
-      <MovieSwiper :posters="movies"/>
-      <!-- <GraphicList :searchedMovies="[...filteredMovies]" id="graphic-list"/> -->
-      <!-- <ShowSchedule id="schedule-comp" class="ml-auto col-12 col-md-3"/> -->
+      <h3 class="category-text mb-0">Kategori 3</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :posters="movies" class="col-12"/>
     </div>
+
+    <div v-else>
+      <GraphicList :searchedMovies="[...filteredMovies]" id="graphic-list"/>
+    </div>
+    <!-- <ShowSchedule id="schedule-comp" class="ml-auto col-12 col-md-3"/> -->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -38,8 +49,8 @@ export default {
       return this.movies.filter(el => el.Title.match(filter));
     }
   },
-  watch:{
-    movies(){
+  watch: {
+    movies() {
       this.$store.movies = this.movies;
     }
   },
@@ -79,6 +90,8 @@ export default {
           this.movies.push(res);
         });
     }
+    console.log(this.movies);
+    
   }
 };
 </script>
@@ -99,6 +112,15 @@ export default {
 }
 #schedule-comp {
   width: 25vw;
+}
+.category-text {
+  text-align: left;
+}
+.category-line {
+  width: 60px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: rgb(255, 196, 0);
 }
 @media screen and (max-width: 777px) {
   .movie-content {

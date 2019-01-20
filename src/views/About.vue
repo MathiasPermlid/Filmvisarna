@@ -1,5 +1,5 @@
 <template>
-  <div class="about container row mx-auto content-bg">
+  <div class="about row mx-auto">
     <div class="col-12 pt-5">
       <h1>Om oss</h1>
       <article class="col-11 col-md-7 m-auto">
