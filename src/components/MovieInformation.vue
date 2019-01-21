@@ -1,77 +1,102 @@
 <template>
-<div class="row container mx-auto">
-    <div class="row col-sm-12 col-md-12 mx-auto justify-content-center">
-        <div class="col-sm-12 col-md-6 row">
-            <picture class="img-fluid">
-                <img :src="movie.Poster" alt>
-        </picture>
+<div class="row container m-0 p-0">
+    <h1 class="col-12 pt-3 pb-3">{{ movie.Title }}</h1>
+    <!-- MOVIE BG MOBILE -->
+    <div class="mobile-movie-bg col-12">
+        <button type="button" class="btn btn-dark adjust-btn mr-4">Boka</button>
+        <button type="button" class="btn btn-dark adjust-btn ml-4" data-toggle="modal" data-target="#exampleModal">Trailer</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ movie.Title }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe
+            class="embeded-responsive embeded-responsive-16by9"
+            :src="'https://www.youtube.com/embed/ + movie.Trailer'"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-sm-12 col-md-12 justify-content-center">
+
+        <!--hide-trailer-poster hides this on mobile and only shows it on desktop -->
+        <div class="col-sm-12 col-md-6 row hide-trailer-poster">
+            <picture class="img-fluid hide-trailer-poster">
+                <img v-bind:src="movie.Poster">
                 <button type="button" class="btn btn-dark mt-2">Boka</button>
+            </picture>
         </div>
 
-        <div class="col-sm-12 col-md-6 hide-trailer-poster">
+        <div class="col-sm-12 col-md-6 hide-trailer-poster ">
             <h2>Trailer</h2>
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe
             class="embeded-responsive embeded-responsive-16by9"
-            src="https://www.youtube.com/embed/"
+            v-bind:src="'https://www.youtube.com/embed/ + movie.Trailer'"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
             </div>
             <h2>Recensioner</h2>
-            <div class="pt-2" v-for="ratings in movie.Ratings">
-                <p class="mobile-p lead">{{ ratings.Source }} {{ ratings.Value }}</p>
+            <div v-for="ratings in movie.Ratings">
+                <p class="mobile-p">{{ ratings.Source }} {{ ratings.Value }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-12 pt-2">
+    <div class="col-md-12 p-4">
         <div class="row">
-            <h1>{{ movie.Title }}</h1>
+            <p class="mobile-p lead">{{ movie.Plot }}</p>
         </div>
         <div class="row">
-            <p class="mobile-p pl-0">Speltid: {{ movie.Runtime }} min</p>
-            <p class="mobile-p">Genre: {{ movie.Genre }}</p>
+            <p class="mobile-p"><strong>Speltid:</strong> {{ movie.Runtime }}</p>
         </div>
         <div class="row">
-            <p class="mobile-p">Beskrivning: {{ movie.Plot }}</p>
+            <p class="mobile-p"><strong>Genre:</strong> {{ movie.Genre }}</p>
         </div>
         <div class="row">
-            <p class="mobile-p">Skådespelare: {{ movie.Actors }}</p>
+            <p class="mobile-p"><strong>Skådespelare:</strong> {{ movie.Actors }}</p>
         </div>
         <div class="row">
-            <p class="mobile-p">Regi: {{ movie.Director }}</p>
+            <p class="mobile-p"><strong>Regi:</strong> {{ movie.Director }}</p>
         </div>
         <div class="row">
-            <p class="mobile-p">Språk: {{ movie.Language }}</p>
+            <p class="mobile-p"><strong>Språk:</strong> {{ movie.Language }}</p>
         </div>
         <div class="row">
-            <p class="mobile-p">Undertext: svenska</p>
+            <p class="mobile-p"><strong>Undertext:</strong> svenska</p>
         </div>
         <div class="row">
-            <p class="mobile-p">Från: {{ movie.Rated }} år</p>
+            <p class="mobile-p"><strong>Från:</strong> {{ movie.Rated }} år</p>
         </div>
         <div class="row">
-            <p class="mobile-p">Biljettpris: Vuxna 100 kr, barn(6-18 år) 60 kr</p>
+            <p class="mobile-p"><strong>Biljettpris:</strong> Vuxna 100 kr, barn(6-18 år) 60 kr</p>
         </div>
     </div>
-    <div class="row col-sm-12 col-md-12 mx-auto">
-        <div class="col-sm-12 col-md-6 pt-3 move-trailer">
-            <h2>Trailer</h2>
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe
-            class="embeded-responsive embeded-responsive-16by9"
-            src="https://www.youtube.com/embed/"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-            </div>
+    <div class="col-sm-12 col-md-12">
+        
             <h2>Recensioner</h2>
-            <div class="pt-2" v-for="ratings in movie.Ratings">
-                <p class="mobile-p lead">{{ ratings.Source }} {{ ratings.Value }}</p>
+            <div class="" v-for="ratings in movie.Ratings">
+                <p class="mobile-p"> <i> {{ ratings.Source }} {{ ratings.Value }}</i></p>
             </div>
-        </div>
+        
         <hr class="my-4">
     </div>
 </div>
@@ -83,7 +108,7 @@ export default {
     name: "MovieInformation",
     data() {
         return {
-            trailers: {}
+
         };
     },
     computed: {
@@ -130,9 +155,31 @@ img {
     display: none;
 }
 
+.mobile-movie-bg {
+    display: none;
+}
+
+.btn-brass {
+    background-color: #b08a43;
+    color: fff;
+}
+
 @media screen and (max-width: 824px) {
     .move-trailer {
         display: block;
+    }
+
+    .mobile-movie-bg {
+        display: block;
+        min-width: 100vw;
+        background: linear-gradient( rgba(0, 0, 0, 0.185), rgba(0, 0, 0, 0.219) ), url("https://cdn.vox-cdn.com/thumbor/suKFTxyDNYPnGXtid_VSoE2S9yU=/0x0:1777x999/1200x800/filters:focal(747x358:1031x642)/cdn.vox-cdn.com/uploads/chorus_image/image/62347473/beasts.0.jpg");
+        background-size: cover;
+        height: 40vh;
+    }
+
+    .adjust-btn {
+        position: relative;
+        top: 75%;
     }
 
     .hide-trailer-poster {

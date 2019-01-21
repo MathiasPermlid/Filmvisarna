@@ -1,9 +1,7 @@
 <template>
-  <div class="examples row mx-auto">
-    <div class="col-12 pt-3">
-      <MovieInformation/>
-    </div>
-  </div>
+<div class="m-0 p-0">
+  <MovieInformation />
+</div>
 </template>
 
 <script>
@@ -12,9 +10,9 @@
 import MovieInformation from "@/components/MovieInformation.vue";
 
 export default {
-  name: "MovieInfo",
-  components: {
-    MovieInformation
-  }
+    name: "MovieInfo",
+    components: {
+        MovieInformation
+    }
 };
 </script>
