@@ -33,7 +33,7 @@ body {
 
 }
 
-.btn {
+.btn-movie {
   background-color: var(--special-element-color);
   color: var(--main-background-color);
 }

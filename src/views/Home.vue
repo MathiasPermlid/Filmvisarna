@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
     <div v-if="!searchMovie">
@@ -54,7 +55,7 @@ export default {
     GraphicList,
     Carousel,
     ShowSchedule,
-    MovieSwiper
+    MovieSwiper,
   },
   created() {
     this.movies = this.$store.movies;
