@@ -1,6 +1,6 @@
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
 @import "https://use.fontawesome.com/releases/v5.6.3/css/all.css";
-@import "https://fonts.googleapis.com/css?family=Montserrat:400,700";
+@import "https://fonts.googleapis.com/css?family=Montserrat";
 
 /* 
     This is the global css file
@@ -13,6 +13,7 @@
       /*Charcoal is for text on main pages and navbar background*/
   --special-element-color: #b08a43; /*"BRASS"*/
       /*Brass is for special elements like buttons*/
+  --main-font-family: 'Montserrat', sans-serif;
 
   /* 
     Use global color-variables with:
@@ -21,13 +22,15 @@
 }
 * {
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--main-font-family);
   color: var(--main-element-color);
 }
 
 body {
   margin: 0;
-  background-color: var(--main-background-color) !important;
+  background-color: var(--main-background-color);
+  font-family: var(--main-font-family);
+
 }
 
 .btn {
@@ -40,15 +43,15 @@ body {
   min-height: 100vh;
   flex-direction: column;
   padding: 0;
-  /* font-family: "Avenir", Helvetica, Arial, sans-serif; */
+  font-family: var(--main-font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #fff;
-  background-color: whitesmoke;
+  background-color: var(--main-background-color);
 
   /* background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.329), rgba(0, 0, 0, 0.6)), url(./assets/start-bg.jpg); */
-  font-family: "Concert One", cursive;
+  font-family: var(--main-font-family);
   background-size: cover;
   /* overflow-x: hidden; */
 }
@@ -58,6 +61,7 @@ body {
   padding: 2%;
   color: var(--main-element-color);
   animation-duration: 100ms;
+  background-color: var(--main-background-color);
 }
 
 /* USE THIS CLASS FOR ALL CONTENT */
