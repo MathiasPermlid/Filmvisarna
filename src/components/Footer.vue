@@ -1,6 +1,6 @@
 <template>
 <footer id="footer">
-    <p>© 2019 Aarkan, MIT License</p>
+    <p>© 2019 Filmvisarna</p>
 </footer>
 </template>
 

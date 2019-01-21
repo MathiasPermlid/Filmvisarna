@@ -34,11 +34,10 @@ body {
 
 #app > div {
   flex: 1;
-
 }
 
 /* USE THIS CLASS FOR ALL CONTENT */
 .content-bg {
-  background-color: rgba(0, 0, 0, 0.788);
+  background-color: rgba(0, 0, 0, 0.6);
   min-height: 50vh;
 } 
