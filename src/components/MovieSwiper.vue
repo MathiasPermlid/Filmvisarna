@@ -1,3 +1,9 @@
+<!-- 
+    Documentation on how to work with
+    the calendar component
+    http://idangero.us/swiper/api/
+ -->
+
 <template>
   <div class="swiper-box">
     <swiper :options="swiperOption">
@@ -39,6 +45,7 @@ export default {
     swiperSlide
   },
   methods: {
+    // 
     startMobile() {
       return window.innerWidth < 700 ? 3.3 : 5.3;
     }

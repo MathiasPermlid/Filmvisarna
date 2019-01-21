@@ -4,7 +4,7 @@
 <template>
   <nav
     v-if="!mobile"
-    class="navbar navbar-expand-lg navbar-light bg-light mb-0 row rounded align-self-center"
+    class="navbar navbar-expand-lg navbar-light bg-light mb-0 row align-self-center"
   >
     <button
       class="navbar-toggler"
@@ -17,8 +17,10 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <router-link to="/">Filmvisarna</router-link>
-    <div class="category-line mt-4"></div>
+    <div>
+      <router-link to="/">Filmvisarna</router-link>
+      <div class="category-line"></div>
+    </div>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav justify-content-center">
         <li class="nav-item active">
@@ -74,7 +76,6 @@ nav {
   position: absolute;
   padding: 30px;
   border: 2px solid #4c5f6b;
-  /* background-image: linear-gradient(rgba(119, 27, 27, 0.8), rgba(148, 5, 5, 0.9), rgb(119, 27, 27,8)); */
   background: linear-gradient(
     to right top,
     #36454f 10%,
@@ -99,11 +100,14 @@ nav a {
   font-weight: bold;
   color: #fff;
 }
-nav > a {
-  position: absolute;
+nav > div > a {
+  /* position: absolute; */
   font-size: 1.8em;
   top: 0;
   right: 3%;
+}
+nav > div > div {
+  margin: 0;
 }
 nav > a:hover {
   text-decoration: none;
@@ -124,9 +128,9 @@ li > a {
 }
 li > a:hover {
   text-decoration: none;
-  color: rgb(92, 91, 91);
+  color: rgb(163, 127, 7);
 }
 li a.router-link-exact-active {
-  color: #000;
+  color: rgb(255, 196, 0);
 }
 </style>

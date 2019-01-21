@@ -1,3 +1,10 @@
+<!--
+    Documentation on how to work with
+    the calendar component
+    https://dbrekalo.github.io/vue-date-pick/getting-started.html
+ -->
+
+
 <template>
   <div class="container pt-4">
     <date-pick
@@ -45,6 +52,7 @@ export default {
     }
   },
   methods: {
+    // when page gets todays date on load
     getToday() {
       let today = new Date();
       let dd = today.getDate();
