@@ -6,8 +6,8 @@
     <transition
       name="animate-route"
       mode="out-in"
-      enter-active-class="animated slideInUp"
-      leave-active-class="animated slideOutDown"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
     >
       <router-view/>
     </transition>

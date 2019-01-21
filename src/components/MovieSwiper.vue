@@ -7,7 +7,7 @@
 <template>
   <div class="swiper-box">
     <swiper :options="swiperOption">
-      <swiper-slide v-for="(movie, index) in posters" :key="index" class="swipe-item">
+      <swiper-slide v-for="(movie, index) in movies" :key="index" class="swipe-item">
         <figure class="posters">
           <router-link v-bind:to="'/movieinfo/' + movie.Link">
             <img v-bind:src="movie.Poster" class="img-fluid">
@@ -25,7 +25,7 @@ import $ from "jquery";
 
 export default {
   props: {
-    posters: {
+    movies: {
       type: Array,
       required: true
     }
