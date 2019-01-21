@@ -6,13 +6,12 @@
 
 <script>
 export default {
-  data() {
-    return {
-      row: 0, 
-      seatNr: 0,
-      empty: true
-    };
+  props: {
+    row: Number,
+    seatNr: Number,
+    empty: Boolean,
   }
+  
 };
 </script>
 

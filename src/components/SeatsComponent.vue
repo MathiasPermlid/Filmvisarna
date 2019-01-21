@@ -24,19 +24,26 @@ export default {
     };
   },
   created() {
+  
     // konstruerar en array med seat-objekt 
     let SeatClass= Vue.extend(Seat)
     this.seatsArray = [];
-    for (let row of this.seatsPerRow) {
+    for (let i = 0; i < this.seatsPerRow.length; i++) {
         let rowArray= [];
-        for(let i= 0; i < row; i++){
-            rowArray.push(new SeatClass());
+        for(let j= 0; j < this.seatsPerRow[i]; j++){
+            //pushar in ett Seat-objekt med värden baserat på platsen
+            rowArray.push(new SeatClass({
+                 propsData: {
+                    row: i+1,
+                    seatNr: j+1,
+                    empty: false
+                }
+            }));
         }
         this.seatsArray.push(rowArray);
     }
     //console.log('seatsArray', this.seatsArray);
     //console.log(this.seatsArray[0][0].empty);
-   
   }//created
 
 };
