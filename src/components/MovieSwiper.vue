@@ -40,12 +40,12 @@ export default {
   },
   methods: {
     startMobile() {
-      return window.innerWidth < 600 ? 3.3 : 5.3;
+      return window.innerWidth < 700 ? 3.3 : 5.3;
     }
   },
   created() {
     $(window).on("resize", () => {
-      this.mobile = window.innerWidth < 600 ? 3.3 : 5.3;
+      this.swiperOption.slidesPerView = window.innerWidth < 700 ? 3.3 : 5.3;
     });
   }
 };

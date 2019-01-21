@@ -7,11 +7,11 @@
       <h3 class="category-text mb-0">Kategori 1</h3>
       <div class="category-line mb-2"></div>
       <MovieSwiper :posters="movies" class="col-12"/>
-      <br>
+
       <h3 class="category-text mb-0">Kategori 2</h3>
       <div class="category-line mb-2"></div>
       <MovieSwiper :posters="movies" class="col-12"/>
-      <br>
+
       <h3 class="category-text mb-0">Kategori 3</h3>
       <div class="category-line mb-2"></div>
       <MovieSwiper :posters="movies" class="col-12"/>
@@ -61,37 +61,38 @@ export default {
     MovieSwiper
   },
   created() {
-    let movielist = [
-      "Fantastic+Beasts-+The+Crimes+of+Grindelwald",
-      "Glass",
-      "Hunter+Killer",
-      "The+Grinch",
-      "A+Star+Is+Born",
-      "Bohemian+Rhapsody",
-      "Lego+movie+2",
-      "Ralph+Breaks+the+Internet",
-      "Aquaman",
-      "A+Dog's+Way+Home",
-      "Bumblebee",
-      "On+the+Basis+of+Sex",
-      "Mary+Poppins+Returns",
-      "Escape+room&y=2018",
-      "Vice&y=2018",
-      "Spider-Man%3A+Into+the+Spider-Verse"
-    ];
+    this.movies = this.$store.movies;
 
-    for (let query of movielist) {
-      fetch("https://www.omdbapi.com/?t=" + query + this.$store.apikey)
-        .then(res => {
-          return res.json();
-        })
-        .then(res => {
-          res.Link = query;
-          this.movies.push(res);
-        });
-    }
-    console.log(this.movies);
-    
+    // let movielist = [
+    //   "Fantastic+Beasts-+The+Crimes+of+Grindelwald",
+    //   "Glass",
+    //   "Hunter+Killer",
+    //   "The+Grinch",
+    //   "A+Star+Is+Born",
+    //   "Bohemian+Rhapsody",
+    //   "Lego+movie+2",
+    //   "Ralph+Breaks+the+Internet",
+    //   "Aquaman",
+    //   "A+Dog's+Way+Home",
+    //   "Bumblebee",
+    //   "On+the+Basis+of+Sex",
+    //   "Mary+Poppins+Returns",
+    //   "Escape+room&y=2018",
+    //   "Vice&y=2018",
+    //   "Spider-Man%3A+Into+the+Spider-Verse"
+    // ];
+
+    // for (let query of movielist) {
+    //   fetch("https://www.omdbapi.com/?t=" + query + this.$store.apikey)
+    //     .then(res => {
+    //       return res.json();
+    //     })
+    //     .then(res => {
+    //       res.Link = query;
+    //       this.movies.push(res);
+    //     });
+    // }
+    // console.log(this.movies);
   }
 };
 </script>
