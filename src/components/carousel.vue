@@ -102,11 +102,9 @@ export default {
 
 #slider4 {
   border-style: solid;
-  border-color: rgba(141, 5, 5, 0.9);
+  border-color: #36454f;
   border-width: 8px;
-  /* width: 50vw; */
-  box-shadow: 3px 3px rgba(114, 4, 4, 0.973);
-  border-radius: 10px;
+  box-shadow: 3px 3px #2a363d;
 }
 #dark {
   color: rgb(0, 11, 31);
