@@ -2,20 +2,37 @@
 @import "https://use.fontawesome.com/releases/v5.6.3/css/all.css";
 @import "https://fonts.googleapis.com/css?family=Montserrat:400,700";
 
-@import "https://fonts.googleapis.com/css?family=Concert+One";
-
 /* 
     This is the global css file
 */
 
+:root {
+  --main-background-color: whitesmoke;
+      /*whitesmoke is for background and text inside special elements*/
+  --main-element-color: #36454f; /*"CHARCOAL*/
+      /*Charcoal is for text on main pages and navbar background*/
+  --special-element-color: #b08a43; /*"BRASS"*/
+      /*Brass is for special elements like buttons*/
+
+  /* 
+    Use global color-variables with:
+    EXAMPLE: "color: var(--main-element-color);"
+*/
+}
 * {
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+  color: var(--main-element-color);
 }
 
 body {
   margin: 0;
-  background-color: rgb(167, 161, 161) !important;
+  background-color: var(--main-background-color) !important;
+}
+
+.btn {
+  background-color: var(--special-element-color);
+  color: var(--main-background-color);
 }
 
 #app {
@@ -39,7 +56,7 @@ body {
 #app > div {
   flex: 1;
   padding: 2%;
-  color: #36454f;
+  color: var(--main-element-color);
   animation-duration: 100ms;
 }
 
