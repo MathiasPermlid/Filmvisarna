@@ -5,7 +5,7 @@
  -->
 
 <template>
-  <div class="swiper-box">
+  <div class="swiper-container swiper-box">
     <swiper :options="swiperOption">
       <swiper-slide v-for="(movie, index) in movies" :key="index" class="swipe-item">
         <figure class="posters">
@@ -48,6 +48,10 @@ export default {
     // 
     startMobile() {
       return window.innerWidth < 700 ? 3.3 : 5.3;
+    },
+    movieByGenre(genre) {
+      this.genre = genre;
+      return this.movies.filter(el => el.Genre.match(genre));
     }
   },
   created() {
