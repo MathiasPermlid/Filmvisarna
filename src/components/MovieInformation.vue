@@ -7,16 +7,18 @@
         </picture>
                 <button type="button" class="btn btn-dark mt-2">Boka</button>
         </div>
+
         <div class="col-sm-12 col-md-6 hide-trailer-poster">
-            <!-- <div class="embed-responsive embed-responsive-16by9">
+            <h2>Trailer</h2>
+            <div class="embed-responsive embed-responsive-16by9">
                 <iframe
             class="embeded-responsive embeded-responsive-16by9"
-            src="#"
+            src="https://www.youtube.com/embed/"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
-            </div> -->
+            </div>
             <h2>Recensioner</h2>
             <div class="pt-2" v-for="ratings in movie.Ratings">
                 <p class="mobile-p lead">{{ ratings.Source }} {{ ratings.Value }}</p>
@@ -55,15 +57,16 @@
     </div>
     <div class="row col-sm-12 col-md-12 mx-auto">
         <div class="col-sm-12 col-md-6 pt-3 move-trailer">
-            <!-- <div class="embed-responsive embed-responsive-16by9">
+            <h2>Trailer</h2>
+            <div class="embed-responsive embed-responsive-16by9">
                 <iframe
             class="embeded-responsive embeded-responsive-16by9"
-            src="#"
+            src="https://www.youtube.com/embed/"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
-            </div> -->
+            </div>
             <h2>Recensioner</h2>
             <div class="pt-2" v-for="ratings in movie.Ratings">
                 <p class="mobile-p lead">{{ ratings.Source }} {{ ratings.Value }}</p>
@@ -94,14 +97,7 @@ export default {
             }
         },
         created() {
-            trailers["Declaration-of-War"] =
-                "https://www.youtube.com/watch?v=v5NMhtOTC-s";
-            trailers["So-Ends-Our-Night"] =
-                "https://www.youtube.com/watch?v=O5ROSS9ReUY";
-            trailers["Luzhin-Defence"] =
-                "https://www.youtube.com/watch?v=9BeWpZVVDhw";
-            trailers["Emperor"] = "https://www.youtube.com/watch?v=Hjvy8vc39kw";
-            trailers["gallowalkers"] = "https://www.youtube.com/watch?v=_frXIZZSaO4";
+
         }
     }
 };
