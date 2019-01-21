@@ -1,6 +1,6 @@
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
-@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
-/* @import "https://fonts.googleapis.com/css?family=Montserrat:400,700"; */
+@import "https://use.fontawesome.com/releases/v5.6.3/css/all.css";
+@import "https://fonts.googleapis.com/css?family=Montserrat:400,700";
 
 @import "https://fonts.googleapis.com/css?family=Concert+One";
 
@@ -10,34 +10,40 @@
 
 * {
   box-sizing: border-box;
-
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
   margin: 0;
-  /* font-family: "Montserrat", sans-serif; */
+  background-color: rgb(167, 161, 161) !important;
 }
 
 #app {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  padding: 0;
+  /* font-family: "Avenir", Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #fff;
-  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.329), rgba(0, 0, 0, 0.6)), url(./assets/start-bg.jpg);
+  background-color: whitesmoke;
+
+  /* background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.329), rgba(0, 0, 0, 0.6)), url(./assets/start-bg.jpg); */
   font-family: "Concert One", cursive;
   background-size: cover;
+  /* overflow-x: hidden; */
 }
 
 #app > div {
   flex: 1;
+  padding: 2%;
+  color: #36454f;
+  animation-duration: 100ms;
 }
 
 /* USE THIS CLASS FOR ALL CONTENT */
 .content-bg {
-  background-color: rgba(0, 0, 0, 0.6);
   min-height: 50vh;
 } 

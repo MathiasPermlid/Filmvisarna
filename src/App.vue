@@ -1,9 +1,16 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <!-- HEADER -->
     <NavBar/>
     <!-- MAIN VIEW -->
-    <router-view/>
+    <transition
+      name="animate-route"
+      mode="out-in"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <router-view/>
+    </transition>
     <!-- FOOTER -->
     <Footer/>
   </div>

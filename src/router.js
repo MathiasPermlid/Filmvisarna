@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import Kalender from "./views/Calendar.vue";
 import MovieInfo from "./views/MovieInfo.vue";
 import About from "./views/About.vue";
 import MissingPage from "./views/MissingPage.vue";
@@ -15,6 +16,11 @@ export default new Router({
       path: "/",
       name: "Home",
       component: Home
+    },
+    {
+      path: "/kalender",
+      name: "Kalender",
+      component: Kalender
     },
     {
       path: "/movieinfo/:link",

@@ -4,7 +4,7 @@
     <div class="row col-sm-12 col-md-12 pt-4 mx-auto">
       <div class="col-sm-12 col-md-6 row">
         <picture class="img-fluid hide-trailer-poster">
-          <img :src="movie.poster" alt>
+          <img :src="movie.Poster" alt>
         </picture>
       </div>
       <div class="col-sm-12 col-md-6 hide-trailer-poster">
@@ -144,7 +144,7 @@ export default {
       let link = location.pathname.replace("/movieinfo/", "");
 
       for (let film of this.$store.movies) {
-        if (film.link === link) {
+        if (film.Link === link) {
           return film;
         }
       }
