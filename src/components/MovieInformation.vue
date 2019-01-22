@@ -3,8 +3,8 @@
     <h1 class="col-12 pt-3 pb-3">{{ movie.Title }}</h1>
     <!-- MOVIE BG MOBILE -->
     <div class="mobile-movie-bg col-12">
-        <button type="button" class="btn btn-dark adjust-btn mr-4">Boka</button>
-        <button type="button" class="btn btn-dark adjust-btn ml-4" data-toggle="modal" data-target="#exampleModal">Trailer</button>
+        <button type="button" class="text-white btn-brass adjust-btn mr-4">Boka</button>
+        <button type="button" class="text-white btn-brass adjust-btn ml-4" data-toggle="modal" data-target="#exampleModal">Trailer</button>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -40,7 +40,7 @@
         <div class="col-sm-12 col-md-6 row hide-trailer-poster">
             <picture class="img-fluid hide-trailer-poster">
                 <img v-bind:src="movie.Poster">
-                <button type="button" class="btn btn-dark mt-2">Boka</button>
+                <button type="button" class="btn-brass mt-2">Boka</button>
             </picture>
         </div>
 
@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 p-4">
+    <div class="col-md-12">
         <div class="row">
             <p class="mobile-p lead">{{ movie.Plot }}</p>
         </div>
@@ -91,12 +91,12 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-12">
-        
-            <h2>Recensioner</h2>
-            <div class="" v-for="ratings in movie.Ratings">
-                <p class="mobile-p"> <i> {{ ratings.Source }} {{ ratings.Value }}</i></p>
-            </div>
-        
+
+        <h2>Recensioner</h2>
+        <div class="" v-for="ratings in movie.Ratings">
+            <p class="mobile-p"> <i> {{ ratings.Source }} {{ ratings.Value }}</i></p>
+        </div>
+
         <hr class="my-4">
     </div>
 </div>
@@ -160,8 +160,11 @@ img {
 }
 
 .btn-brass {
-    background-color: #b08a43;
-    color: fff;
+    background: #b08a43ab;
+    text-align: center;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: transparent;
 }
 
 @media screen and (max-width: 824px) {
@@ -171,13 +174,13 @@ img {
 
     .mobile-movie-bg {
         display: block;
-        min-width: 100vw;
-        background: linear-gradient( rgba(0, 0, 0, 0.185), rgba(0, 0, 0, 0.219) ), url("https://cdn.vox-cdn.com/thumbor/suKFTxyDNYPnGXtid_VSoE2S9yU=/0x0:1777x999/1200x800/filters:focal(747x358:1031x642)/cdn.vox-cdn.com/uploads/chorus_image/image/62347473/beasts.0.jpg");
+        background: linear-gradient(rgba(0, 0, 0, 0.185), rgba(0, 0, 0, 0.219)), url("https://cdn.vox-cdn.com/thumbor/suKFTxyDNYPnGXtid_VSoE2S9yU=/0x0:1777x999/1200x800/filters:focal(747x358:1031x642)/cdn.vox-cdn.com/uploads/chorus_image/image/62347473/beasts.0.jpg");
         background-size: cover;
-        height: 40vh;
+        min-height: 40vh;
     }
 
     .adjust-btn {
+        background: #b08a43ab;
         position: relative;
         top: 75%;
     }
