@@ -39,16 +39,16 @@
     </div>
     <div class="row col-sm-12 col-md-12 justify-content-center">
 
-        <!--hide-trailer-poster hides this on mobile and only shows it on desktop -->
-        <div class="col-sm-12 col-md-6 row hide-trailer-poster">
-            <picture class="img-fluid hide-trailer-poster">
+        <!--hide-on-mobile hides this on mobile and only shows it on desktop -->
+        <div class="col-sm-12 col-md-5 row hide-on-mobile pr-5 pl-5 justify-content-center">
+            <picture class="img-fluid hide-on-mobile">
                 <img v-bind:src="movie.Poster">
-                <button type="button" class="btn-brass mt-2">Boka</button>
             </picture>
+                <button type="button" class="btn-brass-desktop text-white lead mt-2 hide-on-mobile">Boka</button>
+
         </div>
 
-        <div class="col-sm-12 col-md-6 hide-trailer-poster ">
-            <h2>Trailer</h2>
+        <div class="col-sm-12 col-md-7 hide-on-mobile pr-5 pl-5">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe
             class="embeded-responsive embeded-responsive-16by9"
@@ -58,15 +58,18 @@
             allowfullscreen
           ></iframe>
             </div>
-            <h2>Recensioner</h2>
+            <div class="row">
+                <p class="mobile-p lead">{{ movie.Plot }}</p>
+            </div>
+            <h3>Recensioner</h3>
             <div v-for="ratings in movie.Ratings">
                 <p class="mobile-p">{{ ratings.Source }} {{ ratings.Value }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 mt-4 mb-4">
         <div class="row">
-            <p class="mobile-p lead">{{ movie.Plot }}</p>
+            <p class="mobile-p lead hide-on-desktop">{{ movie.Plot }}</p>
         </div>
         <div class="row">
             <p class="mobile-p"><strong>Speltid:</strong> {{ movie.Runtime }}</p>
@@ -93,7 +96,7 @@
             <p class="mobile-p"><strong>Biljettpris:</strong> Vuxna 100 kr, barn(6-18 år) 60 kr</p>
         </div>
     </div>
-    <div class="col-sm-12 col-md-12">
+    <div class="col-sm-12 col-md-12 hide-on-desktop">
 
         <h2>Recensioner</h2>
         <div class="" v-for="ratings in movie.Ratings">
@@ -154,7 +157,7 @@ img {
     margin-left: 0;
 }
 
-.move-trailer {
+.hide-on-desktop {
     display: none;
 }
 
@@ -162,16 +165,24 @@ img {
     display: none;
 }
 
-.btn-brass {
-    background: #b08a43cb;
+.btn-brass-desktop {
+
+    background: #b08a43;
     text-align: center;
     padding: 4px 10px;
     border-radius: 5px;
     border: transparent;
+    top: -20%;
+    cursor: pointer;
+    width: 250px;
+}
+
+.btn-brass-desktop:hover {
+    background: #b08a43be;
 }
 
 @media screen and (max-width: 824px) {
-    .move-trailer {
+    .hide-on-desktop {
         display: block;
     }
 
@@ -191,12 +202,17 @@ img {
     }
 
     .adjust-btn {
-        background: #b08a43cb;
+        background: #b08a43ef;
         position: relative;
         top: -20%;
+        text-align: center;
+        padding: 4px 10px;
+        border-radius: 5px;
+        border: transparent;
+        width: 75px;
     }
 
-    .hide-trailer-poster {
+    .hide-on-mobile {
         display: none;
     }
 
