@@ -1,21 +1,42 @@
 <template>
   <div id="calendar-shows">
-    <div v-for="(show, index) in day.shows" :key="index+show" class="row">
-      <figure class="col-3">
-        <img v-bind:src="movies[index].Poster" class="image-fluid">
-      </figure>
-      <div class="col-9">
-        <h5>{{ day.shows[index].movie }}</h5>
-        <p>Genre: {{ movies[index].Genre }}</p>
-        <p>
-          <strong>{{ day.shows[index].auditorium.name }}</strong>
-        </p>
-        <p>Tid: {{ day.shows[index].time }}</p>
-        <p>Platser kvar: {{ day.shows[index].auditorium.seatsLeft }}</p>
-        <p>Speltid: {{ movies[index].Runtime }}</p>
+    <transition-group
+      name="date-movie-list"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+      mode="out-in"
+    >
+      <!-- 
+        loop and outputs the 3 movies on selected date
+      -->
+      <div v-for="(show, index) in day.shows" :key="day + show.movie + index" class="row">
+        <figure class="col-3">
+          <!-- 
+              when clicking on picture the user gets
+              sent to the movies info page
+          -->
+          <router-link v-bind:to="'/movieinfo/' + movies[index].Link">
+            <img v-bind:src="movies[index].Poster" class="img-fluid">
+          </router-link>
+        </figure>
+        <div class="col-9">
+          <!-- 
+              creates a unique route path on each movie
+          -->
+          <router-link v-bind:to="'/booking/' + day.link + '/' + index">
+            <h5>{{ day.shows[index].movie }}</h5>
+          </router-link>
+          <p>Genre: {{ movies[index].Genre }}</p>
+          <p>
+            <strong>{{ day.shows[index].auditorium.name }}</strong>
+          </p>
+          <p>Tid: {{ day.shows[index].time }}</p>
+          <p>Platser kvar: {{ day.shows[index].auditorium.seatsLeft }} av {{ day.shows[index].auditorium.maxSeats }}</p>
+          <p>Speltid: {{ movies[index].Runtime }}</p>
+        </div>
+        <span id="break-line"></span>
       </div>
-      <span id="break-line"></span>
-    </div>
+    </transition-group>
   </div>
 </template>
 
@@ -35,6 +56,8 @@ export default {
     };
   },
   computed: {
+    // calls method for finding each movie, then
+    // returns it as an array to be outputted
     movies: function() {
       return [
         this.getMovie(this.day.shows[0].movie),
@@ -44,6 +67,7 @@ export default {
     }
   },
   methods: {
+    // method for finding a movie in stored movies array
     getMovie: function(movie) {
       for (let film of this.$store.movies) {
         if (movie === film.Title) {
@@ -53,11 +77,19 @@ export default {
     }
   },
   created() {
+    // when a new date is clicked
+    // this event is called, and the new date
+    // is transmitted here
+    // and the shows array is looped and checked
+    // for a match with current date
     eventBus.$on("showDay", date => {
       for (let day in this.$store.shows) {
         let data = this.$store.shows[day];
         if (data.date === date) {
           this.day = data;
+          // hash is added as link, to create
+          // a unique route to each booking page
+          this.day.link = day;
         }
       }
     });
@@ -73,13 +105,23 @@ export default {
   font-size: 0.8em;
   margin: 0;
 }
+#calendar-shows a {
+  color: var(--main-element-color);
+}
+#calendar-shows a:hover {
+  font-weight: bold;
+  text-decoration: none;
+}
+#calendar-shows div {
+  animation-duration: 150ms;
+}
 #break-line {
   margin: 2% auto 3%;
   width: 90%;
   height: 1px;
   background-color: lightgray;
 }
-.show-list-move {
+.date-movie-list-move {
   transition: transform 1s;
 }
 </style>
