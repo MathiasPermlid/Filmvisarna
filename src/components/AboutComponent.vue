@@ -32,7 +32,7 @@
         </div>
     </div>
     <article class="mobile-p mt-3 ml-3 mr-3">
-        <p class="mobile-p lead">Grand är Malmös mest anrika bio med fullständiga rättigheter, säten av mjuk sammet och inga dumma inloggningar <i>- som på den goda tiden</i></p>
+        <p class="mobile-p lead">Grand är Malmös mest anrika bio med fullständiga rättigheter, säten av mjuk sammet och inga dumma inloggningar <i>- som på den goda tiden.</i></p>
 
         <h3 class="mt-2 mb-0">Hitta hit</h3>
         <p class="mobile-p">Fina gatan 4, Malmö</p>
