@@ -1,38 +1,41 @@
 <template>
 <div class="row container m-0 p-0">
-    <h1 class="col-12 pt-3 pb-3">{{ movie.Title }}</h1>
+    <h1 class="col-12 pt-3 pb-3 m-0">{{ movie.Title }}</h1>
     <!-- MOVIE BG MOBILE -->
-    <div class="mobile-movie-bg col-12">
-        <button type="button" class="text-white btn-brass adjust-btn mr-4">Boka</button>
-        <button type="button" class="text-white btn-brass adjust-btn ml-4" data-toggle="modal" data-target="#exampleModal">Trailer</button>
+    <div class="mobile-movie-bg col-12 mobile-p pl-0 pr-0 pb-0">
+        <picture class="img-fluid">
+            <img v-bind:src="movie.PictureBackground">
+            </picture>
+            <button type="button" class="text-white btn-brass adjust-btn mr-4">Boka</button>
+            <button type="button" class="text-white btn-brass adjust-btn ml-4" data-toggle="modal" data-target="#exampleModal">Trailer</button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ movie.Title }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ movie.Title }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe
+                        </div>
+                        <div class="modal-body">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe
             class="embeded-responsive embeded-responsive-16by9"
-            :src="'https://www.youtube.com/embed/ + movie.Trailer'"
+            :src="'https://www.youtube.com/embed/' + movie.Trailer"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
     <div class="row col-sm-12 col-md-12 justify-content-center">
 
@@ -49,7 +52,7 @@
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe
             class="embeded-responsive embeded-responsive-16by9"
-            v-bind:src="'https://www.youtube.com/embed/ + movie.Trailer'"
+            v-bind:src="'https://www.youtube.com/embed/' + movie.Trailer"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
@@ -160,7 +163,7 @@ img {
 }
 
 .btn-brass {
-    background: #b08a43ab;
+    background: #b08a43cb;
     text-align: center;
     padding: 4px 10px;
     border-radius: 5px;
@@ -172,17 +175,25 @@ img {
         display: block;
     }
 
+    picture {
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+    }
+
     .mobile-movie-bg {
         display: block;
-        background: linear-gradient(rgba(0, 0, 0, 0.185), rgba(0, 0, 0, 0.219)), url("https://cdn.vox-cdn.com/thumbor/suKFTxyDNYPnGXtid_VSoE2S9yU=/0x0:1777x999/1200x800/filters:focal(747x358:1031x642)/cdn.vox-cdn.com/uploads/chorus_image/image/62347473/beasts.0.jpg");
+        position: absolute;
         background-size: cover;
-        min-height: 40vh;
+        max-height: 35vh;
     }
 
     .adjust-btn {
-        background: #b08a43ab;
+        background: #b08a43cb;
         position: relative;
-        top: 75%;
+        top: -20%;
     }
 
     .hide-trailer-poster {
