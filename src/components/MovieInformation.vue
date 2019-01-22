@@ -1,6 +1,6 @@
 <template>
 <div class="row container m-0 p-0">
-    <h1 class="col-12 pt-3 pb-3 m-0 display-4">{{ movie.Title }}</h1>
+    <h1 class="col-12 pt-3 pb-3 m-0 display-3">{{ movie.Title }}</h1>
     <!-- MOVIE BG MOBILE -->
     <div class="mobile-movie-bg col-12 pl-0 pr-0 pb-0">
         <picture class="img-fluid">
@@ -188,9 +188,17 @@ img {
     background: #b08a43be;
 }
 
+.display-3 {
+    font-size: 3rem!important;
+}
+
 @media screen and (max-width: 1024px) {
     .desktop-margin-info {
         margin-left: 0;
+    }
+
+    .display-3 {
+        font-size: 2rem!important;
     }
 
     .mobile-margin-info {
