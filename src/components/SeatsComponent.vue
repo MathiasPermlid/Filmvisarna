@@ -27,8 +27,16 @@ export default {
     },
     methods: {
         clickedSeat(data){
-            this.clickedSeats.push(data);
-
+            if (!data.clicked){ //om sätet redan är klickat (förbokat)
+                for(let i = 0 ; i < this.clickedSeats.length ; i++)
+                    if(this.clickedSeats[i].seatNr === data.seatNr && this.clickedSeats[i].row === data.row){
+                        this.clickedSeats.splice(i, 1);
+                        break;
+                    }
+            }
+            else{
+                this.clickedSeats.push(data);
+            }
             console.log(this.clickedSeats);
             
             //alert(`Row: ${data.row}, SeatNr: ${data.seatNr}`);

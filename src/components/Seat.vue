@@ -18,13 +18,14 @@ export default {
   },
   methods:{
     clickSeat(){
+      this.clicked = this.clicked ? false : true; 
       let sendClick = {
         row: this.row,
-        seatNr: this.seatNr
+        seatNr: this.seatNr,
+        clicked: this.clicked
       }
-      this.clicked = this.clicked ? false : true; 
-      //this.clicked=true;
       this.$emit('click-seat', sendClick);
+      //this.clicked=true;
 
       // alert(`Row: ${this.row}, SeatNr: ${this.seatNr}, Empty?: ${!this.empty ? 'Yes' : 'No'}`);
     }
