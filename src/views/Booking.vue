@@ -10,62 +10,78 @@
 <template>
     <div class="booking">
         <div class="container-fluid">
-            
-
-
-            <svg width="100" height="50">
-                <a href="#">
-                    <path
-                    d="M 0 0
-                       H 100 0
-                       V 100 50
-                       H 0 100
-                       L 0 55
-                       Z"
-                        fill="#b08a43"/>
-                </a>
-        </svg>
 
             <h1 class="row booking-title">{{movie.title}}</h1>
 
-            <h2 class="flex-row booking-subtitle"><span class="col-4">{{movie.weekday}} </span><span class="col-4">{{movie.date}}</span><span class="col-4"> {{movie.time}}</span></h2>
+            <h2 class="booking-subtitle"><span class="col-4">{{movie.weekday}} </span><span class="col-4">{{movie.date}}</span><span class="col-4"> {{movie.time}}</span></h2>
             <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
+            
             <p class="row booking-line"> 
-                <span class="col-4 float-left text-left">Vuxna:</span>
+                <span class="col-4">Vuxna:</span>
             </p>
-             <div class="flex-row booking-button-row"> <button v-on:click="subtractAdult" class="col-1 btn btn-movie">-</button>
-                <span class="col-1">{{adultsnumber}}</span><button v-on:click="addAdult" class="col-1 btn btn-movie">+</button></div>
+             
+            <div class="booking-button-row"> 
+                
+                <a v-on:click="subtractAdult" class="col-1">
+                    <img src="../assets/minusbutton.svg" class="add-subtract-button" alt="Ta bort en vuxen-biljett"/>
+                </a>
+                
+                <span class="ticket-number col-1">{{adultsnumber}}</span>
+                
+                <a v-on:click="addAdult" class="col-1">
+                    <img src="../assets/plusbutton.svg" class="add-subtract-button" alt="Lägg till en vuxen-biljett"/>
+                </a>
+            </div>
 
-            <p class="row booking-line">
+            <p class="booking-line">
                 <span class="col-12">Pensionärer: </span>    
             </p>
+
             <div class="flex-row booking-button-row">
-             <button v-on:click="subtractSenior" class="col-1 btn btn-movie">-</button><span class="col-1 ticket-number">{{seniorsnumber}}</span><button v-on:click="addSenior" class="col-1 btn btn-movie">+</button>
+                <a v-on:click="subtractSenior" class="col-1">
+                    <img src="../assets/minusbutton.svg" class="add-subtract-button" alt="Ta bort en pensionärs-biljett"/>
+                </a>
+                
+                <span class="col-1 ticket-number">{{seniorsnumber}}</span>
+                <a v-on:click="addSenior" class="col-1">
+                    <img src="../assets/plusbutton.svg" class="add-subtract-button" alt="Lägg till en pensionärs-biljett"/>
+                </a>
             </div>
+            
             <hr>
+            
             <p>Antal biljetter: {{totalnumber}} </p>
+            
             <p>Summa: {{totalAmount}} kronor.</p>
 
-
-            <div id="seats">
+            <div id="seatsPlaceholder">
 
                 SÄTENA TILL SALONGEN HAMNAR HÄR
 
             </div>
-            <div class="row"><input type="email" class="form-control booking-button-row" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></div>
-           
-            <div class="row booking-button-row"><button class="col-12 btn btn-success">Boka</button></div>
-            <div class="row booking-button-row"><button href=""class="col-12 btn btn-danger"> <router-link to="/" class="col-4">Avbryt</router-link></button></div>
+
+ <div class="row justify-content-around">    
+       <div class="row justify-content-center"><input v-model="userEmail" type="email" class="form-control booking-button-row col-12" id="input-email" aria-describedby="emailHelp" placeholder="Skriv in din e-postadress"></div>
+ </div>
+
+ <div class="row justify-content-around">
+      <div class="col-12 booking-button-row"><button class="col-5 btn btn-success" id="boka-button">Boka</button></div>
+      <div class="col-12 booking-button-row"><button class="col-5 btn btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button></div>
+ </div>
+
+
+
+ 
+    
+
 
            
+           
+            
+            
+            
 
-        </div>  
-
-
-
-
-
-
+        </div>
     </div>
 </template>
 
@@ -92,6 +108,7 @@ export default {
             seniorsnumber: 0,
             totalnumber: 0,
             totalAmount: 0,
+            userEmail: '',
         };
     },
 
@@ -159,7 +176,15 @@ export default {
         font-family: 'Montserrat', sans-serif;
     }
 
-
+    a {
+        color:inherit;
+    }
+    a:visited {
+        color:inherit;
+    }
+    a:hover {
+        font-style: none;
+    }
     .booking {
         margin-bottom: 100px;
     }
@@ -167,30 +192,34 @@ export default {
     .booking-line{
         justify-content: space-evenly;
         margin-bottom: 5px;
-        
+        font-weight: 400;
     }
 
     .booking-button-row{
-        margin-bottom: 15px;
+        margin-bottom: 25px;
+        height: 25px;
     }
-    .btn-movie {
-        color: var(--main-background-color);
-        background-color: var(--special-element-color);
-        color: var(--main-background-color);
-        width: 35px;
-        height: 35px;
-        margin-left: 5px;
-        margin-right: 5px;
-        align-self: center;
+    
+
+    .add-subtract-button{
+        width: 50px;
+        height: auto;
+        object-fit: scale-down;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin: 0;
     }
+
     .booking-title {
         text-align: center;
         justify-content: center;
         font-size: 2em;
         align-content: flex-start;
-        margin-top: 30px;
+        margin-top: 45px;
         margin-bottom: 15px;
-        font-weight: 100;
+        font-weight:100;
 
     }
     .booking-subtitle {
@@ -201,13 +230,9 @@ export default {
         font-weight: 100;
     }
 
-    .booking-poster {
-        width: 50%;
-        align-self: center;
-        height: auto;
-        margin-bottom: 20px;
+    .ticket-number{
+        font-weight: 700;
     }
-
     .seat {
         color: var(--main-element-color);
     }
@@ -218,13 +243,21 @@ export default {
         color: var(--special-element-color);
     }
 
-    #seats {
+
+    #boka-button{
+        width: 200px;
+    }
+    #cancel-button {
+        width: 200px;
+    }
+
+    #seatsPlaceholder {
         height: 200px;
         width: 100%;
         background-color: blueviolet;
         color: white;
         text-align: center;
-        margin: 20 20 20 20;
-    }
+        
+        margin-bottom: 25px;    }
         
 </style>
