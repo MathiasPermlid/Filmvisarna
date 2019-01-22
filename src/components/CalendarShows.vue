@@ -2,9 +2,9 @@
   <div id="calendar-shows">
     <transition-group
       name="date-movie-list"
+      mode="out-in"
       enter-active-class="animated fadeIn"
       leave-active-class="animated fadeOut"
-      mode="out-in"
     >
       <!-- 
         loop and outputs the 3 movies on selected date
@@ -19,21 +19,27 @@
             <img v-bind:src="movies[index].Poster" class="img-fluid">
           </router-link>
         </figure>
-        <div class="col-9">
+        <article class="col-9">
           <!-- 
               creates a unique route path on each movie
           -->
           <router-link v-bind:to="'/booking/' + day.link + '/' + index">
-            <h5>{{ day.shows[index].movie }}</h5>
+            <h5 class="mb-0">{{ day.shows[index].movie }}</h5>
           </router-link>
-          <p>Genre: {{ movies[index].Genre }}</p>
-          <p>
-            <strong>{{ day.shows[index].auditorium.name }}</strong>
-          </p>
-          <p>Tid: {{ day.shows[index].time }}</p>
-          <p>Platser kvar: {{ day.shows[index].auditorium.seatsLeft }} av {{ day.shows[index].auditorium.maxSeats }}</p>
-          <p>Speltid: {{ movies[index].Runtime }}</p>
-        </div>
+          <p class="mb-2">Genre: {{ movies[index].Genre }}</p>
+          <article class="d-flex justify-content-between">
+            <p>
+              <strong>{{ day.shows[index].auditorium.name }}</strong>
+            </p>
+            <p
+              class="text-right"
+            >Platser kvar: {{ day.shows[index].auditorium.seatsLeft }} av {{ day.shows[index].auditorium.maxSeats }}</p>
+          </article>
+          <article class="d-flex justify-content-between">
+            <p>Tid: {{ day.shows[index].time }}</p>
+            <p class="text-right">Speltid: {{ movies[index].Runtime }}</p>
+          </article>
+        </article>
         <span id="break-line"></span>
       </div>
     </transition-group>
@@ -120,8 +126,5 @@ export default {
   width: 90%;
   height: 1px;
   background-color: lightgray;
-}
-.date-movie-list-move {
-  transition: transform 1s;
 }
 </style>
