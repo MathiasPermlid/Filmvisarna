@@ -5,7 +5,7 @@
  -->
 
 <template>
-  <div class="swiper-container swiper-box">
+  <div class="swiper-box">
     <swiper :options="swiperOption">
       <swiper-slide v-for="(movie, index) in movies" :key="index" class="swipe-item">
         <figure class="posters">
@@ -15,6 +15,8 @@
         </figure>
       </swiper-slide>
     </swiper>
+    <div class="swiper-button-prev" slot="button-prev"></div>
+    <div class="swiper-button-next" slot="button-next"></div>
   </div>
 </template>
 
@@ -33,6 +35,14 @@ export default {
   data() {
     return {
       swiperOption: {
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        },
         slidesPerView: this.startMobile(),
         spaceBetween: 2,
         freeMode: true,
@@ -45,7 +55,7 @@ export default {
     swiperSlide
   },
   methods: {
-    // 
+    //
     startMobile() {
       return window.innerWidth < 700 ? 3.3 : 5.3;
     },
@@ -72,9 +82,20 @@ export default {
 }
 .posters {
   width: 100%;
-  height: 100%;
+  height: 50vh;
 }
 .posters img {
   height: 100%;
 }
+.swiper-button-prev{
+  background-color: rgba(255, 255, 255, 0.418); 
+  border-radius: 40%;
+}
+
+.swiper-button-next{
+  background-color: rgba(255, 255, 255, 0.418); 
+  border-radius: 50%;
+
+}
+
 </style>
