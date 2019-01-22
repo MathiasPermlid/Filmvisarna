@@ -93,7 +93,7 @@ let storaSal = {
         default:
       }
   
-      // db.ref("visningar").push({
+      // let key =  db.ref("visningar").push({
       //   date: localMonth,
       //   shows: dateShow
       // });
