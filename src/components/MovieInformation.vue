@@ -68,7 +68,7 @@
           ></iframe>
             </div>
             <h2>Recensioner</h2>
-            <div class="pt-2" v-for="ratings in movie.Ratings">
+            <div class="pt-2" v-for="ratings in movie.Ratings" :key="ratings">
                 <p class="mobile-p lead">{{ ratings.Source }} {{ ratings.Value }}</p>
             </div>
         </div>

@@ -12,6 +12,10 @@ import { db } from "@/plugins/cloud";
 Vue.$store = new Store();
 Vue.prototype.$store = Vue.$store;
 
+// global eventBus to handle data transfer
+// between sibling components
+export const eventBus = new Vue();
+
 Vue.config.productionTip = false;
 
 // calls database to get the data

@@ -1,8 +1,7 @@
 <template>
-  <div class>
-    <Calendar class="col-12 col-sm-3" 
-    v-on:showDay="clickDate($event)"/>
-    <CalendarShows v-bind:clickedDate="newDate"/>
+  <div class="row m-0 d-flex justify-content-around">
+    <Calendar class="col-12 col-sm-3" v-on:showDay="clickDate($event)"/>
+    <CalendarShows v-bind:clickedDate="newDate" class="col-12 col-sm-7 mt-4"/>
   </div>
 </template>
 

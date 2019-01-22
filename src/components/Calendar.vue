@@ -6,7 +6,7 @@
 
 
 <template>
-  <div class="container pt-4">
+  <div class="pt-4">
     <date-pick
       v-model="date"
       :hasInputElement="false"
@@ -22,6 +22,7 @@
 <script>
 import DatePick from "vue-date-pick";
 import "vue-date-pick/dist/vueDatePick.css";
+import {eventBus} from "@/main"
 
 export default {
   components: { DatePick },
@@ -48,7 +49,7 @@ export default {
   }),
   watch: {
     date() {
-      this.$emit('showDay', this.date);
+      eventBus.$emit('showDay', this.date);
     }
   },
   methods: {
