@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Kalender from "./views/Calendar.vue";
 import MovieInfo from "./views/MovieInfo.vue";
 import About from "./views/About.vue";
+import Booking from "./views/Booking.vue";
 import MissingPage from "./views/MissingPage.vue";
 
 Vue.use(Router);
@@ -21,6 +22,11 @@ export default new Router({
       path: "/kalender",
       name: "Kalender",
       component: Kalender
+    },
+    {
+      path: "/booking",
+      name: "Booking",
+      component: Booking
     },
     {
       path: "/movieinfo/:link",

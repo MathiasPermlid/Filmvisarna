@@ -1,9 +1,7 @@
 <template>
   <div class="home">
 
-  <div id="seatsComponent">
-    <SeatsComponent />
-  </div>
+  
 
 
     <Carousel id="carousel"/>
@@ -38,7 +36,6 @@ import GraphicList from "@/components/GraphicList.vue";
 import Carousel from "@/components/carousel.vue";
 import ShowSchedule from "@/components/ShowSchedule.vue";
 import MovieSwiper from "@/components/MovieSwiper.vue";
-import SeatsComponent from "@/components/SeatsComponent.vue";
 
 export default {
   name: "home",
@@ -63,9 +60,8 @@ export default {
     GraphicList,
     Carousel,
     ShowSchedule,
-    MovieSwiper, 
-    SeatsComponent
-  },
+    MovieSwiper
+      },
   created() {
     this.movies = this.$store.movies;
   }

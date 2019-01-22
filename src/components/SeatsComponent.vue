@@ -1,33 +1,46 @@
 <template>
-  <div>
-     <Seat />
-      
+  <div id="auditorium-seats">
 
+<div v-for="(row, index) in auditorium" :key="row + index">
+    <div v-for="(seat, seatNr) in auditorium[index]" :key="seat+ seatNr">
+         <Seat v-bind:row="index + 1" v-bind:seatNr="seatNr + 1" v-bind:empty="seat"
+         v-on:click-seat="clickedSeat($event)"/>
+    </div>
+</div>
 
   </div>
 </template>
 
 <script>
 import Seat from "@/components/Seat.vue";
-import Vue from 'vue'; 
+// import Vue from 'vue'; 
 export default {
     name: "seatsComponent",
     data() {
         return {
-        auditoriums:this.$store.auditoriums,
+        auditorium: null,
+        //auditoriums:this.$store.auditoriums,
         //seatsPerRow nedan endast för utvecklingssyften och testning
-        seatsPerRow: [
-                6,
-                8,
-                9,
-                10,
-                10,
-                12
-            ]
+        //
+        clickedSeats: []
         };
     },
+    methods: {
+        clickedSeat(data){
+            this.clickedSeats.push(data);
+
+            console.log(this.clickedSeats);
+            
+            //alert(`Row: ${data.row}, SeatNr: ${data.seatNr}`);
+
+        }
+    },
     created() {
-  
+        this.auditorium = this.$store.shows["-LWl4d2Fs9Y-q1RqYgDZ"].shows[0].auditorium.seats;
+
+
+
+/*
         // konstruerar en array med seat-objekt 
         let SeatClass= Vue.extend(Seat)
         this.seatsArray = [];
@@ -47,6 +60,8 @@ export default {
         }//for
         console.log('seatsArray', this.seatsArray);
         //console.log(this.seatsArray[0][0].empty);
+        */
+
     },//created
     components: {
         Seat
@@ -56,4 +71,17 @@ export default {
 </script>
 
 <style scoped>
+#auditorium-seats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(90deg);
+    width: 100%;
+    height: 100%;
+}
+#auditorium-seats > div {
+display: inline-block;
+}
+
+
 </style>
