@@ -2,7 +2,7 @@
 <div class="row container m-0 p-0">
     <h1 class="col-12 pt-3 pb-3 m-0">{{ movie.Title }}</h1>
     <!-- MOVIE BG MOBILE -->
-    <div class="mobile-movie-bg col-12 mobile-p pl-0 pr-0 pb-0">
+    <div class="mobile-movie-bg col-12 pl-0 pr-0 pb-0">
         <picture class="img-fluid">
             <img v-bind:src="movie.PictureBackground">
             </picture>
@@ -48,7 +48,7 @@
 
         </div>
 
-        <div class="col-sm-12 col-md-7 hide-on-mobile pr-5 pl-5">
+        <div class="col-sm-12 col-md-7 hide-on-mobile pr-5 pl-5 mb-1">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe
             class="embeded-responsive embeded-responsive-16by9"
@@ -58,16 +58,16 @@
             allowfullscreen
           ></iframe>
             </div>
-            <div class="row">
+            <div class="row p-2">
                 <p class="mobile-p lead">{{ movie.Plot }}</p>
             </div>
-            <h3>Recensioner</h3>
+            <h3 class="mt-2">Recensioner</h3>
             <div v-for="ratings in movie.Ratings">
-                <p class="mobile-p">{{ ratings.Source }} {{ ratings.Value }}</p>
+                <p class="mobile-p"><i>{{ ratings.Source }} {{ ratings.Value }}</i></p>
             </div>
         </div>
     </div>
-    <div class="col-md-12 mt-4 mb-4">
+    <div class="col-md-12 mt-2 mb-4 desktop-margin-info mobile-margin-info">
         <div class="row">
             <p class="mobile-p lead hide-on-desktop">{{ movie.Plot }}</p>
         </div>
@@ -96,14 +96,12 @@
             <p class="mobile-p"><strong>Biljettpris:</strong> Vuxna 100 kr, barn(6-18 år) 60 kr</p>
         </div>
     </div>
-    <div class="col-sm-12 col-md-12 hide-on-desktop">
+    <div class="col-sm-12 col-md-12 hide-on-desktop mobile-margin-info">
 
-        <h2>Recensioner</h2>
-        <div class="" v-for="ratings in movie.Ratings">
+        <h2 class="row mobile-margin-info">Recensioner</h2>
+        <div class="row" v-for="ratings in movie.Ratings">
             <p class="mobile-p"> <i> {{ ratings.Source }} {{ ratings.Value }}</i></p>
         </div>
-
-        <hr class="my-4">
     </div>
 </div>
 </template>
@@ -137,6 +135,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style>
+.desktop-margin-info {
+    margin-left: 50px;
+}
+
 picture {
     width: 100%;
 }
@@ -166,7 +168,6 @@ img {
 }
 
 .btn-brass-desktop {
-
     background: #b08a43;
     text-align: center;
     padding: 4px 10px;
@@ -181,7 +182,15 @@ img {
     background: #b08a43be;
 }
 
-@media screen and (max-width: 824px) {
+@media screen and (max-width: 767px) {
+    .desktop-margin-info {
+        margin-left: 0;
+    }
+
+    .mobile-margin-info {
+        margin: 0 25px;
+    }
+
     .hide-on-desktop {
         display: block;
     }
@@ -198,18 +207,19 @@ img {
         display: block;
         position: absolute;
         background-size: cover;
-        max-height: 35vh;
+        max-height: 30vh;
     }
 
     .adjust-btn {
         background: #b08a43ef;
         position: relative;
         top: -20%;
-        text-align: center;
+        text-align: center!important;
         padding: 4px 10px;
         border-radius: 5px;
         border: transparent;
         width: 75px;
+        font-size: 0.75rem;
     }
 
     .hide-on-mobile {
@@ -221,6 +231,7 @@ img {
         margin-bottom: 0;
         letter-spacing: 0.025rem;
         font-size: 0.75rem;
+        text-align: start;
     }
 
     div>h1 {
