@@ -22,7 +22,21 @@ function getData(data) {
   let gotJSON = data.val();
 
   Vue.$store.shows = gotJSON;
+}
+
+// this function gets called once when page loads
+// and only after all data has been loaded
+function loadShows(data) {
+  let gotJSON = data.val();
+
+  Vue.$store.shows = gotJSON;
+
   console.log(Vue.$store.shows);
+
+  new Vue({
+    router,
+    render: h => h(App)
+  }).$mount("#app");
 }
 
 function errData(err) {
@@ -96,8 +110,12 @@ let movielist = [
   }
 ];
 
+// checks if every database call is complete
+// before starting vue
 let movieCounter = 0;
+let loadOnce = true;
 
+// loops all movie titles to get each movie from omdb api
 for (let query of movielist) {
   fetch("https://www.omdbapi.com/?t=" + query.Title + Vue.$store.apikey)
     .then(res => {
@@ -111,14 +129,14 @@ for (let query of movielist) {
       Vue.$store.movies.push(res);
 
       // starts Vue after collecting all data from api
-      if (movieCounter === Vue.$store.movies.length) {
-        new Vue({
-          router,
-          render: h => h(App)
-        }).$mount("#app");
-
-        console.log(Vue.$store.movies);
+      if (loadOnce && movieCounter === Vue.$store.movies.length) {
+        loadOnce = false;
+        // after loading movies from omdb
+        // we call shows from firebase
+        // and after that we initiate Vue
+        db.ref("visningar").once("value", loadShows, errData);
       }
     });
 }
+
 console.log(Vue.$store.movies);
