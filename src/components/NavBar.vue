@@ -32,6 +32,9 @@
         <li class="nav-item">
           <router-link to="/about">Om oss</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/contact">Kontakt</router-link>
+        </li>
       </ul>
     </div>
   </nav>
