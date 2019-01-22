@@ -8,22 +8,43 @@
 
 
 <template>
-    <div class="booking container">
-        <div class="col-12">
-            <h1>{{movie.title}}</h1>
-        
-            <h2>{{movie.weekday}}, {{movie.date}}, {{movie.time}} </h2>
-
-
-            <p class="booking-line"> Vuxna: <button v-on:click="subtractAdult" class="btn btn-movie">-</button>{{adultsnumber}}<button v-on:click="addAdult" class="btn btn-movie">+</button></p>
-
-            <p class="booking-line">Pensionärer: <button v-on:click="subtractSenior" class="btn btn-movie">-</button><span class="ticket-number">{{seniorsnumber}}</span><button v-on:click="addSeniour" class="btn btn-movie">+</button></p>
-
+    <div class="booking">
+        <div class="container-fluid">
             
 
-            <hr>
 
-            <p>SUMMA: {{totalAmount}} kronor.</p>
+            <svg width="100" height="50">
+                <a href="#">
+                    <path
+                    d="M 0 0
+                       H 100 0
+                       V 100 50
+                       H 0 100
+                       L 0 55
+                       Z"
+                        fill="#b08a43"/>
+                </a>
+        </svg>
+
+            <h1 class="row booking-title">{{movie.title}}</h1>
+
+            <h2 class="flex-row booking-subtitle"><span class="col-4">{{movie.weekday}} </span><span class="col-4">{{movie.date}}</span><span class="col-4"> {{movie.time}}</span></h2>
+            <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
+            <p class="row booking-line"> 
+                <span class="col-4 float-left text-left">Vuxna:</span>
+            </p>
+             <div class="flex-row booking-button-row"> <button v-on:click="subtractAdult" class="col-1 btn btn-movie">-</button>
+                <span class="col-1">{{adultsnumber}}</span><button v-on:click="addAdult" class="col-1 btn btn-movie">+</button></div>
+
+            <p class="row booking-line">
+                <span class="col-12">Pensionärer: </span>    
+            </p>
+            <div class="flex-row booking-button-row">
+             <button v-on:click="subtractSenior" class="col-1 btn btn-movie">-</button><span class="col-1 ticket-number">{{seniorsnumber}}</span><button v-on:click="addSenior" class="col-1 btn btn-movie">+</button>
+            </div>
+            <hr>
+            <p>Antal biljetter: {{totalnumber}} </p>
+            <p>Summa: {{totalAmount}} kronor.</p>
 
 
             <div id="seats">
@@ -31,7 +52,12 @@
                 SÄTENA TILL SALONGEN HAMNAR HÄR
 
             </div>
+            <div class="row"><input type="email" class="form-control booking-button-row" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></div>
+           
+            <div class="row booking-button-row"><button class="col-12 btn btn-success">Boka</button></div>
+            <div class="row booking-button-row"><button href=""class="col-12 btn btn-danger"> <router-link to="/" class="col-4">Avbryt</router-link></button></div>
 
+           
 
         </div>  
 
@@ -53,10 +79,11 @@ export default {
             movie: {
         
             /* MOCKDATA  BELOW*/
-            title: "Just another movie",
-            weekday: "Friday",
+            title: "John Wick",
+            weekday: "Fredag",
             date: "25/1",
             time: "21:00",
+            posterURL: "https://i.pinimg.com/474x/6e/1d/48/6e1d484aae1e5edfd456de52c6772244.jpg",
             },
             /* END OF MOCKDATA */
 
@@ -70,25 +97,44 @@ export default {
 
     methods: {
         subtractAdult(){
-            if (this.adultsnumber>0) {
+            if (this.adultsnumber>0 && this.totalnumber>0) {
                 this.adultsnumber--;
+                this.subtractToTotalNumber();
             }
         },
         addAdult(){
-            if (this.adultsnumber<10) {
+            if (this.adultsnumber<10 && this.totalnumber < 10) {
                 this.adultsnumber++;
+                this.addToTotalNumber();
             }
         },
         subtractSenior(){
-            if (this.seniorsnumber>0){
+            if (this.seniorsnumber>0 && this.totalnumber > 0){
                 this.seniorsnumber--;
+                this.subtractToTotalNumber()
             }
         },
         addSenior(){
-            if (this.seniorsnumber>10) {
-                this.adultsnumber++;
+            if (this.seniorsnumber<10 && this.totalnumber<10) {
+                this.seniorsnumber++;
+                this.addToTotalNumber();
             }
         },
+        addToTotalNumber(){
+            if(this.totalnumber<10){
+            this.totalnumber ++;
+            this.calculatePrice();
+            }
+        },
+        subtractToTotalNumber(){
+            this.totalnumber --;
+            this.calculatePrice();
+        },
+        calculatePrice(){
+            this.totalAmount = 0;
+            this.totalAmount += (this.seniorsnumber * 80);
+            this.totalAmount += (this.adultsnumber * 100);
+        }
         
         }
   };
@@ -113,27 +159,60 @@ export default {
         font-family: 'Montserrat', sans-serif;
     }
 
-    .booking-line{
-        text-align: left;
+
+    .booking {
+        margin-bottom: 100px;
     }
 
-    .btn {
-        color: var(--main-background-color);
-        background-color: var(--special-element-color);
+    .booking-line{
+        justify-content: space-evenly;
+        margin-bottom: 5px;
+        
+    }
 
+    .booking-button-row{
+        margin-bottom: 15px;
     }
     .btn-movie {
+        color: var(--main-background-color);
         background-color: var(--special-element-color);
         color: var(--main-background-color);
         width: 35px;
         height: 35px;
-        margin: 0px 15px 0px 15px
+        margin-left: 5px;
+        margin-right: 5px;
+        align-self: center;
     }
+    .booking-title {
+        text-align: center;
+        justify-content: center;
+        font-size: 2em;
+        align-content: flex-start;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-weight: 100;
+
+    }
+    .booking-subtitle {
+        justify-content: center;
+        justify-items: center;
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        font-weight: 100;
+    }
+
+    .booking-poster {
+        width: 50%;
+        align-self: center;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
     .seat {
         color: var(--main-element-color);
     }
     .seat-blocked {
-        color: crimson;
+        color: rgb(107, 5, 5);
     }
     .seat-selected {
         color: var(--special-element-color);
@@ -145,6 +224,7 @@ export default {
         background-color: blueviolet;
         color: white;
         text-align: center;
+        margin: 20 20 20 20;
     }
         
 </style>
