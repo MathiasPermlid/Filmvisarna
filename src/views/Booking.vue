@@ -121,7 +121,18 @@ export default {
       userEmail: ""
     };
   },
+  mounted() {
+    let link = location.pathname.replace("/book/", "");
+    let show = link.split("").pop();
+    let key = link.split("");
+    key.pop();
+    key = key.join("");
 
+    console.log(key);
+    console.log(show);
+
+    console.log(this.$store.shows[key].shows[show].movie);
+  },
   methods: {
     subtractAdult() {
       if (this.adultsnumber > 0 && this.totalnumber > 0) {
