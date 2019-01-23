@@ -18,7 +18,6 @@ export default {
     row: Number,
     seatNr: Number,
     booked: Number,
-    //selectedTickets: Number,
   },
   methods:{
     clickSeat(){ 
@@ -34,18 +33,9 @@ export default {
         }
         //om användaren har valt lika många säten som biljeter eller null - kan ta bort säten men inte välja fler
         else {
-          //om användaren inte valt några biljetter
-          if (!this.$parent.selectedTickets){
-            alert('INGA BILJETTER VALDA WTF')
-          }
-          //om användaren valt lika många biljetter som säten
-          else { 
-            alert('DU HAR VALT LIKA MÅNGA BILJETTER SOM SÄTEN')
-
             this.selected=false;
             let seatInfo = this.getSeatInfo();
             this.$emit('remove-seat', seatInfo);
-          }
         }
       }
     },//clickSeat

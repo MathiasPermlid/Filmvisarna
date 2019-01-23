@@ -50,7 +50,7 @@
             <p>Summa: {{totalAmount}} kronor.</p>
 
             <div id="seatsPlaceholder">
-                <SeatsComponent :selectedTickets="totalnumber" />
+                <SeatsComponent :selectedTickets="totalnumber" @get-number="getNumber($event)" />
             </div>
 
  <div class="row justify-content-around">    
@@ -103,16 +103,22 @@ export default {
             totalnumber: 0,
             totalAmount: 0,
             userEmail: '',
+            totalnumberofselectedseats: 0
         };
     },
     components: {
         SeatsComponent
     },//components
     methods: {
+        getNumber(numberFromChild){
+            this.totalnumberofselectedseats = numberFromChild;
+        },
         subtractAdult(){
-            if (this.adultsnumber>0 && this.totalnumber>0) {
-                this.adultsnumber--;
-                this.subtractToTotalNumber();
+            if(this.totalnumber > this.totalnumberofselectedseats){
+                if (this.adultsnumber>0 && this.totalnumber>0) {
+                    this.adultsnumber--;
+                    this.subtractToTotalNumber();
+                }
             }
         },
         addAdult(){
@@ -122,9 +128,11 @@ export default {
             }
         },
         subtractSenior(){
-            if (this.seniorsnumber>0 && this.totalnumber > 0){
-                this.seniorsnumber--;
-                this.subtractToTotalNumber()
+            if(this.totalnumber > this.totalnumberofselectedseats){
+                if (this.seniorsnumber>0 && this.totalnumber > 0){
+                    this.seniorsnumber--;
+                    this.subtractToTotalNumber()
+                }
             }
         },
         addSenior(){
@@ -142,6 +150,7 @@ export default {
         subtractToTotalNumber(){
             this.totalnumber --;
             this.calculatePrice();
+            
         },
         calculatePrice(){
             this.totalAmount = 0;

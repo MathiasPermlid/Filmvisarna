@@ -38,20 +38,31 @@ export default {
             else{ //select seat by adding it to our array
                 this.selectedSeats.push(data);
                 this.numberOfSelectedSeats++;
+                this.$emit('get-number', this.numberOfSelectedSeats);
+
                 console.log(this.selectedSeats);
                 
             }
         },//selectSeat
 
         unSelectSeat(data){
-            for(let i = 0 ; i < this.selectedSeats.length ; i++){
-                if(this.selectedSeats[i].seatNr === data.seatNr && this.selectedSeats[i].row === data.row){
-                    this.selectedSeats.splice(i, 1);
-                    this.numberOfSelectedSeats--;  
-                }
-            } 
+            //om användaren inte valt några biljetter
+            if (!this.selectedTickets){
+                alert('INGA BILJETTER VALDA WTF')
+            }
+            //om användaren valt lika många biljetter som säten
+            else { 
+                alert('DU HAR VALT LIKA MÅNGA BILJETTER SOM SÄTEN')
+                for(let i = 0 ; i < this.selectedSeats.length ; i++){
+                    if(this.selectedSeats[i].seatNr === data.seatNr && this.selectedSeats[i].row === data.row){
+                        this.selectedSeats.splice(i, 1);
+                        this.numberOfSelectedSeats--; 
+                        this.$emit('get-number', this.numberOfSelectedSeats);
+ 
+                    }
+                } 
+            }
             console.log(this.selectedSeats);
-
         }//unSelectSeat
     }, //methods
 
