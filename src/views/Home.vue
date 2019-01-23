@@ -5,19 +5,18 @@
     </header>
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
-    
-    <div class="home-carousels-container" v-if="!searchMovie">
 
+    <div class="home-carousels-container" v-if="!searchMovie">
       <h3 class="category-text mb-0">Kategori 1</h3>
-      
+
       <MovieSwiper :movies="movies" class="col-12"/>
 
       <h3 class="category-text mb-0">Kategori 2</h3>
-      
+
       <MovieSwiper :movies="movies" class="col-12"/>
 
       <h3 class="category-text mb-0">Kategori 3</h3>
-      
+
       <MovieSwiper :movies="movies" class="col-12"/>
     </div>
 
@@ -68,15 +67,14 @@ export default {
 </script>
 
 <style>
-
 :root {
   --main-background-color: whitesmoke;
-      /*whitesmoke is for background and text inside special elements*/
+  /*whitesmoke is for background and text inside special elements*/
   --main-element-color: #36454f; /*"CHARCOAL*/
-      /*Charcoal is for text on main pages and navbar background*/
+  /*Charcoal is for text on main pages and navbar background*/
   --special-element-color: #b08a43; /*"BRASS"*/
-      /*Brass is for special elements like buttons*/
-  --main-font-family: 'Montserrat', sans-serif;
+  /*Brass is for special elements like buttons*/
+  --main-font-family: "Montserrat", sans-serif;
 
   /* 
     Use global color-variables with:
@@ -86,7 +84,6 @@ export default {
 
 * {
   font-family: var(--main-font-family);
-  
 }
 
 .category-text {
@@ -100,7 +97,7 @@ export default {
   margin: 5%;
   color: var(--main-element-color);
   border-radius: 20px;
-  background-color: var(--main-background-color;)
+  background-color: var(--main-background-color);
 }
 
 .home-carousels-container {
@@ -119,10 +116,10 @@ export default {
 .category-line {
   width: 10%;
   height: 2px;
-  background-color: var(--special-element-color); 
+  background-color: var(--special-element-color);
 }
 
-#home-title{
+#home-title {
   color: var(--special-element-color);
   font-weight: 400;
   text-shadow: 1px 1px var(--main-element-color);
