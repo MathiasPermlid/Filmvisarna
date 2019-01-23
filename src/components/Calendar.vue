@@ -77,21 +77,24 @@ export default {
 </script>
 
 <style>
+.vdpHeader button{
+  color: var(--main-element-color);
+}
 .vdpArrowPrev:after {
-  border-right-color: #36454f;
+  border-right-color: var(--main-element-color);
 }
 
 .vdpArrowNext:after {
-  border-left-color: #36454f;
+  border-left-color: var(--main-element-color);
 }
 
 .vdpCell.selectable:hover .vdpCellContent,
 .vdpCell.selected .vdpCellContent {
-  background: #36454f;
+  background: var(--main-element-color);
 }
 
 .vdpCell.today {
-  color: #36454f;
+  color: var(--main-element-color);
 }
 
 .vdpTimeUnit > input:hover,
