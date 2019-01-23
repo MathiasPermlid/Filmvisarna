@@ -6,6 +6,7 @@ import MovieInfo from "./views/MovieInfo.vue";
 import About from "./views/About.vue";
 import Contact from "./views/Contact.vue"; 
 import MissingPage from "./views/MissingPage.vue";
+import Booking from "./views/Booking.vue";
 
 Vue.use(Router);
 
@@ -37,6 +38,11 @@ export default new Router({
       path: "/contact",
       name: "contact",
       component: Contact
+    },
+    {
+      path: "/book",
+      name: "Booking",
+      component: Booking
     },
     // using path "*" matches every route
     // put this last to catch all missing routes
