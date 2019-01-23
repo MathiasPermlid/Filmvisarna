@@ -29,6 +29,10 @@
   color: var(--main-element-color);
 }
 
+button:focus {
+  outline: none;
+}
+
 body {
   margin: 0;
   background-color: var(--main-background-color);
