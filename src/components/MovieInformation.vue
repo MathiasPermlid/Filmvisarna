@@ -140,7 +140,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style>
+<style scoped>
 .desktop-margin-info {
     margin-left: 50px;
 }
@@ -230,7 +230,7 @@ img {
 
     .mobile-movie-bg {
         display: block;
-        position: absolute;
+        
         background-size: cover;
         min-height: 30vh;
     }

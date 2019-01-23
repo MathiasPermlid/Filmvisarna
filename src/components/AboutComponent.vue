@@ -4,7 +4,7 @@
     <div class="col-sm-12  pl-0 pr-0 pb-0">
         <div class="col-md-12 row hide-on-mobile">
 
-            <div class="col-md-6 hide-on-mobile row">
+            <div class="col-md-6 hide-on-mobile col">
                 <picture class="img-fluid hide-on-mobile">
                     <img src="https://pro.boxoffice.com/wp-content/uploads/2018/04/IMG_3865-e1524058912730.jpg">
             </picture>
@@ -16,7 +16,7 @@
                 </p>
             </div>
 
-            <div class="col-md-6 hide-on-mobile row mt-3">
+            <div class="col-md-6 hide-on-mobile col mt-3">
                 <picture class="img-fluid hide-on-mobile">
                     <img src="http://luxsupreme.com/wp-content/uploads/2014/06/embassy-diplomat-screens-1-636x310.jpg">
             </picture>
@@ -45,68 +45,67 @@
         <p class="mobile-p">040 - 56 26 00 00</p>
 
         <h3 class="mt-2 mb-2">Vanliga frågor</h3>
-            <div id="accordion">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link text-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link text-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Finns det sittkuddar för barn?
         </button>
-                        </h5>
-                    </div>
+                    </h5>
+                </div>
 
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            Ja. Det finns sittkuddar innanför samtliga entrédörrar till salongerna.
-                        </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        Ja. Det finns sittkuddar innanför samtliga entrédörrar till salongerna.
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           Har ni hörslingor?
         </button>
-                        </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            Ja. Fråga personalen när du scannar din biljett så hjälper de dig.
-                        </div>
-                    </div>
+                    </h5>
                 </div>
-
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Vilka förfriskningar säljer ni?
-        </button>
-                        </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body">
-                            Vi har milkshakes, läsk, vin och ett urval av öl.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingFour">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-          Säljer ni snacks och mat?
-        </button>
-                        </h5>
-                    </div>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                        <div class="card-body">
-                            Vi har ett urval av tjocka amerikanska pizzor som säljs i slicebitar. Vi har även en gammaldags popcornmaskin, sockervadd och godis från lilla godisfabriken här i Malmö. Vegetariska och veganska alternativ finns.
-                        </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Ja. Fråga personalen när du scannar din biljett så hjälper de dig.
                     </div>
                 </div>
             </div>
 
-        
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Vilka förfriskningar säljer ni?
+        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        Vi har milkshakes, läsk, vin och ett urval av öl.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Säljer ni snacks och mat?
+        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        Vi har ett urval av tjocka amerikanska pizzor som säljs i slicebitar. Vi har även en gammaldags popcornmaskin, sockervadd och godis från lilla godisfabriken här i Malmö. Vegetariska och veganska alternativ finns.
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </article>
 </div>
 </template>
@@ -123,14 +122,113 @@ export default {
 }
 </script>
 
-<style>
-img {
-    width: 100%;
+<style scoped>
+.desktop-margin-info {
+    margin-left: 50px;
 }
 
 picture {
     width: 100%;
 }
 
-@media screen and (max-width: 1024px) {}
+img {
+    width: 100%;
+
+}
+
+.embed-responsive {
+    border-radius: 10px;
+}
+
+.mobile-p {
+    padding-bottom: 0.2rem;
+    padding-left: 0;
+    margin-bottom: 0;
+    letter-spacing: 0.025rem;
+    text-align: start;
+}
+
+.mobile-p p {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.hide-on-desktop {
+    display: none;
+}
+
+.hide-on-mobile {
+    display: block;
+}
+
+.mobile-movie-bg {
+    display: none;
+}
+
+.h1-custom-size {
+    font-size: 3rem !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .desktop-margin-info {
+        margin-left: 0;
+    }
+
+    .h1-custom-size {
+        font-size: 2rem !important;
+    }
+
+    .mobile-margin-info {
+        margin: 0;
+
+    }
+
+    .hide-on-desktop {
+        display: block;
+    }
+
+    picture {
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .mobile-movie-bg {
+        display: block;
+
+        background-size: cover;
+        min-height: 30vh;
+    }
+
+    .adjust-btn {
+        background: #b08a43ef;
+        position: relative;
+        top: -20%;
+        text-align: center !important;
+        padding: 4px 10px;
+        border-radius: 5px;
+        border: transparent;
+        width: 75px;
+        font-size: 0.75rem;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .mobile-p {
+        padding-bottom: 0.4rem;
+        margin: 0 25px;
+        letter-spacing: 0.025rem;
+        font-size: 0.75rem;
+        text-align: start;
+    }
+
+    div>h1 {
+        font-size: 1.65rem;
+    }
+
+}
 </style>
