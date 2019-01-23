@@ -19,22 +19,28 @@ export default {
     data() {
         return {
         auditorium: null,
-        selectedTickets: 3,
         numberOfSelectedSeats:0,
         selectedSeats: []
         };
     },//data
+
+    props: {
+    selectedTickets: Number,
+    },//props
+    
     methods: {
         selectSeat(data){
-                if (!data.selected){ //om sätet redan är klickat (förbokat)
-                    this.unSelectSeat(data);
-                }
-                else{ //select seat by adding it to our array
-                    this.selectedSeats.push(data);
-                    this.numberOfSelectedSeats++;
-                    console.log(this.selectedSeats);
-                    
-                }
+            console.log('I seatsComponent'+this.selectedTickets);
+            
+            if (!data.selected){ //om sätet redan är klickat (förbokat)
+                this.unSelectSeat(data);
+            }
+            else{ //select seat by adding it to our array
+                this.selectedSeats.push(data);
+                this.numberOfSelectedSeats++;
+                console.log(this.selectedSeats);
+                
+            }
         },//selectSeat
 
         unSelectSeat(data){

@@ -18,23 +18,34 @@ export default {
     row: Number,
     seatNr: Number,
     booked: Number,
-    selectedTickets: Number,
+    //selectedTickets: Number,
   },
   methods:{
     clickSeat(){ 
       // om sätet INTE är bokat  
-      if(!this.booked){       
+      if(!this.booked){   
+        console.log('I seat '+this.$parent.selectedTickets);
+            
         //om användaren har säten kvar att välja (valt fler biljetter än säten)  
         if(this.$parent.numberOfSelectedSeats  < this.$parent.selectedTickets){ //selectedTickets variabel ska fås från anders        
           this.selected = this.selected ? false : true; 
           let seatInfo = this.getSeatInfo();
           this.$emit('click-seat', seatInfo);
         }
-        //om användaren har valt lika många säten som biljeter - kan ta bort säten men inte välja fler
-      else {
-          this.selected=false;
-          let seatInfo = this.getSeatInfo();
-          this.$emit('remove-seat', seatInfo);
+        //om användaren har valt lika många säten som biljeter eller null - kan ta bort säten men inte välja fler
+        else {
+          //om användaren inte valt några biljetter
+          if (!this.$parent.selectedTickets){
+            alert('INGA BILJETTER VALDA WTF')
+          }
+          //om användaren valt lika många biljetter som säten
+          else { 
+            alert('DU HAR VALT LIKA MÅNGA BILJETTER SOM SÄTEN')
+
+            this.selected=false;
+            let seatInfo = this.getSeatInfo();
+            this.$emit('remove-seat', seatInfo);
+          }
         }
       }
     },//clickSeat

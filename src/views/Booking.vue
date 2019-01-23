@@ -50,7 +50,7 @@
             <p>Summa: {{totalAmount}} kronor.</p>
 
             <div id="seatsPlaceholder">
-                SÄTENA TILL SALONGEN HAMNAR HÄR
+                <SeatsComponent :selectedTickets="totalnumber" />
             </div>
 
  <div class="row justify-content-around">    
@@ -80,6 +80,7 @@
 
 
 <script>
+import SeatsComponent from "@/components/SeatsComponent.vue";
 export default {
     name: "booking",
     data() {
@@ -104,7 +105,9 @@ export default {
             userEmail: '',
         };
     },
-
+    components: {
+        SeatsComponent
+    },//components
     methods: {
         subtractAdult(){
             if (this.adultsnumber>0 && this.totalnumber>0) {
@@ -246,13 +249,13 @@ export default {
         width: 200px;
     }
 
-    #seatsPlaceholder {
+    /*#seatsPlaceholder {
         height: 200px;
         width: 100%;
         background-color: blueviolet;
         color: white;
         text-align: center;
         
-        margin-bottom: 25px;    }
+        margin-bottom: 25px;    }*/
         
 </style>
