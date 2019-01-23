@@ -25,6 +25,11 @@ export default new Router({
       component: Kalender
     },
     {
+      path: "/booking",
+      name: "Booking",
+      component: Booking
+    },
+    {
       path: "/movieinfo/:link",
       name: "MovieInfo",
       component: MovieInfo
