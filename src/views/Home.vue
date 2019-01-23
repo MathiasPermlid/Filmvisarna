@@ -25,6 +25,8 @@
     <div v-else>
       <GraphicList :searchedMovies="[...filteredMovies]" id="graphic-list"/>
     </div>
+
+  
   </div>
 </template>
 
