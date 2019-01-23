@@ -155,7 +155,7 @@ nav {
 }
 #nav-mobile-links {
   animation-duration: 300ms;
-  position: absolute;
+  position: fixed;
   padding-bottom: 40%;
   display: flex;
   flex-direction: column;
