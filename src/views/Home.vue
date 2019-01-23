@@ -12,6 +12,10 @@
       <div class="category-line mb-2"></div>
       <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
 
+      <h3 class="category-text mb-0">Action</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
+
       <h3 class="category-text mb-0">Barn</h3>
       <div class="category-line mb-2"></div>
       <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>

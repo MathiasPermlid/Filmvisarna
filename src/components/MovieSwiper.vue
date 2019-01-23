@@ -57,12 +57,12 @@ export default {
   methods: {
     //
     startMobile() {
-      return window.innerWidth < 700 ? 3.3 : 5.3;
+      return window.innerWidth < 700 ? 2.3 : 5.3;
     }
   },
   created() {
     $(window).on("resize", () => {
-      this.swiperOption.slidesPerView = window.innerWidth < 700 ? 3.3 : 5.3;
+      this.swiperOption.slidesPerView = window.innerWidth < 700 ? 2.3 : 5.3;
     });
   }
 };
@@ -91,5 +91,11 @@ export default {
 .swiper-button-next {
   background-color: rgba(255, 255, 255, 0.418);
   border-radius: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .posters {
+    height: 30vmax;
+  }
 }
 </style>
