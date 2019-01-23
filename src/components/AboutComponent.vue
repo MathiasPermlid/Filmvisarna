@@ -10,18 +10,22 @@
             </picture>
 
             </div>
-            <div class="col-md-6 hide-on-mobile row">
-                <h5 class="mobile-p hide-on-mobile">Den stora salong som rymmer 81 biogäster</h5>
+            <div class="col-md-6 hide-on-mobile col">
+                <h3 class="mobile-p hide-on-mobile">Den stora salong som rymmer 81 biogäster</h3>
+                <p class="mobile-p hide-on-mobile lead">Salongen är utrustad med ljudsystemet Dolby Atmos, som innebär så kallat immersive sound, med upp till 56 ljudkanaler. Projektorn 4K Barco DP4K-32B lyser upp den 19,8 x 8,3 meter eller 168 kvadratmeter stora duken och levererar tillsammans med ljudet en fantastisk upplevelse.
+                </p>
             </div>
 
-            <div class="col-md-6 hide-on-mobile row">
+            <div class="col-md-6 hide-on-mobile row mt-3">
                 <picture class="img-fluid hide-on-mobile">
                     <img src="http://luxsupreme.com/wp-content/uploads/2014/06/embassy-diplomat-screens-1-636x310.jpg">
             </picture>
 
             </div>
-            <div class="col-md-6 hide-on-mobile row">
-                <h5 class="mobile-p hide-on-mobile">Den mysiga lilla salong som rymmer 56 biogäster</h5>
+            <div class="col-md-6 hide-on-mobile col mt-3">
+                <h3 class="mobile-p hide-on-mobile">Den mysiga lilla salong som rymmer 56 biogäster</h3>
+                <p class="mobile-p hide-on-mobile lead">Vår lilla salong är vår mysiga VIP-salong som har exklusiva reclinerfåtöljer i skinn och möjlighet att ta in mat och dryck från restaurangen. Dolby Atmos innebär så kallat immersive sound, med upp till 56 ljudkanaler.
+                </p>
             </div>
         </div>
         <div class="mobile-movie-bg col-12 pl-0 pr-0 pb-0">
@@ -40,15 +44,12 @@
         <h3 class="mt-2 mb-0">Telefon</h3>
         <p class="mobile-p">040 - 56 26 00 00</p>
 
-        <h3 class="mt-2 mb-0">Vanliga frågor</h3>
-        
-      
-
+        <h3 class="mt-2 mb-2">Vanliga frågor</h3>
             <div id="accordion">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <button class="btn btn-link text-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Finns det sittkuddar för barn?
         </button>
                         </h5>
@@ -63,7 +64,7 @@
                 <div class="card">
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           Har ni hörslingor?
         </button>
                         </h5>
@@ -78,7 +79,7 @@
                 <div class="card">
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           Vilka förfriskningar säljer ni?
         </button>
                         </h5>
@@ -92,7 +93,7 @@
                 <div class="card">
                     <div class="card-header" id="headingFour">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <button class="btn btn-link collapsed text-dark" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
           Säljer ni snacks och mat?
         </button>
                         </h5>
