@@ -16,11 +16,8 @@
             <h2 class="booking-subtitle"><span class="col-4">{{movie.weekday}} </span><span class="col-4">{{movie.date}}</span><span class="col-4"> {{movie.time}}</span></h2>
             <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
             
-            <p class="row booking-line"> 
-                <span class="col-4">Vuxna:</span>
-            </p>
-             
             <div class="booking-button-row"> 
+                <span class="col-1">Vuxna:</span>
                 
                 <a v-on:click="subtractAdult" class="col-1">
                     <img src="../assets/minusbutton.svg" class="add-subtract-button" alt="Ta bort en vuxen-biljett"/>
@@ -33,16 +30,14 @@
                 </a>
             </div>
 
-            <p class="row booking-line">
-                <span class="col-12">Pensionärer: </span>    
-            </p>
 
             <div class="flex-row booking-button-row">
+                <span class="col-12">Pensionärer: </span>    
                 <a v-on:click="subtractSenior" class="col-1">
                     <img src="../assets/minusbutton.svg" class="add-subtract-button" alt="Ta bort en pensionärs-biljett"/>
                 </a>
                 
-                <span class="col-1 ticket-number">{{seniorsnumber}}</span>
+                <span class="ticket-number col-1">{{seniorsnumber}}</span>
                 <a v-on:click="addSenior" class="col-1">
                     <img src="../assets/plusbutton.svg" class="add-subtract-button" alt="Lägg till en pensionärs-biljett"/>
                 </a>
@@ -55,9 +50,7 @@
             <p>Summa: {{totalAmount}} kronor.</p>
 
             <div id="seatsPlaceholder">
-
                 SÄTENA TILL SALONGEN HAMNAR HÄR
-
             </div>
 
  <div class="row justify-content-around">    
@@ -65,8 +58,8 @@
  </div>
 
  <div class="row justify-content-around">
-      <div class="col-12 booking-button-row"><button class="col-5 btn btn-success" id="boka-button">Boka</button></div>
-      <div class="col-12 booking-button-row"><button class="col-5 btn btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button></div>
+      <div class="col-12 booking-button-row"><button class="col-5 btn btn-large btn-success" id="boka-button">Boka</button></div>
+      <div class="col-12 booking-button-row"><button class="col-5 btn btn-large btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button></div>
  </div>
 
 
@@ -198,6 +191,8 @@ export default {
     .booking-button-row{
         margin-bottom: 30px;
         height: 25px;
+        justify-content: baseline;
+        align-content:unset;
     }
     
 
