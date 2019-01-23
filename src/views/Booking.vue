@@ -98,10 +98,16 @@
 
 
 <script>
+import { db } from "@/plugins/cloud";
+
 export default {
   name: "booking",
   data() {
     return {
+      date: "",
+      dateIndex: 0,
+      day: {},
+      show: {},
       movie: {
         /* MOCKDATA  BELOW*/
         title: "John Wick",
@@ -122,18 +128,42 @@ export default {
     };
   },
   mounted() {
+    //  get date and the dates show from path param
     let link = location.pathname.replace("/book/", "");
-    let show = link.split("").pop();
-    let key = link.split("");
-    key.pop();
-    key = key.join("");
+    this.dateIndex = link.split("").pop();
+    this.date = link.split("");
+    this.date.pop();
+    this.date = this.date.join("");
 
-    console.log(key);
-    console.log(show);
+    this.day = this.$store.shows[this.date];
+    this.show = this.day.shows[this.dateIndex];
 
-    console.log(this.$store.shows[key].shows[show].movie);
+    console.log(this.show);
   },
   methods: {
+    updateShow() {
+      // update show with current seats left and seats taken
+      db.ref("visningar/" + this.date).set({
+        date: this.day.date,
+        shows: {
+          0: {
+            auditorium: this.day.shows[0].auditorium,
+            time: "17:00",
+            movie: this.day.shows[0].movie
+          },
+          1: {
+            auditorium: this.day.shows[1].auditorium,
+            time: "17:00",
+            movie: this.day.shows[1].movie
+          },
+          2: {
+            auditorium: this.day.shows[2].auditorium,
+            time: "19:30",
+            movie: this.day.shows[2].movie
+          }
+        }
+      });
+    },
     subtractAdult() {
       if (this.adultsnumber > 0 && this.totalnumber > 0) {
         this.adultsnumber--;
