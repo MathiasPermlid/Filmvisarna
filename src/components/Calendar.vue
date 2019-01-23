@@ -48,7 +48,7 @@ export default {
   }),
   watch: {
     date() {
-      console.log(this.date);
+      this.$emit('showDay', this.date);
     }
   },
   methods: {

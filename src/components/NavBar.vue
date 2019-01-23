@@ -74,19 +74,30 @@ export default {
 </script>
 
 <style>
+
+:root {
+  --main-background-color: whitesmoke;
+      /*whitesmoke is for background and text inside special elements*/
+  --main-element-color: #36454f; /*"CHARCOAL*/
+      /*Charcoal is for text on main pages and navbar background*/
+  --special-element-color: #b08a43; /*"BRASS"*/
+      /*Brass is for special elements like buttons*/
+  --main-font-family: 'Montserrat', sans-serif;
+
+  /* 
+    Use global color-variables with:
+    EXAMPLE: "color: var(--main-element-color);"
+*/
+}
 nav {
   width: 100%;
   position: absolute;
   padding: 30px;
-  border: 2px solid #4c5f6b;
-  background: linear-gradient(
-    to right top,
-    #36454f 10%,
-    #4b5e6b 50%,
-    #4c5f6b 51%,
-    #36454f 81%,
-    #36454f 10%
-  );
+  background-color: var(--main-element-color);
+  color: var(--special-element-color);
+  font-family: var(--main-font-family);
+  font-weight: 100;
+  font-size: 1.3em;
 }
 #nav-mobile {
   position: fixed;
@@ -100,8 +111,7 @@ nav img {
   margin-right: 5px;
 }
 nav a {
-  font-weight: bold;
-  color: #fff;
+  color: var(--main-background-color);
 }
 nav > div > a {
   /* position: absolute; */
