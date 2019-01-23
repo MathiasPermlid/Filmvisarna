@@ -40,7 +40,7 @@
             <p class="text-right">Speltid: {{ movies[index].Runtime }}</p>
           </article>
         </article>
-        <span id="break-line"></span>
+        <span v-if="index < 2" id="break-line"></span>
       </div>
     </transition-group>
   </div>
@@ -115,7 +115,7 @@ export default {
   color: var(--main-element-color);
 }
 #calendar-shows a:hover {
-  font-weight: bold;
+  color: var(--special-element-color);
   text-decoration: none;
 }
 #calendar-shows div {
