@@ -32,7 +32,7 @@
           <router-link to="/about">Om oss</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/kontakt">Kontakt</router-link>
+          <router-link to="/contact">Kontakt</router-link>
         </li>
       </ul>
     </div>
