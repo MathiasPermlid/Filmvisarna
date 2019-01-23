@@ -4,19 +4,24 @@
       <h1 id="home-title">GRAND</h1>
     </header>
     <Carousel id="carousel"/>
-    <input class="col-10 col-md-6" type="text">
+    <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
+
     <div v-if="!searchMovie">
-      <h3 class="category-text mb-0">Kategori 1</h3>
+      <h3 class="category-text mb-0">Topplista</h3>
       <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="movies" class="col-12"/>
+      <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
+      
+      <h3 class="category-text mb-0">Drama</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Kategori 2</h3>
+      <h3 class="category-text mb-0">Action</h3>
       <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="movies" class="col-12"/>
+      <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Kategori 3</h3>
+      <h3 class="category-text mb-0">Barn</h3>
       <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="movies" class="col-12"/>
+      <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>
     </div>
 
     <div v-else>
@@ -49,6 +54,16 @@ export default {
       return this.movies.filter(el => el.Title.match(filter));
     }
   },
+  methods: {
+    moviesByGenre(genre) {
+      //let filter = new RegExp(this.searchMovie, "i");
+      this.genre = genre;
+      return this.movies.filter(el => el.Genre.match(genre));
+    },
+    topMovies() {
+      return this.movies.sort(function(a, b){return b.imdbRating - a.imdbRating});
+    }
+  },
   watch: {
     movies() {
       this.$store.movies = this.movies;
@@ -58,7 +73,7 @@ export default {
     GraphicList,
     Carousel,
     ShowSchedule,
-    MovieSwiper
+    MovieSwiper,
   },
   created() {
     this.movies = this.$store.movies;
