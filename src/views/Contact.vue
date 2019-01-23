@@ -258,7 +258,7 @@ textarea {
   resize: vertical;
 }
 
-@media only screen and (max-width: 330px) {
+@media only screen and (max-width: 700px) {
   .signature {
     display: none;
   }
