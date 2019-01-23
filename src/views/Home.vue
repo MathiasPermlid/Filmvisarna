@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <header>
-      <h1 id="home-title">GRAND</h1>
-    </header>
+
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
 

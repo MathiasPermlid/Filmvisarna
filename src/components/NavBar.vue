@@ -8,7 +8,6 @@
   >
     <div>
       <router-link to="/" id="home-title">GRAND</router-link>
-      <div class="category-line"></div>
     </div>
     <button
       class="navbar-toggler"
@@ -186,7 +185,7 @@ nav img {
   margin-right: 5px;
 }
 nav a {
-  color: var(--main-background-color);
+  color: black;
 }
 nav > div > a {
   /* position: absolute; */
