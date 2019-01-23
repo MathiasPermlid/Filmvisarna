@@ -50,7 +50,8 @@
         <section class="mobile-links mt-auto mb-auto">
           <router-link to="/">Start</router-link>
           <router-link to="/kalender">Kalender</router-link>
-          <router-link to="/about">Om oss</router-link>
+          <router-link to="/about">Om Bion</router-link>
+          <router-link to="/contact">Kontakt</router-link>
         </section>
       </nav>
     </transition>
