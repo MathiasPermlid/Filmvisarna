@@ -2,8 +2,6 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import Store from "@/plugins/store";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { db } from "@/plugins/cloud";
 
 // this creates an object to store variables in

@@ -1,6 +1,8 @@
 @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+@import "../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "https://use.fontawesome.com/releases/v5.6.3/css/all.css";
-@import "https://fonts.googleapis.com/css?family=Montserrat";
+@import "https://fonts.googleapis.com/css?family=Montserrat:100,400,700";
 
 
 /* 
@@ -69,3 +71,33 @@ body {
 .content-bg {
   min-height: 50vh;
 } 
+
+
+h1, h2 {
+  font-family: var(--main-font-family);
+  font-weight: 100;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+strong {
+  font-weight: 700;
+}
+
+p {
+  font-family: var(--main-font-family);
+  font-weight: 400;
+}
+
+button {
+  background-color: var(--special-element-color);
+  color: var(--main-background-color);
+}
+
+nav {
+  background-color: var(--main-element-color);
+  color: var(--special-element-color);
+}
+

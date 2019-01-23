@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <header>
+      <h1 id="home-title">GRAND</h1>
+    </header>
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
 
@@ -78,14 +81,41 @@ export default {
 </script>
 
 <style>
+:root {
+  --main-background-color: whitesmoke;
+  /*whitesmoke is for background and text inside special elements*/
+  --main-element-color: #36454f; /*"CHARCOAL*/
+  /*Charcoal is for text on main pages and navbar background*/
+  --special-element-color: #b08a43; /*"BRASS"*/
+  /*Brass is for special elements like buttons*/
+  --main-font-family: "Montserrat", sans-serif;
+
+  /* 
+    Use global color-variables with:
+    EXAMPLE: "color: var(--main-element-color);"
+*/
+}
+
+* {
+  font-family: var(--main-font-family);
+}
+
+.category-text {
+  font-weight: 100;
+}
+
 .home input:focus {
   outline: none;
 }
 .home input {
   margin: 5%;
-  color: white;
+  color: var(--main-element-color);
   border-radius: 20px;
-  background-color: rgba(131, 130, 130, 0.568);
+  background-color: var(--main-background-color);
+}
+
+.home-carousels-container {
+  margin-top: 5vh;
 }
 .movie-content {
   display: flex;
@@ -98,10 +128,16 @@ export default {
   text-align: left;
 }
 .category-line {
-  width: 60px;
-  height: 5px;
-  border-radius: 5px;
-  background-color: rgb(255, 196, 0);
+  width: 10%;
+  height: 2px;
+  background-color: var(--special-element-color);
+}
+
+#home-title {
+  color: var(--special-element-color);
+  font-weight: 400;
+  text-shadow: 1px 1px var(--main-element-color);
+  margin-top: 5vh;
 }
 @media screen and (max-width: 777px) {
   .movie-content {
