@@ -3,10 +3,8 @@
     the calendar component
     https://dbrekalo.github.io/vue-date-pick/getting-started.html
  -->
-
-
 <template>
-  <div class="container pt-4">
+  <div class="pt-4">
     <date-pick
       v-model="date"
       :hasInputElement="false"
@@ -20,12 +18,15 @@
 </template>
 
 <script>
+// imports a complete calendar to be used at our leasure
 import DatePick from "vue-date-pick";
 import "vue-date-pick/dist/vueDatePick.css";
+import { eventBus } from "@/main";
 
 export default {
   components: { DatePick },
   data: () => ({
+    // send swedish words and names as props to override the english
     date: "2019-01-01",
     nextMonthCaption: "Nästa månad",
     prevMonthCaption: "Föregående månad",
@@ -48,7 +49,8 @@ export default {
   }),
   watch: {
     date() {
-      this.$emit('showDay', this.date);
+      // global eventBus is used to send date to sibling component
+      eventBus.$emit("showDay", this.date);
     }
   },
   methods: {
@@ -64,6 +66,7 @@ export default {
       if (mm < 10) {
         mm = "0" + mm;
       }
+      // return correct format
       return yyyy + "-" + mm + "-" + dd;
     }
   },
@@ -74,21 +77,24 @@ export default {
 </script>
 
 <style>
+.vdpHeader button{
+  color: var(--main-element-color);
+}
 .vdpArrowPrev:after {
-  border-right-color: #36454f;
+  border-right-color: var(--main-element-color);
 }
 
 .vdpArrowNext:after {
-  border-left-color: #36454f;
+  border-left-color: var(--main-element-color);
 }
 
 .vdpCell.selectable:hover .vdpCellContent,
 .vdpCell.selected .vdpCellContent {
-  background: #36454f;
+  background: var(--main-element-color);
 }
 
 .vdpCell.today {
-  color: #36454f;
+  color: var(--main-element-color);
 }
 
 .vdpTimeUnit > input:hover,

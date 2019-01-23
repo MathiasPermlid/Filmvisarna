@@ -1,23 +1,27 @@
 <template>
   <div class="home">
-
-  
-
-
+    <header>
+      <h1 id="home-title">GRAND</h1>
+    </header>
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
+
     <div v-if="!searchMovie">
-      <h3 class="category-text mb-0">Kategori 1</h3>
+      <h3 class="category-text mb-0">Topplista</h3>
       <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="movies" class="col-12"/>
+      <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
+      
+      <h3 class="category-text mb-0">Drama</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Kategori 2</h3>
+      <h3 class="category-text mb-0">Action</h3>
       <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="movies" class="col-12"/>
+      <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Kategori 3</h3>
+      <h3 class="category-text mb-0">Barn</h3>
       <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="movies" class="col-12"/>
+      <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>
     </div>
 
     <div v-else>
@@ -36,6 +40,7 @@ import GraphicList from "@/components/GraphicList.vue";
 import Carousel from "@/components/carousel.vue";
 import ShowSchedule from "@/components/ShowSchedule.vue";
 import MovieSwiper from "@/components/MovieSwiper.vue";
+import { eventBus } from "@/main";
 
 export default {
   name: "home",
@@ -51,6 +56,16 @@ export default {
       return this.movies.filter(el => el.Title.match(filter));
     }
   },
+  methods: {
+    moviesByGenre(genre) {
+      //let filter = new RegExp(this.searchMovie, "i");
+      this.genre = genre;
+      return this.movies.filter(el => el.Genre.match(genre));
+    },
+    topMovies() {
+      return this.movies.sort(function(a, b){return b.imdbRating - a.imdbRating});
+    }
+  },
   watch: {
     movies() {
       this.$store.movies = this.movies;
@@ -60,10 +75,14 @@ export default {
     GraphicList,
     Carousel,
     ShowSchedule,
-    MovieSwiper
-      },
+    MovieSwiper,
+  },
   created() {
     this.movies = this.$store.movies;
+
+    eventBus.$on("search-query", query => {
+      this.searchMovie = query;
+    });
   }
 };
 </script>
@@ -93,6 +112,13 @@ export default {
   height: 5px;
   border-radius: 5px;
   background-color: rgb(255, 196, 0);
+}
+
+#home-title {
+  color: var(--special-element-color);
+  font-weight: 400;
+  text-shadow: 1px 1px var(--main-element-color);
+  margin-top: 5vh;
 }
 @media screen and (max-width: 777px) {
   .movie-content {
