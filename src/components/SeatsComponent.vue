@@ -1,14 +1,17 @@
 <template>
-  <div id="auditorium-seats">
+<div>
+    <div :class="{ hide: !this.noTicketsAddedError }">Välj antal biljetter innan du väljer säten</div>
+    <div :class="{ hide: !this.ticketsEqualToSeatsError }">Lägg till fler biljetter för att kunna välja fler säten</div>
 
-<div v-for="(row, index) in auditorium" :key="row + index">
-    <div v-for="(seat, seatNr) in auditorium[index]" :key="seat+ seatNr">
-         <Seat :row="index + 1" :seatNr="seatNr + 1" :booked="seat"
-         @click-seat="selectSeat($event)" @remove-seat="unSelectSeat($event)"
-         />
+    <div id="auditorium-seats">
+        <div v-for="(row, index) in auditorium" :key="row + index">
+            <div v-for="(seat, seatNr) in auditorium[index]" :key="seat+ seatNr">
+                <Seat :row="index + 1" :seatNr="seatNr + 1" :booked="seat"
+                @click-seat="selectSeat($event)" @remove-seat="unSelectSeat($event)"
+                />
+            </div>
+        </div>
     </div>
-</div>
-
   </div>
 </template>
 
@@ -18,19 +21,21 @@ export default {
     name: "seatsComponent",
     data() {
         return {
-        auditorium: null,
+        noTicketsAddedError: false,
+        ticketsEqualToSeatsError: false,
         numberOfSelectedSeats:0,
         selectedSeats: []
         };
     },//data
 
     props: {
-    selectedTickets: Number,
+        auditorium: Array,
+        selectedTickets: Number,
     },//props
     
     methods: {
         selectSeat(data){
-            console.log('I seatsComponent'+this.selectedTickets);
+            //console.log('I seatsComponent'+this.selectedTickets);
             
             if (!data.selected){ //om sätet redan är klickat (förbokat)
                 this.unSelectSeat(data);
@@ -46,13 +51,16 @@ export default {
         },//selectSeat
 
         unSelectSeat(data){
-            //om användaren inte valt några biljetter
+           /* //om användaren inte valt några biljetter
             if (!this.selectedTickets){
-                alert('INGA BILJETTER VALDA WTF')
+                this.noTicketsAddedError = true;
+                //alert('INGA BILJETTER VALDA WTF')
             }
             //om användaren valt lika många biljetter som säten
             else { 
-                alert('DU HAR VALT LIKA MÅNGA BILJETTER SOM SÄTEN')
+                //alert('DU HAR VALT LIKA MÅNGA BILJETTER SOM SÄTEN')
+                this.ticketsEqualToSeatsError = true;
+                    }*/
                 for(let i = 0 ; i < this.selectedSeats.length ; i++){
                     if(this.selectedSeats[i].seatNr === data.seatNr && this.selectedSeats[i].row === data.row){
                         this.selectedSeats.splice(i, 1);
@@ -61,14 +69,9 @@ export default {
  
                     }
                 } 
-            }
             console.log(this.selectedSeats);
         }//unSelectSeat
     }, //methods
-
-    created() {
-        this.auditorium = this.$store.shows["-LWl4d2Fs9Y-q1RqYgDZ"].shows[0].auditorium.seats;
-    },//created
 
     components: {
         Seat
@@ -77,6 +80,10 @@ export default {
 </script>
 
 <style scoped>
+.hide{
+    display: none;
+}
+
 #auditorium-seats{
     display: flex;
     justify-content: center;

@@ -50,7 +50,7 @@
             <p>Summa: {{totalAmount}} kronor.</p>
 
             <div id="seatsPlaceholder">
-                <SeatsComponent :selectedTickets="totalnumber" @get-number="getNumber($event)" />
+                <SeatsComponent :noTicketsAddedError="noTicketsAddedError" :selectedTickets="totalnumber" @get-number="getNumber($event)" />
             </div>
 
  <div class="row justify-content-around">    
@@ -96,7 +96,7 @@ export default {
             posterURL: "https://i.pinimg.com/474x/6e/1d/48/6e1d484aae1e5edfd456de52c6772244.jpg",
             },
             /* END OF MOCKDATA */
-
+            noTicketsAddedError: false,
             adultsnumber: 0,
             studentsnumber: 0,
             seniorsnumber: 0,
@@ -110,6 +110,16 @@ export default {
         SeatsComponent
     },//components
     methods: {
+           /* //om användaren inte valt några biljetter
+            if (!this.selectedTickets){
+                this.noTicketsAddedError = true;
+                //alert('INGA BILJETTER VALDA WTF')
+            }
+            //om användaren valt lika många biljetter som säten
+            else { 
+                //alert('DU HAR VALT LIKA MÅNGA BILJETTER SOM SÄTEN')
+                this.ticketsEqualToSeatsError = true;
+                    }*/
         getNumber(numberFromChild){
             this.totalnumberofselectedseats = numberFromChild;
         },
@@ -122,6 +132,7 @@ export default {
             }
         },
         addAdult(){
+            //child.error1=false
             if (this.adultsnumber<10 && this.totalnumber < 10) {
                 this.adultsnumber++;
                 this.addToTotalNumber();
