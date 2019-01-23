@@ -25,11 +25,6 @@ export default new Router({
       component: Kalender
     },
     {
-      path: "/booking",
-      name: "Booking",
-      component: Booking
-    },
-    {
       path: "/movieinfo/:link",
       name: "MovieInfo",
       component: MovieInfo
@@ -45,8 +40,8 @@ export default new Router({
       component: Contact
     },
     {
-      path: "/book",
-      name: "Booking",
+      path: "/book/:link",
+      name: "booking",
       component: Booking
     },
     // using path "*" matches every route
