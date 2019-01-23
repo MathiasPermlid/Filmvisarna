@@ -38,6 +38,7 @@ import GraphicList from "@/components/GraphicList.vue";
 import Carousel from "@/components/carousel.vue";
 import ShowSchedule from "@/components/ShowSchedule.vue";
 import MovieSwiper from "@/components/MovieSwiper.vue";
+import { eventBus } from "@/main";
 
 export default {
   name: "home",
@@ -76,46 +77,23 @@ export default {
   },
   created() {
     this.movies = this.$store.movies;
+
+    eventBus.$on("search-query", query => {
+      this.searchMovie = query;
+    });
   }
 };
 </script>
 
 <style>
-:root {
-  --main-background-color: whitesmoke;
-  /*whitesmoke is for background and text inside special elements*/
-  --main-element-color: #36454f; /*"CHARCOAL*/
-  /*Charcoal is for text on main pages and navbar background*/
-  --special-element-color: #b08a43; /*"BRASS"*/
-  /*Brass is for special elements like buttons*/
-  --main-font-family: "Montserrat", sans-serif;
-
-  /* 
-    Use global color-variables with:
-    EXAMPLE: "color: var(--main-element-color);"
-*/
-}
-
-* {
-  font-family: var(--main-font-family);
-}
-
-.category-text {
-  font-weight: 100;
-}
-
 .home input:focus {
   outline: none;
 }
 .home input {
   margin: 5%;
-  color: var(--main-element-color);
+  color: white;
   border-radius: 20px;
-  background-color: var(--main-background-color);
-}
-
-.home-carousels-container {
-  margin-top: 5vh;
+  background-color: rgba(131, 130, 130, 0.568);
 }
 .movie-content {
   display: flex;
@@ -128,9 +106,10 @@ export default {
   text-align: left;
 }
 .category-line {
-  width: 10%;
-  height: 2px;
-  background-color: var(--special-element-color);
+  width: 60px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: rgb(255, 196, 0);
 }
 
 #home-title {
