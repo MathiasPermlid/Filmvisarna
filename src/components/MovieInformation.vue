@@ -1,6 +1,6 @@
 <template>
   <div class="row container m-0 p-0">
-    <h1 class="col-12 pt-3 pb-3 m-0">{{ movie.Title }}</h1>
+    <h1 class="col-12 pt-3 pb-3 m-0 h1-custom-size">{{ movie.Title }}</h1>
     <!-- MOVIE BG MOBILE -->
     <div class="mobile-movie-bg col-12 pl-0 pr-0 pb-0">
       <picture class="img-fluid">
@@ -55,7 +55,10 @@
         <picture class="img-fluid hide-on-mobile">
           <img v-bind:src="movie.Poster">
         </picture>
-        <button type="button" class="btn-brass-desktop text-white lead mt-2 hide-on-mobile">Boka</button>
+        <button
+          type="button"
+          class="btn-brass-desktop text-white lead mt-4 mb-2 hide-on-mobile"
+        >Boka</button>
       </div>
 
       <div class="col-sm-12 col-md-7 hide-on-mobile pr-5 pl-5 mb-1">
@@ -68,14 +71,8 @@
             allowfullscreen
           ></iframe>
         </div>
-        <div class="row p-2">
+        <div class="row m-1">
           <p class="mobile-p lead">{{ movie.Plot }}</p>
-        </div>
-        <h3 class="mt-2">Recensioner</h3>
-        <div v-for="ratings in movie.Ratings" :key="ratings">
-          <p class="mobile-p">
-            <i>{{ ratings.Source }} {{ ratings.Value }}</i>
-          </p>
         </div>
       </div>
     </div>
@@ -129,9 +126,20 @@
           <strong>Biljettpris:</strong> Vuxna 100 kr, barn(6-18 år) 60 kr
         </p>
       </div>
+
+      <!-- DESKTOP RECENSIONER -->
+      <div class="row hide-on-mobile mt-2">
+        <h3 class="mobile-p hide-on-mobile">Recensioner</h3>
+      </div>
+      <div v-for="ratings in movie.Ratings" class="hide-on-mobile" :key="ratings">
+        <p class="mobile-p row hide-on-mobile">
+          <i>{{ ratings.Source }} {{ ratings.Value }}</i>
+        </p>
+      </div>
     </div>
+    <!-- MOBIL RECENSIONER -->
     <div class="col-sm-12 col-md-12 hide-on-desktop mobile-margin-info">
-      <h2 class="row mobile-margin-info">Recensioner</h2>
+      <h2 class="row mobile-margin-info ml-2">Recensioner</h2>
       <div class="row" v-for="ratings in movie.Ratings" :key="ratings">
         <p class="mobile-p">
           <i>{{ ratings.Source }} {{ ratings.Value }}</i>
@@ -178,11 +186,16 @@ img {
   width: 100%;
 }
 
+.embed-responsive {
+  border-radius: 10px;
+}
+
 .mobile-p {
   padding-bottom: 0.2rem;
   padding-left: 0;
   margin-bottom: 0;
   letter-spacing: 0.025rem;
+  text-align: start;
 }
 
 .mobile-p p {
@@ -192,6 +205,10 @@ img {
 
 .hide-on-desktop {
   display: none;
+}
+
+.hide-on-mobile {
+  display: block;
 }
 
 .mobile-movie-bg {
@@ -213,13 +230,21 @@ img {
   background: #b08a43be;
 }
 
-@media screen and (max-width: 767px) {
+.h1-custom-size {
+  font-size: 3rem !important;
+}
+
+@media screen and (max-width: 1024px) {
   .desktop-margin-info {
     margin-left: 0;
   }
 
+  .h1-custom-size {
+    font-size: 2rem !important;
+  }
+
   .mobile-margin-info {
-    margin: 0 25px;
+    margin: 0;
   }
 
   .hide-on-desktop {
@@ -238,7 +263,7 @@ img {
     display: block;
     position: absolute;
     background-size: cover;
-    max-height: 30vh;
+    min-height: 30vh;
   }
 
   .adjust-btn {
@@ -259,7 +284,7 @@ img {
 
   .mobile-p {
     padding-bottom: 0.4rem;
-    margin-bottom: 0;
+    margin: 0 25px;
     letter-spacing: 0.025rem;
     font-size: 0.75rem;
     text-align: start;
