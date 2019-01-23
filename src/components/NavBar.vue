@@ -6,6 +6,10 @@
     v-if="!mobile"
     class="navbar navbar-expand-lg navbar-light bg-light mb-0 row align-self-center"
   >
+    <div>
+      <router-link to="/">GRAND</router-link>
+      <div class="category-line"></div>
+    </div>
     <button
       class="navbar-toggler"
       type="button"
@@ -17,10 +21,6 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div>
-      <router-link to="/">Filmvisarna</router-link>
-      <div class="category-line"></div>
-    </div>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav justify-content-center">
         <li class="nav-item active">
@@ -32,25 +32,50 @@
         <li class="nav-item">
           <router-link to="/about">Om oss</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/kontakt">Kontakt</router-link>
+        </li>
       </ul>
     </div>
   </nav>
-  <nav v-else id="nav-mobile">
-    <router-link to="/" class="col-4">Start</router-link>
-    <router-link to="/kalender" class="col-4">Kalender</router-link>
-    <router-link to="/about" class="col-4">Om oss</router-link>
-  </nav>
+  <!-- link page toggled on hamburger -->
+  <section v-else>
+    <nav id="nav-mobile">
+      <router-link to="/" class="col-4">Start</router-link>
+      <router-link to="/kalender" class="col-4">Kalender</router-link>
+      <router-link to="/about" class="col-4">Om oss</router-link>
+    </nav>
+    <!-- the bottom navbar -->
+    <div>
+      <!-- hamburger -->
+      <i class="fas fa-search" @click="searching = !searching"></i>
+    </div>
+    <div v-if="searching">
+      <i class="fas fa-search"></i>
+      <!-- search input -->
+      <input type="text" v-model="searchMovie" placeholder="Sök film">
+      <i class="fas fa-times" @click="searching = !searching"></i>
+    </div>
+  </section>
 </template>
 
 <script>
 /* eslint-disable */
 import $ from "jquery";
+import { eventBus } from "@/main";
 
 export default {
   data() {
     return {
+      searchMovie: "",
+      searching: false,
       mobile: this.startMobile()
     };
+  },
+  watch: {
+    searchMovie(input) {
+      eventBus.$emit("search-query", input);
+    }
   },
   methods: {
     startMobile() {
@@ -109,7 +134,7 @@ nav > div > a {
 nav > div > div {
   margin: 0;
 }
-nav > a:hover {
+nav > div > a:hover {
   text-decoration: none;
   color: #fff;
 }

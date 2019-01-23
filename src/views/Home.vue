@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Carousel id="carousel"/>
-    <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
+    <input class="col-10 col-md-6" type="text">
     <div v-if="!searchMovie">
       <h3 class="category-text mb-0">Kategori 1</h3>
       <div class="category-line mb-2"></div>
@@ -30,6 +30,7 @@ import GraphicList from "@/components/GraphicList.vue";
 import Carousel from "@/components/carousel.vue";
 import ShowSchedule from "@/components/ShowSchedule.vue";
 import MovieSwiper from "@/components/MovieSwiper.vue";
+import { eventBus } from "@/main";
 
 export default {
   name: "home",
@@ -58,6 +59,10 @@ export default {
   },
   created() {
     this.movies = this.$store.movies;
+
+    eventBus.$on("search-query", query => {
+      this.searchMovie = query;
+    });
   }
 };
 </script>
