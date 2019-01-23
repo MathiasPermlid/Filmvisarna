@@ -1,9 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Store from "@/plugins/store";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { db } from "@/plugins/cloud";
 
 // this creates an object to store variables in
@@ -11,6 +11,10 @@ import { db } from "@/plugins/cloud";
 // which every component is a child of
 Vue.$store = new Store();
 Vue.prototype.$store = Vue.$store;
+
+// global eventBus to handle data transfer
+// between sibling components
+export const eventBus = new Vue();
 
 Vue.config.productionTip = false;
 
