@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <header>
+      <h1 id="home-title">GRAND</h1>
+    </header>
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text">
     <div v-if="!searchMovie">
@@ -92,6 +95,13 @@ export default {
   height: 5px;
   border-radius: 5px;
   background-color: rgb(255, 196, 0);
+}
+
+#home-title {
+  color: var(--special-element-color);
+  font-weight: 400;
+  text-shadow: 1px 1px var(--main-element-color);
+  margin-top: 5vh;
 }
 @media screen and (max-width: 777px) {
   .movie-content {
