@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-
+    <header>
+      <h1 id="home-title">GRAND</h1>
+    </header>
     <Carousel id="carousel"/>
     <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
 
@@ -117,6 +119,7 @@ export default {
   font-weight: 400;
   text-shadow: 1px 1px var(--main-element-color);
   margin-top: 5vh;
+  display: none;
 }
 @media screen and (max-width: 777px) {
   .movie-content {
@@ -127,6 +130,9 @@ export default {
   }
   #schedule-comp {
     width: 100%;
+  }
+  #home-title {
+    display: block;
   }
 }
 </style>
