@@ -1,266 +1,318 @@
 
+<!-- 
 /* 
 # Lägg in html för säte i Seat.Vue
 #  SeatsComponent.vue innehåller array för salong.
-
 */
+ -->
 
 
 
 <template>
-    <div class="booking">
-        <div class="container-fluid">
+  <div class="booking">
+    <div class="container-fluid">
+      <h1 class="row booking-title">{{movie.title}}</h1>
 
-            <h1 class="row booking-title">{{movie.title}}</h1>
+      <h2 class="booking-subtitle">
+        <span class="col-4">{{movie.weekday}}</span>
+        <span class="col-4">{{movie.date}}</span>
+        <span class="col-4">{{movie.time}}</span>
+      </h2>
+      <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
+      <div class="booking-button-row">
+        <span class="col-1">Vuxna:</span>
+        
+        <a v-on:click="subtractAdult" class="col-1">
+          <img
+            src="../assets/minusbutton.svg"
+            class="add-subtract-button"
+            alt="Ta bort en vuxen-biljett"
+          >
+        </a>
+        
+        <span class="ticket-number col-1">{{adultsnumber}}</span>
+        
+        <a v-on:click="addAdult" class="col-1">
+          <img
+            src="../assets/plusbutton.svg"
+            class="add-subtract-button"
+            alt="Lägg till en vuxen-biljett"
+          >
+        </a>
+      </div>
 
-            <h2 class="booking-subtitle"><span class="col-4">{{movie.weekday}} </span><span class="col-4">{{movie.date}}</span><span class="col-4"> {{movie.time}}</span></h2>
-            <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
-            
-            <div class="booking-button-row"> 
-                <span class="col-1">Vuxna:</span>
-                
-                <a v-on:click="subtractAdult" class="col-1">
-                    <img src="../assets/minusbutton.svg" class="add-subtract-button" alt="Ta bort en vuxen-biljett"/>
-                </a>
-                
-                <span class="ticket-number col-1">{{adultsnumber}}</span>
-                
-                <a v-on:click="addAdult" class="col-1">
-                    <img src="../assets/plusbutton.svg" class="add-subtract-button" alt="Lägg till en vuxen-biljett"/>
-                </a>
-            </div>
+      <div class="flex-row booking-button-row">
+        <span class="col-12">Pensionärer:</span>
+        <a v-on:click="subtractSenior" class="col-1">
+          <img
+            src="../assets/minusbutton.svg"
+            class="add-subtract-button"
+            alt="Ta bort en pensionärs-biljett"
+          >
+        </a>
+        
+        <span class="ticket-number col-1">{{seniorsnumber}}</span>
+        <a v-on:click="addSenior" class="col-1">
+          <img
+            src="../assets/plusbutton.svg"
+            class="add-subtract-button"
+            alt="Lägg till en pensionärs-biljett"
+          >
+        </a>
+      </div>
 
+      <hr>
 
-            <div class="flex-row booking-button-row">
-                <span class="col-12">Pensionärer: </span>    
-                <a v-on:click="subtractSenior" class="col-1">
-                    <img src="../assets/minusbutton.svg" class="add-subtract-button" alt="Ta bort en pensionärs-biljett"/>
-                </a>
-                
-                <span class="ticket-number col-1">{{seniorsnumber}}</span>
-                <a v-on:click="addSenior" class="col-1">
-                    <img src="../assets/plusbutton.svg" class="add-subtract-button" alt="Lägg till en pensionärs-biljett"/>
-                </a>
-            </div>
-            
-            <hr>
-            
-            <p>Antal biljetter: {{totalnumber}} </p>
-            
-            <p>Summa: {{totalAmount}} kronor.</p>
+      <p>Antal biljetter: {{totalnumber}}</p>
 
             <div id="seatsPlaceholder">
                 <SeatsComponent :noTicketsAddedError="noTicketsAddedError" :selectedTickets="totalnumber" @get-number="getNumber($event)" />
             </div>
 
- <div class="row justify-content-around">    
-       <div class="row justify-content-center"><input v-model="userEmail" type="email" class="form-control booking-button-row col-12" id="input-email" aria-describedby="emailHelp" placeholder="Skriv in din e-postadress"></div>
- </div>
+      <div id="seatsPlaceholder">SÄTENA TILL SALONGEN HAMNAR HÄR</div>
 
- <div class="row justify-content-around">
-      <div class="col-12 booking-button-row"><button class="col-5 btn btn-large btn-success" id="boka-button">Boka</button></div>
-      <div class="col-12 booking-button-row"><button class="col-5 btn btn-large btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button></div>
- </div>
-
-
-
- 
-    
-
-
-           
-           
-            
-            
-            
-
+      <div class="row justify-content-around">
+        <div class="row justify-content-center">
+          <input
+            v-model="userEmail"
+            type="email"
+            class="form-control booking-button-row col-12"
+            id="input-email"
+            aria-describedby="emailHelp"
+            placeholder="Skriv in din e-postadress"
+          >
         </div>
+      </div>
+
+      <div class="row justify-content-around">
+        <div class="col-12 booking-button-row">
+          <button class="col-5 btn btn-large btn-success" id="boka-button">Boka</button>
+        </div>
+        <div class="col-12 booking-button-row">
+          <button class="col-5 btn btn-large btn-danger" id="cancel-button">
+            <router-link to="/">Avbryt</router-link>
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 
 <script>
+import { db } from "@/plugins/cloud";
+
 import SeatsComponent from "@/components/SeatsComponent.vue";
 export default {
-    name: "booking",
-    data() {
-        return {
+  name: "booking",
+  data() {
+    return {
+      date: "",
+      dateIndex: 0,
+      day: {},
+      show: {},
+      movie: {
+        /* MOCKDATA  BELOW*/
+        title: "John Wick",
+        weekday: "Fredag",
+        date: "25/1",
+        time: "21:00",
+        posterURL:
+          "https://i.pinimg.com/474x/6e/1d/48/6e1d484aae1e5edfd456de52c6772244.jpg"
+      },
+      /* END OF MOCKDATA */
 
-            movie: {
-        
-            /* MOCKDATA  BELOW*/
-            title: "John Wick",
-            weekday: "Fredag",
-            date: "25/1",
-            time: "21:00",
-            posterURL: "https://i.pinimg.com/474x/6e/1d/48/6e1d484aae1e5edfd456de52c6772244.jpg",
-            },
-            /* END OF MOCKDATA */
+      adultsnumber: 0,
+      studentsnumber: 0,
+      seniorsnumber: 0,
+      totalnumber: 0,
+      totalAmount: 0,
+      userEmail: ""
+    };
+  },
+  mounted() {
+    //  get date and the dates show from path param
+    let link = location.pathname.replace("/book/", "");
+    this.dateIndex = link.split("").pop();
+    this.date = link.split("");
+    this.date.pop();
+    this.date = this.date.join("");
+
+    this.day = this.$store.shows[this.date];
+    this.show = this.day.shows[this.dateIndex];
+
+    console.log(this.show);
+  },
+  methods: {
+    updateShow() {
+      // update show with current seats left and seats taken
+      db.ref("visningar/" + this.date).set({
+        date: this.day.date,
+        shows: {
+          0: {
+            auditorium: this.day.shows[0].auditorium,
+            time: "17:00",
+            movie: this.day.shows[0].movie
+          },
+          1: {
+            auditorium: this.day.shows[1].auditorium,
+            time: "17:00",
+            movie: this.day.shows[1].movie
+          },
+          2: {
+            auditorium: this.day.shows[2].auditorium,
+            time: "19:30",
+            movie: this.day.shows[2].movie
+          }
             noTicketsAddedError: false,
-            adultsnumber: 0,
-            studentsnumber: 0,
-            seniorsnumber: 0,
-            totalnumber: 0,
-            totalAmount: 0,
-            userEmail: '',
             totalnumberofselectedseats: 0
-        };
-    },
     components: {
         SeatsComponent
     },//components
-    methods: {
-           /* //om användaren inte valt några biljetter
-            if (!this.selectedTickets){
-                this.noTicketsAddedError = true;
-                //alert('INGA BILJETTER VALDA WTF')
-            }
-            //om användaren valt lika många biljetter som säten
-            else { 
-                //alert('DU HAR VALT LIKA MÅNGA BILJETTER SOM SÄTEN')
-                this.ticketsEqualToSeatsError = true;
-                    }*/
-        getNumber(numberFromChild){
-            this.totalnumberofselectedseats = numberFromChild;
-        },
-        subtractAdult(){
-            if(this.totalnumber > this.totalnumberofselectedseats){
-                if (this.adultsnumber>0 && this.totalnumber>0) {
-                    this.adultsnumber--;
-                    this.subtractToTotalNumber();
-                }
-            }
-        },
-        addAdult(){
-            //child.error1=false
-            if (this.adultsnumber<10 && this.totalnumber < 10) {
-                this.adultsnumber++;
-                this.addToTotalNumber();
-            }
-        },
-        subtractSenior(){
-            if(this.totalnumber > this.totalnumberofselectedseats){
-                if (this.seniorsnumber>0 && this.totalnumber > 0){
-                    this.seniorsnumber--;
-                    this.subtractToTotalNumber()
-                }
-            }
-        },
-        addSenior(){
-            if (this.seniorsnumber<10 && this.totalnumber<10) {
-                this.seniorsnumber++;
-                this.addToTotalNumber();
-            }
-        },
-        addToTotalNumber(){
-            if(this.totalnumber<10){
-            this.totalnumber ++;
-            this.calculatePrice();
-            }
-        },
-        subtractToTotalNumber(){
-            this.totalnumber --;
-            this.calculatePrice();
-            
-        },
-        calculatePrice(){
-            this.totalAmount = 0;
-            this.totalAmount += (this.seniorsnumber * 80);
-            this.totalAmount += (this.adultsnumber * 100);
         }
-        
-        }
-  };
+      });
+    },
+    subtractAdult() {
+      if (this.adultsnumber > 0 && this.totalnumber > 0) {
+        this.adultsnumber--;
+        this.subtractToTotalNumber();
+      }
+    },
+    addAdult() {
+      if (this.adultsnumber < 10 && this.totalnumber < 10) {
+        this.adultsnumber++;
+        this.addToTotalNumber();
+      }
+    },
+    subtractSenior() {
+      if (this.seniorsnumber > 0 && this.totalnumber > 0) {
+        this.seniorsnumber--;
+        this.subtractToTotalNumber();
+      }
+    },
+    addSenior() {
+      if (this.seniorsnumber < 10 && this.totalnumber < 10) {
+        this.seniorsnumber++;
+        this.addToTotalNumber();
+      }
+    },
+    addToTotalNumber() {
+      if (this.totalnumber < 10) {
+        this.totalnumber++;
+        this.calculatePrice();
+      }
+    },
+    subtractToTotalNumber() {
+      this.totalnumber--;
+      this.calculatePrice();
+    },
+    calculatePrice() {
+      this.totalAmount = 0;
+      this.totalAmount += this.seniorsnumber * 80;
+      this.totalAmount += this.adultsnumber * 100;
+    }
+  }
+};
 </script>
 
 
 <style scoped>
-    :root {
+:root {
+  --main-background-color: whitesmoke;
+  /*whitesmoke is for background and text inside special elements*/
+  --main-element-color: #36454f; /*"CHARCOAL*/
+  /*Charcoal is for text on main pages and navbar background*/
+  --special-element-color: #b08a43; /*"BRASS"*/
+  /*Brass is for special elements like buttons*/
+  --main-font-family: "Montserrat", sans-serif;
 
-        --main-background-color: whitesmoke;
-            /*whitesmoke is for background and text inside special elements*/
-        --main-element-color: #36454f; /*"CHARCOAL*/
-            /*Charcoal is for text on main pages and navbar background*/
-        --special-element-color: #b08a43; /*"BRASS"*/
-            /*Brass is for special elements like buttons*/
-        --main-font-family: 'Montserrat', sans-serif;
-
-        /* 
+  /* 
             Use global color-variables with:
             EXAMPLE: "color: var(--main-element-color);"
         */
-        font-family: 'Montserrat', sans-serif;
-    }
+  font-family: "Montserrat", sans-serif;
+}
 
-    a {
-        color:inherit;
-    }
-    a:visited {
-        color:inherit;
-    }
-    a:hover {
-        font-style: none;
-    }
-    .booking {
-        margin-bottom: 100px;
-    }
+a {
+  color: inherit;
+}
+a:visited {
+  color: inherit;
+}
+a:hover {
+  font-style: none;
+}
+.booking {
+  margin-bottom: 100px;
+}
 
-    .booking-line{
-        justify-content: space-evenly;
-        margin-bottom: 10px;
-        font-weight: 400;
-    }
+.booking-line {
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
 
-    .booking-button-row{
-        margin-bottom: 30px;
-        height: 25px;
-        justify-content: baseline;
-        align-content:unset;
-    }
-    
+.booking-button-row {
+  margin-bottom: 30px;
+  height: 25px;
+  justify-content: baseline;
+  align-content: unset;
+}
 
-    .add-subtract-button{
-        width: 50px;
-        height: auto;
-        object-fit: scale-down;
-        padding-left: 0;
-        padding-right: 0;
-        padding-top: 3px;
-        padding-bottom: 3px;
-        margin: 0;
-    }
+.add-subtract-button {
+  width: 50px;
+  height: auto;
+  object-fit: scale-down;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin: 0;
+}
 
-    .booking-title {
-        text-align: center;
-        justify-content: center;
-        font-size: 2em;
-        align-content: flex-start;
-        margin-top: 45px;
-        margin-bottom: 15px;
-        font-weight:100;
+.booking-title {
+  text-align: center;
+  justify-content: center;
+  font-size: 2em;
+  align-content: flex-start;
+  margin-top: 45px;
+  margin-bottom: 15px;
+  font-weight: 100;
+}
+.booking-subtitle {
+  justify-content: center;
+  justify-items: center;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  font-weight: 100;
+}
 
-    }
-    .booking-subtitle {
-        justify-content: center;
-        justify-items: center;
-        font-size: 1.2em;
-        margin-bottom: 30px;
-        font-weight: 100;
-    }
+.ticket-number {
+  font-weight: 700;
+}
+.seat {
+  color: var(--main-element-color);
+}
+.seat-blocked {
+  color: rgb(107, 5, 5);
+}
+.seat-selected {
+  color: var(--special-element-color);
+}
 
-    .ticket-number{
-        font-weight: 700;
-    }
-    .seat {
-        color: var(--main-element-color);
-    }
-    .seat-blocked {
-        color: rgb(107, 5, 5);
-    }
-    .seat-selected {
-        color: var(--special-element-color);
-    }
+#boka-button {
+  width: 200px;
+}
+#cancel-button {
+  width: 200px;
+}
 
+#seatsPlaceholder {
+  height: 200px;
+  width: 100%;
+  background-color: blueviolet;
+  color: white;
+  text-align: center;
 
     #boka-button{
         width: 200px;

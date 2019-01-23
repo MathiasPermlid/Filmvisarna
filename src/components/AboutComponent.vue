@@ -1,34 +1,32 @@
 <template>
-<div class="row container m-0 p-0">
-    <h1 class="col-12 pt-3 pb-3 m-0 h1-custom-size">Om oss</h1>
-    <div class="col-sm-12  pl-0 pr-0 pb-0">
-        <div class="col-md-12 row hide-on-mobile">
-
-            <div class="col-md-6 hide-on-mobile col">
-                <picture class="img-fluid hide-on-mobile">
-                    <img src="https://pro.boxoffice.com/wp-content/uploads/2018/04/IMG_3865-e1524058912730.jpg">
+<div class="container row m-0 p-0">
+    <h1 class="col-12 pt-3 pb-3 m-0 p-0 h1-custom-size">Om oss</h1>
+    <div class="col-12 row m-0 p-0">
+        <div class="col-sm-12 col-md-6 hide-on-mobile col">
+            <picture class="img-fluid hide-on-mobile">
+                <img src="https://pro.boxoffice.com/wp-content/uploads/2018/04/IMG_3865-e1524058912730.jpg">
             </picture>
 
-            </div>
-            <div class="col-md-6 hide-on-mobile col">
-                <h3 class="mobile-p hide-on-mobile">Den stora salong som rymmer 81 biogäster</h3>
-                <p class="mobile-p hide-on-mobile lead">Salongen är utrustad med ljudsystemet Dolby Atmos, som innebär så kallat immersive sound, med upp till 56 ljudkanaler. Projektorn 4K Barco DP4K-32B lyser upp den 19,8 x 8,3 meter eller 168 kvadratmeter stora duken och levererar tillsammans med ljudet en fantastisk upplevelse.
-                </p>
-            </div>
-
-            <div class="col-md-6 hide-on-mobile col mt-3">
-                <picture class="img-fluid hide-on-mobile">
-                    <img src="http://luxsupreme.com/wp-content/uploads/2014/06/embassy-diplomat-screens-1-636x310.jpg">
-            </picture>
-
-            </div>
-            <div class="col-md-6 hide-on-mobile col mt-3">
-                <h3 class="mobile-p hide-on-mobile">Den mysiga lilla salong som rymmer 56 biogäster</h3>
-                <p class="mobile-p hide-on-mobile lead">Vår lilla salong är vår mysiga VIP-salong som har exklusiva reclinerfåtöljer i skinn och möjlighet att ta in mat och dryck från restaurangen. Dolby Atmos innebär så kallat immersive sound, med upp till 56 ljudkanaler.
-                </p>
-            </div>
         </div>
-        <div class="mobile-movie-bg col-12 pl-0 pr-0 pb-0">
+        <div class="col-sm-12 col-md-6 hide-on-mobile col">
+            <h3 class="mobile-p hide-on-mobile">Den stora salong som rymmer 81 biogäster</h3>
+            <p class="mobile-p hide-on-mobile lead">Salongen är utrustad med ljudsystemet Dolby Atmos, som innebär så kallat immersive sound, med upp till 56 ljudkanaler. Projektorn 4K Barco DP4K-32B lyser upp den 19,8 x 8,3 meter eller 168 kvadratmeter stora duken och levererar tillsammans med ljudet en fantastisk upplevelse.
+            </p>
+        </div>
+
+        <div class="col-sm-12 col-md-6 hide-on-mobile col mt-3">
+            <picture class="img-fluid hide-on-mobile">
+                <img src="http://luxsupreme.com/wp-content/uploads/2014/06/embassy-diplomat-screens-1-636x310.jpg">
+            </picture>
+
+        </div>
+        <div class="col-sm-12 col-md-6 hide-on-mobile col mt-3">
+            <h3 class="mobile-p hide-on-mobile">Den mysiga lilla salong som rymmer 56 biogäster</h3>
+            <p class="mobile-p hide-on-mobile lead">Vår lilla salong är vår mysiga VIP-salong som har exklusiva reclinerfåtöljer i skinn och möjlighet att ta in mat och dryck från restaurangen. Dolby Atmos innebär så kallat immersive sound, med upp till 56 ljudkanaler.
+            </p>
+        </div>
+
+        <div class="mobile-movie-bg col-12 col p-0">
             <picture class="img-fluid">
                 <img src="https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
             </picture>

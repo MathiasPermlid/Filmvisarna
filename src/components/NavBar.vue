@@ -7,8 +7,7 @@
     class="navbar navbar-expand-lg navbar-light bg-light mb-0 row align-self-center"
   >
     <div>
-      <router-link to="/" id="home-title">GRAND</router-link>
-      <div class="category-line"></div>
+      <router-link to="/" class="home-title">GRAND</router-link>
     </div>
     <button
       class="navbar-toggler"
@@ -33,7 +32,7 @@
           <router-link to="/about">Om oss</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/kontakt">Kontakt</router-link>
+          <router-link to="/contact">Kontakt</router-link>
         </li>
       </ul>
     </div>
@@ -51,7 +50,8 @@
         <section class="mobile-links mt-auto mb-auto">
           <router-link to="/">Start</router-link>
           <router-link to="/kalender">Kalender</router-link>
-          <router-link to="/about">Om oss</router-link>
+          <router-link to="/about">Om Bion</router-link>
+          <router-link to="/contact">Kontakt</router-link>
         </section>
       </nav>
     </transition>
@@ -185,7 +185,7 @@ nav img {
   margin-right: 5px;
 }
 nav a {
-  color: var(--main-background-color);
+  color: black;
 }
 nav > div > a {
   /* position: absolute; */
