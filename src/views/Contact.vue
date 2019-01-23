@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div id="modal2" v-if="showFail">
-      <div id="div2" v-on:click="close">
-        <p id="fail"> {{ message }}</p>
+    <div id="modal" v-if="showFail">
+      <div id="div" v-on:click="close">
+        <p id="fail">{{ message }}</p>
         <div>
           <img
             class="wondering"
@@ -117,15 +117,26 @@ export default {
     };
   },
   methods: {
+    isEmailValid: function(mail) {
+      return this.mail.match(
+        /^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i
+      );
+    },
     submitModal: function(event) {
-      if (this.mail.length > 4 && this.opinion.length > 1 && this.mail.includes("@")) {
+      if (
+        this.mail.length > 4 &&
+        this.opinion.length > 4 &&
+        this.isEmailValid()
+      ) {
         this.showModal = true;
-      } else if (!this.mail.includes("@") || this.mail.length<5) {
+      } else if (this.mail.length < 5 || !this.isEmailValid()) {
         this.showFail = true;
-        this.message = "Vänta lite! Någonting är inte bra! Har du skrivit din e-post korrekt?"
-      } else if(this.opinion.length<5){
-          this.showFail = true; 
-          this.message ="Du måste skriva lite mer, så vi förstår dig bättre. Försök igen"
+        this.message =
+          "Vänta lite! Någonting är inte bra! Har du skrivit din e-post korrekt?";
+      } else if (this.opinion.length < 5) {
+        this.showFail = true;
+        this.message =
+          "Du måste skriva lite mer, så vi förstår dig bättre. Försök igen";
       }
     },
     close: function(event) {
@@ -178,22 +189,7 @@ table {
   display: flex;
   align-self: center;
 }
-#div2 {
-  justify-content: center;
-  display: flex;
-  background: rgb(255, 255, 255);
-  width: 50vw;
-  height: 40vh;
-  position: fixed;
-  z-index: 9;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-}
-#modal2 {
-  justify-content: center;
-  display: flex;
-  align-self: center;
-}
+
 #thanks {
   font-weight: bold;
   position: absolute;
@@ -220,12 +216,13 @@ table {
   top: 60px;
 }
 .signature {
-  height: 15vh;
-  width: 10vw;
-  position: absolute;
-  top: 20vh;
-  left: 5vw;
-  object-fit: cover;
+  height: 9vh;
+    width: 8vw;
+    position: absolute;
+    top: 24vh;
+    left: 4vw;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
 #Walter {
   position: absolute;
@@ -271,30 +268,32 @@ textarea {
     width: 100%;
     left: 0;
   }
-  #div2 {
-    width: 100%;
-    left: 0;
-  }
   #modal {
     justify-content: center;
     max-width: 50vw;
-  }
-  #modal2 {
-    justify-content: center;
-    max-width: 50vw;
-  }
-  .signature {
-    height: 10vh;
-    width: 26vw;
-    left: 2vw;
-    top: 26vh;
-    padding: 1vw;
   }
   .wondering {
     height: 25vh;
     width: 32vw;
     left: 0vw;
     top: 13vh;
+  }
+  #exitt {
+    height: 2vh;
+    width: 3vw;
+  }
+  #exit {
+    height: 2vh;
+    width: 3vw;
+    left: 48vw;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 1030px) {
+  .wondering {
+    display: none;
+  }
+  .signature {
+    display: none;
   }
 }
 </style>
