@@ -1,6 +1,6 @@
 <template>
 <div class="row container m-0 p-0">
-    <h1 class="col-12 pt-3 pb-3 m-0 h1-custom-size">Om oss</h1>
+    <h1 class="col-12 pt-3 pb-3 m-0 h1-custom-size">Om Bion</h1>
     <div class="col-sm-12  pl-0 pr-0 pb-0">
         <div class="col-md-12 row hide-on-mobile">
 
