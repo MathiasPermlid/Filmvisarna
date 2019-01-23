@@ -1,75 +1,107 @@
 <template>
-<div class="row container mx-auto">
-    <div class="row col-sm-12 col-md-12 mx-auto justify-content-center">
-        <div class="col-sm-12 col-md-6 row">
-            <picture class="img-fluid">
-                <img :src="movie.Poster" alt>
-        </picture>
-                <button type="button" class="btn btn-dark mt-2">Boka</button>
-        </div>
-        <div class="col-sm-12 col-md-6 hide-trailer-poster">
-            <!-- <div class="embed-responsive embed-responsive-16by9">
-                <iframe
+<div class="row container m-0 p-0">
+    <h1 class="col-12 pt-3 pb-3 m-0">{{ movie.Title }}</h1>
+    <!-- MOVIE BG MOBILE -->
+    <div class="mobile-movie-bg col-12 pl-0 pr-0 pb-0">
+        <picture class="img-fluid">
+            <img v-bind:src="movie.PictureBackground">
+            </picture>
+            <button type="button" class="text-white btn-brass adjust-btn mr-4">Boka</button>
+            <button type="button" class="text-white btn-brass adjust-btn ml-4" data-toggle="modal" data-target="#exampleModal">Trailer</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ movie.Title }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe
             class="embeded-responsive embeded-responsive-16by9"
-            src="#"
+            :src="'https://www.youtube.com/embed/' + movie.Trailer"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
-            </div> -->
-            <h2>Recensioner</h2>
-            <div class="pt-2" v-for="ratings in movie.Ratings">
-                <p class="mobile-p lead">{{ ratings.Source }} {{ ratings.Value }}</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     </div>
-    <div class="col-md-12 pt-2">
-        <div class="row">
-            <h1>{{ movie.Title }}</h1>
+    <div class="row col-sm-12 col-md-12 justify-content-center">
+
+        <!--hide-on-mobile hides this on mobile and only shows it on desktop -->
+        <div class="col-sm-12 col-md-5 row hide-on-mobile pr-5 pl-5 justify-content-center">
+            <picture class="img-fluid hide-on-mobile">
+                <img v-bind:src="movie.Poster">
+            </picture>
+                <button type="button" class="btn-brass-desktop text-white lead mt-2 hide-on-mobile">Boka</button>
+
         </div>
-        <div class="row">
-            <p class="mobile-p pl-0">Speltid: {{ movie.Runtime }} min</p>
-            <p class="mobile-p">Genre: {{ movie.Genre }}</p>
-        </div>
-        <div class="row">
-            <p class="mobile-p">Beskrivning: {{ movie.Plot }}</p>
-        </div>
-        <div class="row">
-            <p class="mobile-p">Skådespelare: {{ movie.Actors }}</p>
-        </div>
-        <div class="row">
-            <p class="mobile-p">Regi: {{ movie.Director }}</p>
-        </div>
-        <div class="row">
-            <p class="mobile-p">Språk: {{ movie.Language }}</p>
-        </div>
-        <div class="row">
-            <p class="mobile-p">Undertext: svenska</p>
-        </div>
-        <div class="row">
-            <p class="mobile-p">Från: {{ movie.Rated }} år</p>
-        </div>
-        <div class="row">
-            <p class="mobile-p">Biljettpris: Vuxna 100 kr, barn(6-18 år) 60 kr</p>
-        </div>
-    </div>
-    <div class="row col-sm-12 col-md-12 mx-auto">
-        <div class="col-sm-12 col-md-6 pt-3 move-trailer">
-            <!-- <div class="embed-responsive embed-responsive-16by9">
+
+        <div class="col-sm-12 col-md-7 hide-on-mobile pr-5 pl-5 mb-1">
+            <div class="embed-responsive embed-responsive-16by9">
                 <iframe
             class="embeded-responsive embeded-responsive-16by9"
-            src="#"
+            v-bind:src="'https://www.youtube.com/embed/' + movie.Trailer"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
-            </div> -->
-            <h2>Recensioner</h2>
-            <div class="pt-2" v-for="ratings in movie.Ratings">
-                <p class="mobile-p lead">{{ ratings.Source }} {{ ratings.Value }}</p>
+            </div>
+            <div class="row p-2">
+                <p class="mobile-p lead">{{ movie.Plot }}</p>
+            </div>
+            <h3 class="mt-2">Recensioner</h3>
+            <div v-for="ratings in movie.Ratings">
+                <p class="mobile-p"><i>{{ ratings.Source }} {{ ratings.Value }}</i></p>
             </div>
         </div>
-        <hr class="my-4">
+    </div>
+    <div class="col-md-12 mt-2 mb-4 desktop-margin-info mobile-margin-info">
+        <div class="row">
+            <p class="mobile-p lead hide-on-desktop">{{ movie.Plot }}</p>
+        </div>
+        <div class="row">
+            <p class="mobile-p"><strong>Speltid:</strong> {{ movie.Runtime }}</p>
+        </div>
+        <div class="row">
+            <p class="mobile-p"><strong>Genre:</strong> {{ movie.Genre }}</p>
+        </div>
+        <div class="row">
+            <p class="mobile-p"><strong>Skådespelare:</strong> {{ movie.Actors }}</p>
+        </div>
+        <div class="row">
+            <p class="mobile-p"><strong>Regi:</strong> {{ movie.Director }}</p>
+        </div>
+        <div class="row">
+            <p class="mobile-p"><strong>Språk:</strong> {{ movie.Language }}</p>
+        </div>
+        <div class="row">
+            <p class="mobile-p"><strong>Undertext:</strong> svenska</p>
+        </div>
+        <div class="row">
+            <p class="mobile-p"><strong>Från:</strong> {{ movie.Rated }} år</p>
+        </div>
+        <div class="row">
+            <p class="mobile-p"><strong>Biljettpris:</strong> Vuxna 100 kr, barn(6-18 år) 60 kr</p>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 hide-on-desktop mobile-margin-info">
+
+        <h2 class="row mobile-margin-info">Recensioner</h2>
+        <div class="row" v-for="ratings in movie.Ratings">
+            <p class="mobile-p"> <i> {{ ratings.Source }} {{ ratings.Value }}</i></p>
+        </div>
     </div>
 </div>
 </template>
@@ -80,7 +112,7 @@ export default {
     name: "MovieInformation",
     data() {
         return {
-            trailers: {}
+
         };
     },
     computed: {
@@ -94,14 +126,7 @@ export default {
             }
         },
         created() {
-            trailers["Declaration-of-War"] =
-                "https://www.youtube.com/watch?v=v5NMhtOTC-s";
-            trailers["So-Ends-Our-Night"] =
-                "https://www.youtube.com/watch?v=O5ROSS9ReUY";
-            trailers["Luzhin-Defence"] =
-                "https://www.youtube.com/watch?v=9BeWpZVVDhw";
-            trailers["Emperor"] = "https://www.youtube.com/watch?v=Hjvy8vc39kw";
-            trailers["gallowalkers"] = "https://www.youtube.com/watch?v=_frXIZZSaO4";
+
         }
     }
 };
@@ -110,6 +135,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style>
+.desktop-margin-info {
+    margin-left: 50px;
+}
+
 picture {
     width: 100%;
 }
@@ -130,16 +159,70 @@ img {
     margin-left: 0;
 }
 
-.move-trailer {
+.hide-on-desktop {
     display: none;
 }
 
-@media screen and (max-width: 824px) {
-    .move-trailer {
+.mobile-movie-bg {
+    display: none;
+}
+
+.btn-brass-desktop {
+    background: #b08a43;
+    text-align: center;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: transparent;
+    top: -20%;
+    cursor: pointer;
+    width: 250px;
+}
+
+.btn-brass-desktop:hover {
+    background: #b08a43be;
+}
+
+@media screen and (max-width: 767px) {
+    .desktop-margin-info {
+        margin-left: 0;
+    }
+
+    .mobile-margin-info {
+        margin: 0 25px;
+    }
+
+    .hide-on-desktop {
         display: block;
     }
 
-    .hide-trailer-poster {
+    picture {
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .mobile-movie-bg {
+        display: block;
+        position: absolute;
+        background-size: cover;
+        max-height: 30vh;
+    }
+
+    .adjust-btn {
+        background: #b08a43ef;
+        position: relative;
+        top: -20%;
+        text-align: center!important;
+        padding: 4px 10px;
+        border-radius: 5px;
+        border: transparent;
+        width: 75px;
+        font-size: 0.75rem;
+    }
+
+    .hide-on-mobile {
         display: none;
     }
 
@@ -148,6 +231,7 @@ img {
         margin-bottom: 0;
         letter-spacing: 0.025rem;
         font-size: 0.75rem;
+        text-align: start;
     }
 
     div>h1 {
