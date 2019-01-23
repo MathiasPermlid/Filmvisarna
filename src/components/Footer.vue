@@ -1,7 +1,7 @@
 <template>
   <footer id="footer">
     <div class="footerFlex">
-      <p><i class="fas fa-phone"></i><a href="tel:1112228888">  +1112228888</a></p>
+      <p><i class="fas fa-phone"></i><a href="tel:04056260000"> 040 - 56 26 00 00</a></p>
       <p>© 2019 <span class="home-title">GRAND</span></p>
       <p>Fina gatan 8, 214 63 Malmö</p>
     </div>
