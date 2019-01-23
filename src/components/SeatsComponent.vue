@@ -3,8 +3,8 @@
 
 <div v-for="(row, index) in auditorium" :key="row + index">
     <div v-for="(seat, seatNr) in auditorium[index]" :key="seat+ seatNr">
-         <Seat v-bind:row="index + 1" v-bind:seatNr="seatNr + 1" v-bind:empty="seat"
-         v-on:click-seat="selectSeat($event)" v-on:remove-seat="unSelectSeat($event)"
+         <Seat :row="index + 1" :seatNr="seatNr + 1" :booked="seat"
+         @click-seat="selectSeat($event)" @remove-seat="unSelectSeat($event)"
          />
     </div>
 </div>
@@ -32,8 +32,8 @@ export default {
                 else{ //select seat by adding it to our array
                     this.selectedSeats.push(data);
                     this.numberOfSelectedSeats++;
-                                    console.log(this.selectedSeats);
-
+                    console.log(this.selectedSeats);
+                    
                 }
         },//selectSeat
 
@@ -44,7 +44,8 @@ export default {
                     this.numberOfSelectedSeats--;  
                 }
             } 
-                console.log(this.selectedSeats);
+            console.log(this.selectedSeats);
+
         }//unSelectSeat
     }, //methods
 
