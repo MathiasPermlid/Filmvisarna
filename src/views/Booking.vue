@@ -33,7 +33,7 @@
                 </a>
             </div>
 
-            <p class="booking-line">
+            <p class="row booking-line">
                 <span class="col-12">Pensionärer: </span>    
             </p>
 
@@ -191,12 +191,12 @@ export default {
 
     .booking-line{
         justify-content: space-evenly;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         font-weight: 400;
     }
 
     .booking-button-row{
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         height: 25px;
     }
     
