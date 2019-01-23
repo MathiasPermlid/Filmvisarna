@@ -61,10 +61,7 @@
             <div class="row m-1">
                 <p class="mobile-p lead">{{ movie.Plot }}</p>
             </div>
-            <h3 class="mt-2 mobile-p">Recensioner</h3>
-            <div v-for="ratings in movie.Ratings">
-                <p class="mobile-p"><i>{{ ratings.Source }} {{ ratings.Value }}</i></p>
-            </div>
+
         </div>
     </div>
     <div class="col-md-12 mt-2 mb-4 desktop-margin-info mobile-margin-info">
@@ -95,7 +92,16 @@
         <div class="row">
             <p class="mobile-p"><strong>Biljettpris:</strong> Vuxna 100 kr, barn(6-18 år) 60 kr</p>
         </div>
+
+        <!-- DESKTOP RECENSIONER -->
+        <div class="row hide-on-mobile mt-2">
+            <h3 class="mobile-p hide-on-mobile">Recensioner</h3>
+        </div>
+        <div v-for="ratings in movie.Ratings" class="hide-on-mobile">
+            <p class="mobile-p row hide-on-mobile"><i>{{ ratings.Source }} {{ ratings.Value }}</i></p>
+        </div>
     </div>
+    <!-- MOBIL RECENSIONER -->
     <div class="col-sm-12 col-md-12 hide-on-desktop mobile-margin-info">
 
         <h2 class="row mobile-margin-info ml-2">Recensioner</h2>
@@ -169,6 +175,10 @@ img {
     display: none;
 }
 
+.hide-on-mobile {
+    display: block;
+}
+
 .mobile-movie-bg {
     display: none;
 }
@@ -189,7 +199,7 @@ img {
 }
 
 .h1-custom-size {
-    font-size: 3rem!important;
+    font-size: 3rem !important;
 }
 
 @media screen and (max-width: 1024px) {
@@ -198,7 +208,7 @@ img {
     }
 
     .h1-custom-size {
-        font-size: 2rem!important;
+        font-size: 2rem !important;
     }
 
     .mobile-margin-info {
