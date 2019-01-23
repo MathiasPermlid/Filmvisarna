@@ -23,7 +23,7 @@
           <!-- 
               creates a unique route path on each movie
           -->
-          <router-link v-bind:to="'/book/' + day.link + '/' + index">
+          <router-link v-bind:to="'/book/' + day.link + '?' + index">
             <h5 class="mb-0">{{ day.shows[index].movie }}</h5>
           </router-link>
           <p class="mb-2">Genre: {{ movies[index].Genre }}</p>

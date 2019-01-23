@@ -41,7 +41,7 @@ export default new Router({
     },
     {
       path: "/book/:link",
-      name: "Booking",
+      name: "booking",
       component: Booking
     },
     // using path "*" matches every route
