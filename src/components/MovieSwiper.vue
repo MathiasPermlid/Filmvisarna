@@ -14,9 +14,9 @@
           </router-link>
         </figure>
       </swiper-slide>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
-    <div class="swiper-button-prev" slot="button-prev"></div>
-    <div class="swiper-button-next" slot="button-next"></div>
   </div>
 </template>
 
@@ -58,10 +58,6 @@ export default {
     //
     startMobile() {
       return window.innerWidth < 700 ? 3.3 : 5.3;
-    },
-    movieByGenre(genre) {
-      this.genre = genre;
-      return this.movies.filter(el => el.Genre.match(genre));
     }
   },
   created() {
@@ -87,15 +83,13 @@ export default {
 .posters img {
   height: 100%;
 }
-.swiper-button-prev{
-  background-color: rgba(255, 255, 255, 0.418); 
+.swiper-button-prev {
+  background-color: rgba(255, 255, 255, 0.418);
   border-radius: 40%;
 }
 
-.swiper-button-next{
-  background-color: rgba(255, 255, 255, 0.418); 
+.swiper-button-next {
+  background-color: rgba(255, 255, 255, 0.418);
   border-radius: 50%;
-
 }
-
 </style>
