@@ -15,7 +15,8 @@ footer {
     padding-top: 8px;
     background-color: #36454f;
 }
-footer>p{
+p{
     font-size: 1em;
+    color: whitesmoke;
 }
 </style>

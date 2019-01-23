@@ -97,5 +97,11 @@ export default {
   .posters {
     height: 30vmax;
   }
+  .swiper-button-next {
+    display: none;
+  }
+  .swiper-button-prev {
+    display: none;
+  }
 }
 </style>
