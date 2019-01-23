@@ -7,7 +7,7 @@
     class="navbar navbar-expand-lg navbar-light bg-light mb-0 row align-self-center"
   >
     <div>
-      <router-link to="/" id="home-title">GRAND</router-link>
+      <router-link to="/" class="home-title">GRAND</router-link>
     </div>
     <button
       class="navbar-toggler"
