@@ -173,7 +173,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style>
+<style scoped>
 .desktop-margin-info {
   margin-left: 50px;
 }
@@ -266,17 +266,11 @@ img {
     min-height: 30vh;
   }
 
-  .adjust-btn {
-    background: #b08a43ef;
-    position: relative;
-    top: -20%;
-    text-align: center !important;
-    padding: 4px 10px;
-    border-radius: 5px;
-    border: transparent;
-    width: 75px;
-    font-size: 0.75rem;
-  }
+    .mobile-movie-bg {
+        display: block;   
+        background-size: cover;
+        min-height: 30vh;
+    }
 
   .hide-on-mobile {
     display: none;
