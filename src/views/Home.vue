@@ -73,7 +73,7 @@ export default {
     GraphicList,
     Carousel,
     ShowSchedule,
-    MovieSwiper
+    MovieSwiper,
   },
   created() {
     this.movies = this.$store.movies;

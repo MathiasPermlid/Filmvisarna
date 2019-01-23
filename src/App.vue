@@ -26,7 +26,7 @@ export default {
   name: "app",
   components: {
     NavBar,
-    Footer
+    Footer,
   }
 };
 </script>
