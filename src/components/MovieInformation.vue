@@ -229,8 +229,7 @@ img {
     }
 
     .mobile-movie-bg {
-        display: block;
-        
+        display: block;   
         background-size: cover;
         min-height: 30vh;
     }
