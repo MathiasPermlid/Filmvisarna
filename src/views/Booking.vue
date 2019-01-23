@@ -65,11 +65,12 @@
 
       <p>Antal biljetter: {{totalnumber}}</p>
 
-            <div id="seatsPlaceholder">
-                <SeatsComponent :noTicketsAddedError="noTicketsAddedError" :selectedTickets="totalnumber" @get-number="getNumber($event)" />
-            </div>
+      <div :class="{ hide: !this.noTicketsAddedError }">Välj antal biljetter innan du väljer säten</div>
+      <div :class="{ hide: !this.ticketsEqualToSeatsError }">Lägg till fler biljetter för att kunna välja fler säten</div>
 
-      <div id="seatsPlaceholder">SÄTENA TILL SALONGEN HAMNAR HÄR</div>
+            <div id="seatsPlaceholder">
+                <SeatsComponent :auditorium="this.show.auditorium.seats" :selectedTickets="totalnumber" @get-number="getNumber($event)" @error-message="showErrorMessage()" />
+            </div>
 
       <div class="row justify-content-around">
         <div class="row justify-content-center">
@@ -127,9 +128,29 @@ export default {
       seniorsnumber: 0,
       totalnumber: 0,
       totalAmount: 0,
-      userEmail: ""
+      userEmail: "",
+      noTicketsAddedError: false,
+      ticketsEqualToSeatsError: false,
+      totalnumberofselectedseats: 0,
+      
     };
   },
+  created() {
+    // get date and the dates show from path param
+    let link = location.pathname.replace("/book/", "");
+    this.dateIndex = link.split("").pop();
+    this.date = link.split("");
+    this.date.pop();
+    this.date = this.date.join("");
+
+    this.day = this.$store.shows[this.date];
+    this.show = this.day.shows[this.dateIndex];
+
+    //this.show.auditorium.seats[row][seat] = 1;
+
+    console.log('this.show SKRIVES UT HÄR: ',this.show);
+  },
+  /*
   mounted() {
     //  get date and the dates show from path param
     let link = location.pathname.replace("/book/", "");
@@ -141,9 +162,28 @@ export default {
     this.day = this.$store.shows[this.date];
     this.show = this.day.shows[this.dateIndex];
 
-    console.log(this.show);
-  },
+    //this.show.auditorium.seats[row][seat] = 1;
+
+    console.log('this.show SKRIVES UT HÄR: ',this.show);
+  },*/
+    components: {
+        SeatsComponent
+    },//components
   methods: {
+    showErrorMessage(){
+        if (!this.totalnumber){
+                this.noTicketsAddedError = true;
+            }
+        //om användaren valt lika många biljetter som säten
+        else { 
+            this.ticketsEqualToSeatsError = true;
+        }
+    },
+    getNumber(numberFromChild){
+        this.totalnumberofselectedseats = numberFromChild;
+    },
+
+   /* //BEHÖVS DENNA METOD???
     updateShow() {
       // update show with current seats left and seats taken
       db.ref("visningar/" + this.date).set({
@@ -164,19 +204,18 @@ export default {
             time: "19:30",
             movie: this.day.shows[2].movie
           }
-            noTicketsAddedError: false,
-            totalnumberofselectedseats: 0
-    components: {
-        SeatsComponent
-    },//components
         }
       });
-    },
+    },//updateShow
+        */
+      
     subtractAdult() {
-      if (this.adultsnumber > 0 && this.totalnumber > 0) {
-        this.adultsnumber--;
-        this.subtractToTotalNumber();
-      }
+        if(this.totalnumber > this.totalnumberofselectedseats){
+            if (this.adultsnumber > 0 && this.totalnumber > 0) {
+                this.adultsnumber--;
+                this.subtractToTotalNumber();
+            }
+        }
     },
     addAdult() {
       if (this.adultsnumber < 10 && this.totalnumber < 10) {
@@ -185,10 +224,12 @@ export default {
       }
     },
     subtractSenior() {
-      if (this.seniorsnumber > 0 && this.totalnumber > 0) {
-        this.seniorsnumber--;
-        this.subtractToTotalNumber();
-      }
+        if(this.totalnumber > this.totalnumberofselectedseats){
+            if (this.seniorsnumber > 0 && this.totalnumber > 0) {
+              this.seniorsnumber--;
+              this.subtractToTotalNumber();
+            }
+        }
     },
     addSenior() {
       if (this.seniorsnumber < 10 && this.totalnumber < 10) {
@@ -197,10 +238,13 @@ export default {
       }
     },
     addToTotalNumber() {
-      if (this.totalnumber < 10) {
-        this.totalnumber++;
-        this.calculatePrice();
-      }
+        this.noTicketsAddedError = false;
+        this.ticketsEqualToSeatsError = false;
+
+        if (this.totalnumber < 10) {
+            this.totalnumber++;
+            this.calculatePrice();
+        }
     },
     subtractToTotalNumber() {
       this.totalnumber--;
@@ -232,7 +276,9 @@ export default {
         */
   font-family: "Montserrat", sans-serif;
 }
-
+.hide{
+    display: none;
+}
 a {
   color: inherit;
 }
@@ -307,27 +353,21 @@ a:hover {
   width: 200px;
 }
 
-#seatsPlaceholder {
-  height: 200px;
-  width: 100%;
-  background-color: blueviolet;
-  color: white;
-  text-align: center;
 
-    #boka-button{
-        width: 200px;
-    }
-    #cancel-button {
-        width: 200px;
-    }
+#boka-button{
+    width: 200px;
+}
+#cancel-button {
+    width: 200px;
+}
 
-    /*#seatsPlaceholder {
-        height: 200px;
-        width: 100%;
-        background-color: blueviolet;
-        color: white;
-        text-align: center;
-        
-        margin-bottom: 25px;    }*/
+/*#seatsPlaceholder {
+    height: 200px;
+    width: 100%;
+    background-color: blueviolet;
+    color: white;
+    text-align: center;
+    
+    margin-bottom: 25px;    }*/
         
 </style>

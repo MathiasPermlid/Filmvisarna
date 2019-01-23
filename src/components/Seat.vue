@@ -23,15 +23,15 @@ export default {
     clickSeat(){ 
       // om sätet INTE är bokat  
       if(!this.booked){   
-        console.log('I seat '+this.$parent.selectedTickets);
+        console.log('I seat, valda biljetter:'+this.$parent.selectedTickets);
             
         //om användaren har säten kvar att välja (valt fler biljetter än säten)  
-        if(this.$parent.numberOfSelectedSeats  < this.$parent.selectedTickets){ //selectedTickets variabel ska fås från anders        
+        if(this.$parent.numberOfSelectedSeats  < this.$parent.selectedTickets){   
           this.selected = this.selected ? false : true; 
           let seatInfo = this.getSeatInfo();
           this.$emit('click-seat', seatInfo);
         }
-        //om användaren har valt lika många säten som biljeter eller null - kan ta bort säten men inte välja fler
+        //om användaren har valt lika många säten som biljeter eller noll - kan ta bort säten men inte välja fler
         else {
             this.selected=false;
             let seatInfo = this.getSeatInfo();
