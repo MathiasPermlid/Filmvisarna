@@ -60,6 +60,8 @@
           >
         </a>
       </div>
+        <div :class="{ hide: !this.seatsEqualsToTicketsError }">Du måste avvälja säten innan du kan ta bort biljetter</div>
+
 
       <hr>
 
@@ -131,6 +133,7 @@ export default {
       userEmail: "",
       noTicketsAddedError: false,
       ticketsEqualToSeatsError: false,
+      seatsEqualsToTicketsError: false,
       totalnumberofselectedseats: 0,
       
     };
@@ -210,11 +213,16 @@ export default {
         */
       
     subtractAdult() {
+        //om valda biljetter är mer än valda säten
         if(this.totalnumber > this.totalnumberofselectedseats){
             if (this.adultsnumber > 0 && this.totalnumber > 0) {
                 this.adultsnumber--;
                 this.subtractToTotalNumber();
             }
+        }
+        //om valda biljetter är desamma som valda säten
+        else{
+            this.seatsEqualsToTicketsError = true;
         }
     },
     addAdult() {
@@ -224,11 +232,16 @@ export default {
       }
     },
     subtractSenior() {
+        //om valda biljetter är mer än valda säten
         if(this.totalnumber > this.totalnumberofselectedseats){
             if (this.seniorsnumber > 0 && this.totalnumber > 0) {
               this.seniorsnumber--;
               this.subtractToTotalNumber();
             }
+        }
+        //om valda biljetter är desamma som valda säten
+        else{
+            this.seatsEqualsToTicketsError = true;
         }
     },
     addSenior() {
