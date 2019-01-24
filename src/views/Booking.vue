@@ -1,9 +1,12 @@
 <template>
   <div class="booking">
     <div class="container-fluid">
-      <h1 class="row align-items-center booking-title text-center">{{show.movie}}</h1>
+      <h1
+        v-show="!bookingComplete"
+        class="row align-items-center booking-title text-center"
+      >{{show.movie}}</h1>
 
-      <h2 class="row booking-subtitle justify-content-around text-center">
+      <h2 v-show="!bookingComplete" class="row booking-subtitle justify-content-around text-center">
         <span class="col-4 col-m-12 booking-subtitle-span mb-2 ml-4 text-center">{{this.day.date}}</span>
         <span class="col-4 col-m-12 booking-subtitle-span mb-3 mr-4">{{this.show.time}}</span>
         
@@ -14,7 +17,7 @@
       </h2>
 
       <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
-      <div class="booking-button-row row justify-content-between ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
         <span class="col-4 text-left">Vuxna:</span>
         
         <a v-on:click="subtractAdult" class="ml-4">
@@ -36,7 +39,7 @@
         </a>
       </div>
 
-      <div class="booking-button-row row justify-content-between ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
         <span class="col-4 text-left">Pensionärer:</span>
         
         <a v-on:click="subtractSenior" class="ml-4">
@@ -57,7 +60,7 @@
         </a>
       </div>
 
-      <div class="booking-button-row row justify-content-between ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
         <span class="col-4 text-left">Barn:</span>
         
         <a v-on:click="subtractChild" class="ml-4">
@@ -78,32 +81,34 @@
         </a>
       </div>
       <div
+        v-show="!bookingComplete"
         class="booking-error"
         :class="{ hide: !this.subtractError }"
       >Du måste avvälja säten innan du kan ta bort biljetter</div>
       <div
+        v-show="!bookingComplete"
         class="booking-warning"
         :class="{ hide: !this.maximumSeatsError }"
       >Du får inte boka fler än tio biljetter</div>
 
-      <hr>
-
-      <p>Antal biljetter: {{totalnumber}}.</p>
-      <p>Summa: {{totalAmount}} kronor.</p>
+      <p v-show="!bookingComplete">Antal biljetter: {{totalnumber}}.</p>
+      <p v-show="!bookingComplete">Summa: {{totalAmount}} kronor.</p>
       <div
+        v-show="!bookingComplete"
         class="booking-error"
         :class="{ hide: !this.noTicketsAddedError }"
       >Välj antal biljetter innan du väljer säten</div>
       <div
+        v-show="!bookingComplete"
         class="booking-error"
         :class="{ hide: !this.ticketsEqualToSeatsError }"
       >Lägg till fler biljetter för att kunna välja fler säten</div>
 
-      <div class="row justify-content-center">
+      <div v-show="!bookingComplete" class="row justify-content-center">
         <div id="screen" class></div>
       </div>
 
-      <div id="seatsPlaceholder">
+      <div v-show="!bookingComplete" id="seatsPlaceholder">
         <SeatsComponent
           :auditorium="this.show.auditorium.seats"
           :selectedTickets="totalnumber"
@@ -112,7 +117,7 @@
         />
       </div>
 
-      <div class="row justify-content-around mb-4">
+      <div v-show="!bookingComplete" class="row justify-content-around mb-4">
         <div class="row justify-content-center">
           <input
             v-model="userEmail"
@@ -124,12 +129,26 @@
           >
         </div>
       </div>
-    </div>
-    <div class="mt-auto d-flex justify-content-around">
-      <button class="col-5 col-md-3 btn btn-danger" id="cancel-button">
+
+      <button
+        v-show="!bookingComplete"
+        v-on:click="booking"
+        class="col-12 btn btn-success mb-3"
+        id="boka-button"
+      >Boka</button>
+      <button v-show="!bookingComplete" class="col-12 btn btn-danger" id="cancel-button">
         <router-link to="/">Avbryt</router-link>
       </button>
-      <button v-on:click="booking" class="col-5 col-md-3 btn btn-success" id="boka-button">Boka</button>
+
+      <div id="booking-verification" v-show="bookingComplete">
+        <h3 class="brass-color">Bokning slutförd!</h3>
+        <p>Du har bokat {{totalnumber}} biljetter till {{show.movie}} i {{this.show.auditorium.name}} klockan {{this.show.time}} {{this.day.date}}.</p>
+        <p>En bokningsbekräftelse med all information har skickats till denna epost: {{this.userEmail}}</p>
+        <p>Vi hoppas du uppskattar ditt besök på Grand.</p>
+        <p>
+          <strong>Välkommen åter!</strong>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -148,7 +167,7 @@ export default {
       day: {},
       show: {},
       movie: {},
-
+      seatNumbers: [],
       adultsnumber: 0,
       childnumber: 0,
       seniorsnumber: 0,
@@ -159,7 +178,8 @@ export default {
       ticketsEqualToSeatsError: false,
       subtractError: false,
       maximumSeatsError: false,
-      selectedSeats: []
+      selectedSeats: [],
+      bookingComplete: false
     };
   },
   created() {
@@ -173,22 +193,6 @@ export default {
     this.day = this.$store.shows[this.date];
     this.show = this.day.shows[this.dateIndex];
   },
-  /*
-  mounted() {
-    //  get date and the dates show from path param
-    let link = location.pathname.replace("/book/", "");
-    this.dateIndex = link.split("").pop();
-    this.date = link.split("");
-    this.date.pop();
-    this.date = this.date.join("");
-
-    this.day = this.$store.shows[this.date];
-    this.show = this.day.shows[this.dateIndex];
-
-    //this.show.auditorium.seats[row][seat] = 1;
-
-    console.log('this.show SKRIVES UT HÄR: ',this.show);
-  },*/
   components: {
     SeatsComponent
   }, //components
@@ -265,6 +269,62 @@ export default {
       });
     }, //updateShow
 
+    bookingCompleted() {
+      if (
+        this.userEmail.length > 5 &&
+        this.userEmail.includes("@") &&
+        this.userEmail.includes(".")
+      ) {
+        this.bookingComplete = true;
+      }
+    },
+    booking() {
+      //sätt de bokade värdena
+      for (let seat of this.selectedSeats) {
+        this.show.auditorium.seats[seat.row][seat.seatNr] = 1;
+      }
+      this.show.auditorium.seatsLeft -= this.selectedSeats.length;
+
+      let bookingInfo = {
+        email: this.userEmail,
+        show: {
+          showMovie: this.show.movie,
+          showAuditorium: this.show.auditorium.name,
+          showDate: this.day.date,
+          showTime: this.show.time
+        },
+        tickets: {
+          price: this.totalAmount,
+          adult: this.adultsnumber,
+          child: this.childnumber,
+          senior: this.seniorsnumber
+        }
+      };
+
+      let bookingNumber = db.ref("bookings").push(bookingInfo);
+      //skicka upp värdena till databasen
+      this.updateShow();
+
+      // send the user the receipt
+      this.sendReceipt(bookingNumber.key);
+    },
+    sendReceipt(bookingNumber) {
+  
+      for (let seat of this.selectedSeats) {
+        let seatNumber = 0;
+        for (let i = 0; i < seat.row; i++) {
+          seatNumber += this.show.auditorium.seats[i].length;
+        }
+        seatNumber += seat.seatNr + 1;
+        this.seatNumbers.push({
+          row: seat.row + 1,
+          seatNr: seatNumber
+        });
+        console.log(this.seatNumbers);
+        
+        this.bookingComplete = true;
+      }
+    },
     subtractAdult() {
       //om valda biljetter är mer än valda säten
       if (this.totalnumber > this.selectedSeats.length) {
@@ -403,6 +463,9 @@ a:visited {
 a:hover {
   font-style: none;
 }
+.brass-color {
+  color: var(--special-element-color);
+}
 
 .booking-title {
   text-align: center;
@@ -468,6 +531,11 @@ a:hover {
 }
 .seat-selected {
   background-color: var(--special-element-color);
+}
+
+#booking-verification {
+  margin-top: 20vh;
+  margin-bottom: 10vh;
 }
 
 #boka-button {
