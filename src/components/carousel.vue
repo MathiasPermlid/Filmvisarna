@@ -20,11 +20,13 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
+                <router-link to="/movieinfo/Aquaman">
                 <img
                   class="d-block img-fluid"
                   src="https://hdqwalls.com/download/aquaman-2018-movie-i4-1920x1080.jpg"
                   alt="First Slide"
                 >
+                </router-link>
                 <div class="carousel-caption d-none d-md-block">
                   <h2 class="animated fadeInUp" id="light">Aquaman</h2>
                   <button
@@ -35,11 +37,13 @@
                 </div>
               </div>
               <div class="carousel-item">
+                <router-link to="/movieinfo/Lego+movie+2">
                 <img
                   class="d-block img-fluid"
                   src="https://stmed.net/sites/default/files/the-lego-movie-videogame-hd-wallpapers-33794-3561044.jpg"
                   alt="Second Slide"
                 >
+                </router-link>
                 <div class="carousel-caption d-none d-md-block">
                   <h2 class="animated fadeInUp" id="light">The Lego Movie 2</h2>
                   <button
@@ -50,10 +54,13 @@
                 </div>
               </div>
               <div class="carousel-item">
+                <router-link to="/movieinfo/Glass">
                 <img
                   class="d-block img-fluid"
                   src="https://images7.alphacoders.com/931/thumb-1920-931303.png"
                 >
+
+                </router-link>
                 <div class="carousel-caption d-none d-md-block">
                   <h2 class="animated fadeInUp" id="light">Glass</h2>
                   <button
