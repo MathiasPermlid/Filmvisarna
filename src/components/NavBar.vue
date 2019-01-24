@@ -196,6 +196,9 @@ nav {
   font-weight: 100;
   font-size: 1.3em;
 }
+.navbar{
+  border-bottom: 1px solid #cca358;
+}
 #navbarNav input {
   width: 25%;
 }
