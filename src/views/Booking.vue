@@ -3,9 +3,9 @@
     <div class="container-fluid">
 
     
-        <h1 class="row align-items-center booking-title text-center">{{show.movie}}</h1>
+        <h1 v-show="!bookingComplete" class="row align-items-center booking-title text-center">{{show.movie}}</h1>
 
-        <h2 class="row booking-subtitle justify-content-around text-center">
+        <h2 v-show="!bookingComplete" class="row booking-subtitle justify-content-around text-center">
           <span class="col-4 col-m-12 booking-subtitle-span mb-2 ml-4 text-center">{{this.day.date}}</span>
           <span class="col-4 col-m-12 booking-subtitle-span mb-3 mr-4">{{this.show.time}}</span> 
 
@@ -15,7 +15,7 @@
 
 
       <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
-      <div class="booking-button-row row justify-content-between ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
         <span class="col-4 text-left">Vuxna:</span>
 
         <a v-on:click="subtractAdult" class="ml-4">
@@ -38,7 +38,7 @@
       </div>
 
 
-      <div class="booking-button-row row justify-content-between ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
         <span class="col-4 text-left">Pensionärer:</span>
         
         <a v-on:click="subtractSenior" class="ml-4">
@@ -59,7 +59,7 @@
       </div>
 
 
-      <div class="booking-button-row row justify-content-between ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
         
         <span class="col-4 text-left">Barn:</span>
        
@@ -78,27 +78,27 @@
             alt="Lägg till en pensionärs-biljett">
         </a>
       </div>
-        <div class="booking-error" :class="{ hide: !this.subtractError }">Du måste avvälja säten innan du kan ta bort biljetter</div>
-        <div class="booking-warning" :class="{ hide: !this.maximumSeatsError }">Du får inte boka fler än tio biljetter</div>
+        <div v-show="!bookingComplete" class="booking-error" :class="{ hide: !this.subtractError }">Du måste avvälja säten innan du kan ta bort biljetter</div>
+        <div v-show="!bookingComplete" class="booking-warning" :class="{ hide: !this.maximumSeatsError }">Du får inte boka fler än tio biljetter</div>
 
 
-      <hr>
+      
 
-      <p>Antal biljetter: {{totalnumber}}.</p>
-      <p>Summa: {{totalAmount}} kronor.</p>
-      <div class="booking-error" :class="{ hide: !this.noTicketsAddedError }">Välj antal biljetter innan du väljer säten</div>
-      <div class="booking-error" :class="{ hide: !this.ticketsEqualToSeatsError }">Lägg till fler biljetter för att kunna välja fler säten</div>
+      <p v-show="!bookingComplete">Antal biljetter: {{totalnumber}}.</p>
+      <p v-show="!bookingComplete">Summa: {{totalAmount}} kronor.</p>
+      <div v-show="!bookingComplete" class="booking-error" :class="{ hide: !this.noTicketsAddedError }">Välj antal biljetter innan du väljer säten</div>
+      <div v-show="!bookingComplete" class="booking-error" :class="{ hide: !this.ticketsEqualToSeatsError }">Lägg till fler biljetter för att kunna välja fler säten</div>
       
       
-      <div class="row justify-content-center">
+      <div v-show="!bookingComplete" class="row justify-content-center">
         <div id="screen" class=""></div>
       </div>
 
-            <div id="seatsPlaceholder">
+            <div v-show="!bookingComplete" id="seatsPlaceholder">
                 <SeatsComponent :auditorium="this.show.auditorium.seats" :selectedTickets="totalnumber" @send-info="getInfo($event)" @error-message="showErrorMessage()" />
             </div>
 
-      <div class="row justify-content-around mb-4">
+      <div v-show="!bookingComplete" class="row justify-content-around mb-4">
         <div class="row justify-content-center">
           <input
             v-model="userEmail"
@@ -110,9 +110,24 @@
         </div>
       </div>
       
-          <button v-on: click="booking" class="col-12 btn btn-success mb-3" id="boka-button">Boka</button>
-          <button class="col-12 btn btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button>
+          <button v-show="!bookingComplete" v-on:click="bookingComplete = true" class="col-12 btn btn-success mb-3" id="boka-button">Boka</button>
+          <button v-show="!bookingComplete" class="col-12 btn btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button>
       
+      
+      
+      
+      
+      
+    <div id="booking-verification" v-show="bookingComplete">
+            <h3 class="brass-color">Bokning slutförd!</h3>
+            <p>Du har bokat {{totalnumber}} biljetter till {{show.movie}} i {{this.show.auditorium.name}}  klockan {{this.show.time}} {{this.day.date}}.</p>
+            <p>En bokningsbekräftelse med all information har skickats till din {{this.userEmail}}</p>
+            <p>Vi hoppas du uppskattar ditt besök på Grand.</p> 
+            <p><strong>Välkommen åter!</strong></p>
+    </div>
+
+
+
     </div>
   </div>
 </template>
@@ -143,6 +158,7 @@ export default {
       subtractError: false,
       maximumSeatsError: false,
       selectedSeats: [],
+      bookingComplete: false,
       
     };
   },
@@ -217,7 +233,12 @@ export default {
         }
       });
     },//updateShow
-    
+
+    bookingCompleted(){
+      if (this.userEmail.length > 5 && this.userEmail.includes('@') && this.userEmail.includes('.')){
+           this.bookingComplete=true;
+      }
+    },
     booking(){
       //sätt de bokade värdena 
       for (let seat of this.selectedSeats) {
@@ -367,6 +388,9 @@ a:visited {
 a:hover {
   font-style: none;
 }
+.brass-color {
+  color: var(--special-element-color);
+}
 
 .booking-title {
   text-align: center;
@@ -439,10 +463,13 @@ a:hover {
   background-color: var(--special-element-color);
 }
 
+#booking-verification{
+  margin-top: 20vh;
+  margin-bottom: 10vh;
+}
 
 #boka-button{
-    
-    
+
 }
 #cancel-button {
     
@@ -473,13 +500,13 @@ a:hover {
   align-content: center;  
       }
 
-
-
 @media only screen and (min-width: 600px) {
 
   #seatsPlaceholder {
      margin-top: -75px;
      margin-bottom: -75px;
   }
+  
+
 }
 </style>
