@@ -4,31 +4,36 @@
       <h1 class="mobile-title home-title">GRAND</h1>
     </header>
     <Carousel id="carousel"/>
-    <input class="col-10 col-md-6" type="text" v-model="searchMovie" placeholder="Sök film">
 
-    <div v-if="!searchMovie">
-      <h3 class="category-text mb-0">Topplista</h3>
-      <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
-      
-      <h3 class="category-text mb-0">Drama</h3>
-      <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
+    <transform
+      name="movie-categories"
+      v-if="!searchMovie"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+      mode="out-in"
+    >
+      <div>
+        <h3 class="category-text mb-0">Topplista</h3>
+        <div class="category-line mb-2"></div>
+        <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Action</h3>
-      <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
+        <h3 class="category-text mb-0">Drama</h3>
+        <div class="category-line mb-2"></div>
+        <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Barn</h3>
-      <div class="category-line mb-2"></div>
-      <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>
-    </div>
+        <h3 class="category-text mb-0">Action</h3>
+        <div class="category-line mb-2"></div>
+        <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
+
+        <h3 class="category-text mb-0">Barn</h3>
+        <div class="category-line mb-2"></div>
+        <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>
+      </div>
+    </transform>
 
     <div v-else>
       <GraphicList :searchedMovies="[...filteredMovies]" id="graphic-list"/>
     </div>
-
-  
   </div>
 </template>
 
@@ -63,7 +68,9 @@ export default {
       return this.movies.filter(el => el.Genre.match(genre));
     },
     topMovies() {
-      return this.movies.sort(function(a, b){return b.imdbRating - a.imdbRating});
+      return this.movies.sort(function(a, b) {
+        return b.imdbRating - a.imdbRating;
+      });
     }
   },
   watch: {
@@ -75,7 +82,7 @@ export default {
     GraphicList,
     Carousel,
     ShowSchedule,
-    MovieSwiper,
+    MovieSwiper
   },
   created() {
     this.movies = this.$store.movies;
@@ -114,15 +121,14 @@ export default {
   background-color: rgb(255, 196, 0);
 }
 
-.home-title{
+.home-title {
   color: var(--special-element-color);
   font-weight: 400;
   text-shadow: 1px 1px var(--main-element-color);
   margin-top: 5vh;
-  
 }
 .mobile-title {
-display: none;
+  display: none;
 }
 @media screen and (max-width: 777px) {
   .movie-content {
