@@ -4,9 +4,6 @@
 </template>
 
 <script>
-/*TO DO:
- * class: booked  - enabled select för de sätena 
-*/
 export default {
   name: "seat",
   data(){
@@ -33,9 +30,14 @@ export default {
         }
         //om användaren har valt lika många säten som biljeter eller noll - kan ta bort säten men inte välja fler
         else {
-            this.selected=false;
-            let seatInfo = this.getSeatInfo();
-            this.$emit('remove-seat', seatInfo);
+            if(!this.selected){ //om sätet inte var förbokat- visa felmeddelande
+              this.$emit('error-message');
+            }
+            else{ //sätet var förbokat - avvälj nu det
+              this.selected=false; //tar bort färgen för makerad stol
+              let seatInfo = this.getSeatInfo(); //hämta info om aktuellt säte
+              this.$emit('remove-seat', seatInfo);//skicka med infon och anropa metoden i seatComponent
+            }
         }
       }
     },//clickSeat

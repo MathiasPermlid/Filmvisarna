@@ -1,9 +1,9 @@
 <template>
 <div id="auditorium-seats">
         <div v-for="(row, index) in auditorium" :key="row + index">
-            <div v-for="(seat, seatNr) in auditorium[index]" :key="seat+ seatNr">
+            <div v-for="(seat, seatNr) in auditorium[index]" :key="seatNr*seatNr">
                 <Seat :row="index + 1" :seatNr="seatNr + 1" :booked="seat"
-                @click-seat="selectSeat($event)" @remove-seat="unSelectSeat($event)"
+                @click-seat="selectSeat($event)" @error-message="showErrorMessage()" @remove-seat="unSelectSeat($event)"
                 />
             </div>
         </div>
@@ -28,46 +28,50 @@ export default {
     },//props
     
     methods: {
-        selectSeat(data){
+        selectSeat(seatInfo){
             console.log('I seatsComponent och valda biljetter är '+this.selectedTickets);
             
-            if (!data.selected){ //om sätet redan är klickat (förbokat)
-                this.unSelectSeat(data);
+            if (!seatInfo.selected){ //om sätet redan är klickat (förbokat)
+                this.unSelectSeat(seatInfo);
             }
             else{ //add the selected seat to our array
-                this.selectedSeats.push(data);
+                this.selectedSeats.push(seatInfo);
                 this.numberOfSelectedSeats++;
-                this.$emit('get-number', this.numberOfSelectedSeats);
+                this.sendInfo();
 
                 console.log(this.selectedSeats);
                 
             }
         },//selectSeat
 
-        unSelectSeat(data){
-            /*//om användaren inte valt några biljetter
-            if (!this.selectedTickets){
-                this.noTicketsAddedError = true;
-                //alert('INGA BILJETTER VALDA WTF')
-            }
-            //om användaren valt lika många biljetter som säten
-            else { 
-                //alert('DU HAR VALT LIKA MÅNGA BILJETTER SOM SÄTEN')
-                this.ticketsEqualToSeatsError = true;
-            }*/
-                //kolla om användaren har valt några biljetter och visa felmeddelande isf
-                this.$emit('error-message');
+        unSelectSeat(seatInfo){
+            //ta bort felmeddelandet om det finns utskrivet
+             this.sendInfo();
 
-                for(let i = 0 ; i < this.selectedSeats.length ; i++){
-                    if(this.selectedSeats[i].seatNr === data.seatNr && this.selectedSeats[i].row === data.row){
-                        this.selectedSeats.splice(i, 1);
-                        this.numberOfSelectedSeats--; 
-                        this.$emit('get-number', this.numberOfSelectedSeats);
- 
-                    }
-                } 
+            //ta bort aktuellt säte från arrayen (om det finns i arrayen)
+            for(let i = 0 ; i < this.selectedSeats.length ; i++){
+                if(this.selectedSeats[i].seatNr === seatInfo.seatNr && this.selectedSeats[i].row === seatInfo.row){
+                    this.selectedSeats.splice(i, 1);
+                    this.numberOfSelectedSeats--; 
+                    this.sendInfo();
+                }
+            } 
             console.log(this.selectedSeats);
-        }//unSelectSeat
+        },//unSelectSeat
+
+        sendInfo(){
+            let info = {
+                numberOfSelectedSeats: this.numberOfSelectedSeats,
+                ticketsEqualToSeatsError: false
+            }
+             this.$emit('send-info', info);
+        },
+
+        showErrorMessage(){
+            // visa felmeddelande 
+            this.$emit('error-message');
+
+        }
     }, //methods
 
     components: {

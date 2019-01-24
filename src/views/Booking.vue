@@ -71,7 +71,7 @@
       <div :class="{ hide: !this.ticketsEqualToSeatsError }">Lägg till fler biljetter för att kunna välja fler säten</div>
 
             <div id="seatsPlaceholder">
-                <SeatsComponent :auditorium="this.show.auditorium.seats" :selectedTickets="totalnumber" @get-number="getNumber($event)" @error-message="showErrorMessage()" />
+                <SeatsComponent :auditorium="this.show.auditorium.seats" :selectedTickets="totalnumber" @send-info="getInfo($event)" @error-message="showErrorMessage()" />
             </div>
 
       <div class="row justify-content-around">
@@ -134,7 +134,7 @@ export default {
       noTicketsAddedError: false,
       ticketsEqualToSeatsError: false,
       seatsEqualsToTicketsError: false,
-      totalnumberofselectedseats: 0,
+      numberOfSelectedSeats: 0,
       
     };
   },
@@ -174,16 +174,18 @@ export default {
     },//components
   methods: {
     showErrorMessage(){
+        //om användaren ej har valt några biljetter alls
         if (!this.totalnumber){
                 this.noTicketsAddedError = true;
             }
         //om användaren valt lika många biljetter som säten
-        else { 
+        else{ 
             this.ticketsEqualToSeatsError = true;
         }
     },
-    getNumber(numberFromChild){
-        this.totalnumberofselectedseats = numberFromChild;
+    getInfo(infoFromChild){
+        this.numberOfSelectedSeats = infoFromChild.numberOfSelectedSeats;
+        this.ticketsEqualToSeatsError = infoFromChild.ticketsEqualToSeatsError;
     },
 
    /* //BEHÖVS DENNA METOD???
@@ -214,7 +216,7 @@ export default {
       
     subtractAdult() {
         //om valda biljetter är mer än valda säten
-        if(this.totalnumber > this.totalnumberofselectedseats){
+        if(this.totalnumber > this.numberOfSelectedSeats){
             if (this.adultsnumber > 0 && this.totalnumber > 0) {
                 this.adultsnumber--;
                 this.subtractToTotalNumber();
@@ -233,7 +235,7 @@ export default {
     },
     subtractSenior() {
         //om valda biljetter är mer än valda säten
-        if(this.totalnumber > this.totalnumberofselectedseats){
+        if(this.totalnumber > this.numberOfSelectedSeats){
             if (this.seniorsnumber > 0 && this.totalnumber > 0) {
               this.seniorsnumber--;
               this.subtractToTotalNumber();
