@@ -70,19 +70,24 @@ export default {
 
 <style>
 .swiper-box {
-  height: 30vmax;
+  height: 29 vmax;
   overflow: hidden;
-  
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0 0 7vh;
 }
 .swipe-item {
   height: 100%;
 }
 .posters {
   width: 100%;
-  height: 50vh;
+  height: 30vh;
 }
 .posters img {
-  height: 100%;
+  height: auto;
+  width: auto;
+  max-width: 30.5vh;
+  max-height: 30.5vh;
 }
 .swiper-button-prev {
   background-color: rgba(255, 255, 255, 0.418);
@@ -94,7 +99,7 @@ export default {
   border-radius: 50%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .posters {
     height: 30vmax;
   }
@@ -103,6 +108,17 @@ export default {
   }
   .swiper-button-prev {
     display: none;
+  }
+
+  .posters img {
+    height: auto;
+    width: auto;
+    max-width: 55vw;
+    max-height: 55vw;
+  }
+
+  .swiper-box {
+    border-width: 0 0 12vw;
   }
 }
 </style>
