@@ -31,7 +31,7 @@
                     class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
                     data-toggle="modal"
                     data-target="#buyModal"
-                  >Biljetter</button>
+                  ><router-link id="light" to="/movieinfo/Aquaman">Till filmen</router-link></button>
                 </div>
               </div>
               <div class="carousel-item">
@@ -46,7 +46,7 @@
                     class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
                     data-toggle="modal"
                     data-target="#buyModal"
-                  >Biljetter</button>
+                  ><router-link id="light" to="/movieinfo/Lego+movie+2">Till filmen</router-link></button>
                 </div>
               </div>
               <div class="carousel-item">
@@ -60,7 +60,7 @@
                     class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
                     data-toggle="modal"
                     data-target="#buyModal"
-                  >Biljetter</button>
+                  ><router-link id="light" to="/movieinfo/Glass">Till filmen</router-link></button>
                 </div>
               </div>
             </div>
@@ -102,6 +102,10 @@ export default {
 /* ### Carousel CSS START ### */
 button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 #dark {
