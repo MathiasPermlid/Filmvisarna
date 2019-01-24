@@ -12,7 +12,7 @@
   </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" v-for="(info, index) in week" :key="info.day + info.week + index" href="#">{{ info.day }} {{ info.date }} </a>
+                    <a class="dropdown-item" v-for="(info, index) in week" :key="info.day + info.week + index" href="#">{{ info.day }} {{ info.date }}</a>
                 </div>
                 <button
         type="button"
@@ -151,9 +151,7 @@
 </template>
 
 <script>
-import {
-    eventBus
-} from "@/main";
+import { eventBus } from "@/main";
 
 /* eslint-disable */
 export default {
