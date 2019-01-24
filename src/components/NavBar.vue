@@ -306,7 +306,7 @@ i {
 }
 nav a {
   font-weight: 400;
-  color: black;
+  color: var(--main-element-color);
 }
 nav > div > a {
   /* position: absolute; */
