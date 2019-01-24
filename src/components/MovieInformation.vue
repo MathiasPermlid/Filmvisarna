@@ -12,7 +12,7 @@
   </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" v-for="info in week" href="#">{{ info.day }} {{ info.date }} </a>
+                    <a class="dropdown-item" v-for="(info, index) in week" :key="info.day + info.week + index" href="#">{{ info.day }} {{ info.date }} </a>
                 </div>
                 <button
         type="button"
@@ -132,7 +132,7 @@
         <div class="row hide-on-mobile mt-2">
             <h3 class="mobile-p hide-on-mobile">Recensioner</h3>
         </div>
-        <div v-for="ratings in movie.Ratings" class="hide-on-mobile">
+        <div v-for="(ratings, index) in movie.Ratings" :key="ratings.Source + ratings.Value + index" class="hide-on-mobile">
             <p class="mobile-p row hide-on-mobile">
                 <i>{{ ratings.Source }} {{ ratings.Value }}</i>
             </p>
@@ -141,7 +141,7 @@
     <!-- MOBIL RECENSIONER -->
     <div class="col-sm-12 col-md-12 hide-on-desktop mobile-margin-info">
         <h2 class="row mobile-margin-info ml-2">Recensioner</h2>
-        <div class="row" v-for="ratings in movie.Ratings">
+        <div class="row" v-for="(ratings, index) in movie.Ratings" :key="ratings.Source + ratings.Value + index">
             <p class="mobile-p">
                 <i>{{ ratings.Source }} {{ ratings.Value }}</i>
             </p>
