@@ -1,74 +1,95 @@
 <template>
   <div id="auditorium-seats">
-
-<div v-for="(row, index) in auditorium" :key="row + index">
-    <div v-for="(seat, seatNr) in auditorium[index]" :key="seat+ seatNr">
-         <Seat :row="index + 1" :seatNr="seatNr + 1" :booked="seat"
-         @click-seat="selectSeat($event)" @remove-seat="unSelectSeat($event)"
-         />
+    <div v-for="(row, index) in auditorium" :key="row + index">
+      <div v-for="(seat, seatNr) in auditorium[index]" :key="seatNr*seatNr">
+        <Seat
+          :row="index"
+          :seatNr="seatNr"
+          :booked="seat"
+          @click-seat="selectSeat($event)"
+          @error-message="showErrorMessage()"
+          @un-select-seat="unSelectSeat($event)"
+        />
+      </div>
     </div>
-</div>
-
   </div>
 </template>
 
 <script>
 import Seat from "@/components/Seat.vue";
 export default {
-    name: "seatsComponent",
-    data() {
-        return {
-        auditorium: null,
-        selectedTickets: 3,
-        numberOfSelectedSeats:0,
-        selectedSeats: []
-        };
-    },//data
-    methods: {
-        selectSeat(data){
-                if (!data.selected){ //om sätet redan är klickat (förbokat)
-                    this.unSelectSeat(data);
-                }
-                else{ //select seat by adding it to our array
-                    this.selectedSeats.push(data);
-                    this.numberOfSelectedSeats++;
-                    console.log(this.selectedSeats);
-                    
-                }
-        },//selectSeat
+  name: "seatsComponent",
+  data() {
+    return {
+      ticketsEqualToSeatsError: false,
+      selectedSeats: []
+    };
+  }, //data
 
-        unSelectSeat(data){
-            for(let i = 0 ; i < this.selectedSeats.length ; i++){
-                if(this.selectedSeats[i].seatNr === data.seatNr && this.selectedSeats[i].row === data.row){
-                    this.selectedSeats.splice(i, 1);
-                    this.numberOfSelectedSeats--;  
-                }
-            } 
-            console.log(this.selectedSeats);
+  props: {
+    auditorium: Array,
+    selectedTickets: Number
+  }, //props
 
-        }//unSelectSeat
-    }, //methods
+  methods: {
+    selectSeat(seatInfo) {
+      if (!seatInfo.selected) {
+        //om sätet redan är klickat (förbokat)
+        this.unSelectSeat(seatInfo);
+      } else {
+        //add the selected seat to our array
+        this.selectedSeats.push(seatInfo);
+        this.sendInfo();
+      }
+    }, //selectSeat
 
-    created() {
-        this.auditorium = this.$store.shows["-LWl4d2Fs9Y-q1RqYgDZ"].shows[0].auditorium.seats;
-    },//created
+    unSelectSeat(seatInfo) {
+      //här vet vi att sätet var förbokat och ska nu ta bort det
+      //ta bort felmeddelandet om det finns utskrivet
+      this.sendInfo();
 
-    components: {
-        Seat
-    },//components
-};//export default
+      //ta bort aktuellt säte från arrayen (om det finns i arrayen)
+      for (let i = 0; i < this.selectedSeats.length; i++) {
+        if (
+          this.selectedSeats[i].seatNr === seatInfo.seatNr &&
+          this.selectedSeats[i].row === seatInfo.row
+        ) {
+          this.selectedSeats.splice(i, 1);
+          this.sendInfo();
+        }
+      }
+    }, //unSelectSeat
+
+    sendInfo() {
+      let info = {
+        selectedSeats: this.selectedSeats,
+        error: false
+      };
+      this.$emit("send-info", info);
+    },
+
+    showErrorMessage() {
+      // visa felmeddelande
+      this.$emit("error-message");
+    }
+  }, //methods
+
+  components: {
+    Seat
+  } //components
+}; //export default
 </script>
 
 <style scoped>
-#auditorium-seats{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(90deg);
-    width: 100%;
-    height: 100%;
+#auditorium-seats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(90deg);
+  width: 100%;
+  height: 100%;
 }
 #auditorium-seats > div {
-display: inline-block;
+  display: inline-block;
 }
 </style>
