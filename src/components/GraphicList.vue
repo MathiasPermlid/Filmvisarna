@@ -1,15 +1,26 @@
 <template>
   <div class="graphicList mx-auto">
     <h3 v-if="!searchedMovies[0]" class="mb-5">Inga filmer matchade din sökning</h3>
-    <ul v-else class="movieList container row mx-auto">
-      <li v-for="(data, index) in searchedMovies" :key="index" class="movieItem col-6 col-md-3 m-0">
+    <transition-group
+      v-else
+      tag="ul"
+      class="movieList container row mx-auto"
+      name="searchedmovies"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <li
+        v-for="(data, index) in searchedMovies"
+        :key="data.Link + index"
+        class="movieItem col-6 col-md-3 m-0"
+      >
         <figure class="posters">
           <router-link v-bind:to="'/movieinfo/' + data.Link">
             <img v-bind:src="data.Poster" class="img-fluid">
           </router-link>
         </figure>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -32,6 +43,9 @@ export default {
 </script>
 
 <style>
+.movieItem {
+  animation-duration: 200ms;
+}
 .graphicList {
   width: 100%;
 }

@@ -9,8 +9,8 @@
 
         </div>
         <div class="col-sm-12 col-md-6 hide-on-mobile col">
-            <h3 class="mobile-p hide-on-mobile">Den stora salong som rymmer 81 biogäster</h3>
-            <p class="mobile-p hide-on-mobile lead">Salongen är utrustad med ljudsystemet Dolby Atmos, som innebär så kallat immersive sound, med upp till 56 ljudkanaler. Projektorn 4K Barco DP4K-32B lyser upp den 19,8 x 8,3 meter eller 168 kvadratmeter stora duken och levererar tillsammans med ljudet en fantastisk upplevelse.
+            <h3 class="mobile-p hide-on-mobile">Den stora salongen som rymmer 81 biogäster</h3>
+            <p class="mobile-p hide-on-mobile">Salongen är utrustad med ljudsystemet Dolby Atmos, som innebär så kallat immersive sound, med upp till 56 ljudkanaler. Projektorn 4K Barco DP4K-32B lyser upp den 19,8 x 8,3 meter eller 168 kvadratmeter stora duken och levererar tillsammans med ljudet en fantastisk upplevelse.
             </p>
         </div>
 
@@ -21,8 +21,8 @@
 
         </div>
         <div class="col-sm-12 col-md-6 hide-on-mobile col mt-3">
-            <h3 class="mobile-p hide-on-mobile">Den mysiga lilla salong som rymmer 56 biogäster</h3>
-            <p class="mobile-p hide-on-mobile lead">Vår lilla salong är vår mysiga VIP-salong som har exklusiva reclinerfåtöljer i skinn och möjlighet att ta in mat och dryck från restaurangen. Dolby Atmos innebär så kallat immersive sound, med upp till 56 ljudkanaler.
+            <h3 class="mobile-p hide-on-mobile">Den mysiga lilla salongen som rymmer 56 biogäster</h3>
+            <p class="mobile-p hide-on-mobile">Vår lilla salong är vår mysiga VIP-salong som har exklusiva reclinerfåtöljer i skinn och möjlighet att ta in mat och dryck från restaurangen. Dolby Atmos innebär så kallat immersive sound, med upp till 56 ljudkanaler.
             </p>
         </div>
 
@@ -34,7 +34,7 @@
         </div>
     </div>
     <article class="mobile-p mt-3 ml-3 mr-3">
-        <p class="mobile-p lead">Grand är Malmös mest anrika bio med fullständiga rättigheter, säten av mjuk sammet och inga dumma inloggningar <i>- som på den goda tiden.</i></p>
+        <p class="mobile-p">Grand är Malmös mest anrika bio med fullständiga rättigheter, säten av mjuk sammet och inga dumma inloggningar <strong>- som på den goda tiden.</strong></p>
 
         <h3 class="mt-2 mb-0">Hitta hit</h3>
         <p class="mobile-p">Fina gatan 4, Malmö</p>
