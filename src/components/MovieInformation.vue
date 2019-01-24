@@ -61,7 +61,7 @@
         </picture>
                 <button
           type="button"
-          class="btn-brass-desktop text-white lead mt-4 mb-2 hide-on-mobile"
+          class="btn-brass-desktop text-white mt-4 mb-2 hide-on-mobile"
         >Boka</button>
         </div>
 
@@ -76,13 +76,13 @@
           ></iframe>
             </div>
             <div class="row m-1">
-                <p class="mobile-p lead">{{ movie.Plot }}</p>
+                <p class="mobile-p"><i>{{ movie.Plot }}</i></p>
             </div>
         </div>
     </div>
     <div class="col-md-12 mt-2 mb-4 desktop-margin-info mobile-margin-info">
         <div class="row">
-            <p class="mobile-p lead hide-on-desktop">{{ movie.Plot }}</p>
+            <p class="mobile-p hide-on-desktop"><i>{{ movie.Plot }}</i></p>
         </div>
         <div class="row">
             <p class="mobile-p">
