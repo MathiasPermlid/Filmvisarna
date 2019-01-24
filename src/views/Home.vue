@@ -5,20 +5,20 @@
     </header>
     <div v-if="!searchMovie">
     <Carousel id="carousel"/>
-      <h3 class="category-text mb-0">Topplista</h3>
-      <div class="category-line mb-2"></div>
+      <h3 class="category-text mb-0 mt-3">Topplista</h3>
+      
       <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Drama</h3>
-      <div class="category-line mb-2"></div>
+      <h3 class="category-text mb-0 mt-3">Drama</h3>
+      
       <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Action</h3>
-      <div class="category-line mb-2"></div>
+      <h3 class="category-text mb-0 mt-3">Action</h3>
+      
       <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
 
-      <h3 class="category-text mb-0">Barn</h3>
-      <div class="category-line mb-2"></div>
+      <h3 class="category-text mb-0 mt-3">Barn</h3>
+      
       <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>
     </div>
 
@@ -104,12 +104,6 @@ export default {
 }
 .category-text {
   text-align: left;
-}
-.category-line {
-  width: 60px;
-  height: 5px;
-  border-radius: 5px;
-  background-color: rgb(255, 196, 0);
 }
 
 .home-title {

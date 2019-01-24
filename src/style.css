@@ -54,7 +54,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #fff;
+  color: var(--main-background-color);
   background-color: var(--main-background-color);
 
   /* background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.329), rgba(0, 0, 0, 0.6)), url(./assets/start-bg.jpg); */
@@ -83,7 +83,7 @@ h1, h2 {
 }
 
 h3 {
-  font-weight: 700;
+  font-weight: 100;
 }
 
 strong {
