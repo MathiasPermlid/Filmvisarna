@@ -18,6 +18,6 @@ export default class store {
     // is collected and stored
     this.movies = [];
     this.shows = [];
-    this.auditoriums = [];
+    // this.auditoriums = [];
   }
 }
