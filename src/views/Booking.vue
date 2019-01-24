@@ -258,14 +258,15 @@ export default {
     subtractSenior() {
         //om valda biljetter är mer än valda säten
         if(this.totalnumber > this.selectedSeats.length){
-          if (this.seniorsnumber > 0 && this.totalnumber > 0) {
-            if(this.totalnumber === 10){
-                this.maximumSeatsError = false;
-              }
-            this.seniorsnumber--;
-            this.subtractToTotalNumber();
-          }
-            
+          if (this.totalnumber === 10){
+            if (this.seniorsnumber > 0 && this.totalnumber > 0) {
+              if(this.totalnumber === 10){
+                  this.maximumSeatsError = false;
+                }
+              this.seniorsnumber--;
+              this.subtractToTotalNumber();
+            }
+            }
         }
        //om valda biljetter är desamma som valda säten och mer än 0
         else if (this.totalnumber === this.selectedSeats.length && this.totalnumber > 0){
