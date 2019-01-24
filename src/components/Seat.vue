@@ -36,7 +36,7 @@ export default {
             else{ //sätet var förbokat - avvälj nu det
               this.selected=false; //tar bort färgen för makerad stol
               let seatInfo = this.getSeatInfo(); //hämta info om aktuellt säte
-              this.$emit('remove-seat', seatInfo);//skicka med infon och anropa metoden i seatComponent
+              this.$emit('un-select-seat', seatInfo);//skicka med infon och anropa metoden i seatComponent
             }
         }
       }

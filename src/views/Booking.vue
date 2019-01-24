@@ -62,7 +62,7 @@
             alt="Ta bort en pensionärs-biljett">
         </a>
         
-        <span class="ticket-number">{{seniorsnumber}}</span>
+        <span class="ticket-number">{{childnumber}}</span>
         <a v-on:click="addChild" class="mr-4">
           <img
             src="../assets/plusbutton.svg"
@@ -71,7 +71,7 @@
           >
         </a>
       </div>
-        <div class="booking-error" :class="{ hide: !this.seatsEqualsToTicketsError }">Du måste avvälja säten innan du kan ta bort biljetter</div>
+        <div class="booking-error" :class="{ hide: !this.subtractError }">Du måste avvälja säten innan du kan ta bort biljetter</div>
 
 
       <hr>
@@ -141,14 +141,14 @@ export default {
       /* END OF MOCKDATA */
 
       adultsnumber: 0,
-      studentsnumber: 0,
+      childnumber: 0,
       seniorsnumber: 0,
       totalnumber: 0,
       totalAmount: 0,
       userEmail: "",
       noTicketsAddedError: false,
       ticketsEqualToSeatsError: false,
-      seatsEqualsToTicketsError: false,
+      subtractError: false,
       numberOfSelectedSeats: 0,
       
     };
@@ -200,7 +200,8 @@ export default {
     },
     getInfo(infoFromChild){
         this.numberOfSelectedSeats = infoFromChild.numberOfSelectedSeats;
-        this.ticketsEqualToSeatsError = infoFromChild.ticketsEqualToSeatsError;
+        this.ticketsEqualToSeatsError = infoFromChild.error;
+        this.subtractError = infoFromChild.error;
     },
 
    /* //BEHÖVS DENNA METOD???
@@ -237,9 +238,9 @@ export default {
                 this.subtractToTotalNumber();
             }
         }
-        //om valda biljetter är desamma som valda säten
-        else{
-            this.seatsEqualsToTicketsError = true;
+        //om valda biljetter är desamma som valda säten och mer än 0
+        else if (this.totalnumber === this.numberOfSelectedSeats && this.totalnumber > 0){
+            this.subtractError = true;
         }
     },
     addAdult() {
@@ -256,9 +257,9 @@ export default {
               this.subtractToTotalNumber();
             }
         }
-        //om valda biljetter är desamma som valda säten
-        else{
-            this.seatsEqualsToTicketsError = true;
+       //om valda biljetter är desamma som valda säten och mer än 0
+        else if (this.totalnumber === this.numberOfSelectedSeats && this.totalnumber > 0){
+            this.subtractError = true;
         }
     },
     addSenior() {
@@ -267,9 +268,29 @@ export default {
         this.addToTotalNumber();
       }
     },
+      subtractChild() {
+        //om valda biljetter är mer än valda säten
+        if(this.totalnumber > this.numberOfSelectedSeats){
+            if (this.childnumber > 0 && this.totalnumber > 0) {
+              this.childnumber--;
+              this.subtractToTotalNumber();
+            }
+        }
+        //om valda biljetter är desamma som valda säten och mer än 0
+        else if (this.totalnumber === this.numberOfSelectedSeats && this.totalnumber > 0){
+            this.subtractError = true;
+        }
+    },
+    addChild() {
+      if (this.childnumber < 10 && this.totalnumber < 10) {
+        this.childnumber++;
+        this.addToTotalNumber();
+      }
+    },
     addToTotalNumber() {
         this.noTicketsAddedError = false;
         this.ticketsEqualToSeatsError = false;
+        this.subtractError = false;
 
         if (this.totalnumber < 10) {
             this.totalnumber++;

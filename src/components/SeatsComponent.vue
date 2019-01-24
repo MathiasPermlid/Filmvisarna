@@ -3,7 +3,7 @@
         <div v-for="(row, index) in auditorium" :key="row + index">
             <div v-for="(seat, seatNr) in auditorium[index]" :key="seatNr*seatNr">
                 <Seat :row="index + 1" :seatNr="seatNr + 1" :booked="seat"
-                @click-seat="selectSeat($event)" @error-message="showErrorMessage()" @remove-seat="unSelectSeat($event)"
+                @click-seat="selectSeat($event)" @error-message="showErrorMessage()" @un-select-seat="unSelectSeat($event)"
                 />
             </div>
         </div>
@@ -44,7 +44,7 @@ export default {
             }
         },//selectSeat
 
-        unSelectSeat(seatInfo){
+        unSelectSeat(seatInfo){ //här vet vi att sätet var förbokat och ska nu ta bort det
             //ta bort felmeddelandet om det finns utskrivet
              this.sendInfo();
 
@@ -62,7 +62,7 @@ export default {
         sendInfo(){
             let info = {
                 numberOfSelectedSeats: this.numberOfSelectedSeats,
-                ticketsEqualToSeatsError: false
+                error: false
             }
              this.$emit('send-info', info);
         },
