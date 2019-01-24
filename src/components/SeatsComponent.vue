@@ -2,7 +2,7 @@
 <div id="auditorium-seats">
         <div v-for="(row, index) in auditorium" :key="row + index">
             <div v-for="(seat, seatNr) in auditorium[index]" :key="seatNr*seatNr">
-                <Seat :row="index + 1" :seatNr="seatNr + 1" :booked="seat"
+                <Seat :row="index" :seatNr="seatNr" :booked="seat"
                 @click-seat="selectSeat($event)" @error-message="showErrorMessage()" @un-select-seat="unSelectSeat($event)"
                 />
             </div>
@@ -61,6 +61,7 @@ export default {
 
         sendInfo(){
             let info = {
+                selectedSeats: this.selectedSeats,
                 numberOfSelectedSeats: this.numberOfSelectedSeats,
                 error: false
             }
