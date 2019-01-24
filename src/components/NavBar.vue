@@ -35,6 +35,13 @@
           <router-link to="/contact">Kontakt</router-link>
         </li>
       </ul>
+      <input
+        class="form-control mr-sm-2"
+        v-model="searchMovie"
+        type="text"
+        placeholder="Sök film"
+        aria-label="Search"
+      >
     </div>
   </nav>
   <!-- link page toggled on hamburger -->
@@ -70,14 +77,20 @@
           <span></span>
         </div>
       </button>
-      <i class="fas fa-search" @click="searching = !searching"></i>
+      <i v-show="onHomePage" class="fas fa-search" @click="toggleSearch"></i>
     </div>
-    <div v-show="searching">
-      <i class="fas fa-search"></i>
-      <!-- search input -->
-      <input type="text" v-model="searchMovie" placeholder="Sök film">
-      <i class="fas fa-times" @click="searching = !searching"></i>
-    </div>
+    <transition
+      name="searchbar"
+      enter-active-class="animated slideInRight"
+      leave-active-class="animated slideOutRight"
+    >
+      <div v-show="searching" id="search-bar">
+        <i class="fas fa-search"></i>
+        <!-- search input -->
+        <input type="text" v-model="searchMovie" placeholder="Sök film">
+        <i class="fas fa-times" @click="toggleSearch"></i>
+      </div>
+    </transition>
   </section>
 </template>
 
@@ -92,6 +105,7 @@ export default {
       searchMovie: "",
       searching: false,
       toggleNav: false,
+      onHomePage: true,
       mobile: this.startMobile()
     };
   },
@@ -101,8 +115,19 @@ export default {
     }
   },
   methods: {
+    toggleSearch() {
+      this.searching = !this.searching;
+      this.searchMovie = "";
+    },
     startMobile() {
       return window.innerWidth < 600 ? true : false;
+    },
+    toggleSearchButton() {
+      if (location.pathname === "/") {
+        this.onHomePage = true;
+      } else {
+        this.onHomePage = false;
+      }
     }
   },
   created() {
@@ -111,11 +136,19 @@ export default {
     });
   },
   mounted() {
+    this.toggleSearchButton();
+
     $("nav a").on("click", () => {
       $("#navbarNav").removeClass("show");
     });
+    $("body > div > div").on("click", () => {
+      this.searchMovie = "";
+      this.searching = false;
+    });
     // toggles off the nav page on page change
-    $(".mobile-links a").on("click", () => {
+
+    $("a").on("click", () => {
+      this.toggleSearchButton();
       this.toggleNav = false;
     });
   }
@@ -137,6 +170,12 @@ export default {
     EXAMPLE: "color: var(--main-element-color);"
 */
 }
+#home-title {
+  color: var(--special-element-color);
+  font-weight: 400;
+  text-shadow: 1px 1px var(--main-element-color);
+  margin-top: 5vh;
+}
 nav {
   width: 100%;
   position: absolute;
@@ -146,6 +185,13 @@ nav {
   font-family: var(--main-font-family);
   font-weight: 100;
   font-size: 1.3em;
+}
+#navbarNav input {
+  width: 25%;
+}
+#navbarNav input:focus {
+  outline: none;
+  box-shadow: none;
 }
 #nav-mobile-links > section {
   width: 100%;
@@ -175,6 +221,7 @@ nav {
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 7vh;
   z-index: 1000;
   color: var(--special-element-color);
   background-color: var(--main-element-color);
@@ -184,7 +231,58 @@ nav img {
   height: 1.5em;
   margin-right: 5px;
 }
+i {
+  font-size: 1.4em;
+  color: var(--special-element-color);
+}
+#nav-mobile i {
+  position: fixed;
+  right: 4%;
+  bottom: 2%;
+}
+#nav-mobile i:hover {
+  cursor: pointer;
+}
+#search-bar {
+  animation-duration: 400ms;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  height: 7vh;
+  z-index: 1100;
+  color: var(--special-element-color);
+  background-color: var(--main-element-color);
+}
+#search-bar .fa-search {
+  margin-left: 4%;
+}
+#search-bar .fa-times:hover {
+  cursor: pointer;
+}
+#search-bar .fa-times {
+  font-size: 1.7em;
+  margin-right: 4%;
+}
+#search-bar input {
+  color: var(--main-background-color);
+  height: 80%;
+  width: 60%;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--main-element-color);
+}
+#search-bar input:focus {
+  outline: none;
+}
+#search-bar input::placeholder {
+  color: var(--main-background-color);
+  opacity: 0.7;
+}
 nav a {
+  font-weight: 400;
   color: black;
 }
 nav > div > a {
@@ -198,7 +296,7 @@ nav > div > div {
 }
 nav > div > a:hover {
   text-decoration: none;
-  color: #fff;
+  color: var(--special-element-color);
 }
 .navbar-expand-lg li {
   text-align: start;
