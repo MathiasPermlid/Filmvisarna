@@ -7,6 +7,7 @@
         >Aquaman 12:00 Aquaman 14:00 Aquaman 16:00 Aquaman 18:00 Aquaman 20:00</span>
       </infinite-slide-bar>
     </div>-->
+    
     <!-- ### Carousel START ### -->
     <div class="container mt-4">
       <div class="row">
@@ -21,7 +22,7 @@
               <div class="carousel-item active">
                 <img
                   class="d-block img-fluid"
-                  src="https://www.geo.tv/assets/uploads/updates/2019-01-03/223970_5251622_updates.JPG"
+                  src="https://hdqwalls.com/download/aquaman-2018-movie-i4-1920x1080.jpg"
                   alt="First Slide"
                 >
                 <div class="carousel-caption d-none d-md-block">
@@ -36,11 +37,11 @@
               <div class="carousel-item">
                 <img
                   class="d-block img-fluid"
-                  src="https://www.baseservicedapartments.co.uk/wp-content/uploads/2017/10/Sing-A-Long-A-Frozen-Liverpool.png"
+                  src="https://stmed.net/sites/default/files/the-lego-movie-videogame-hd-wallpapers-33794-3561044.jpg"
                   alt="Second Slide"
                 >
                 <div class="carousel-caption d-none d-md-block">
-                  <h2 class="animated fadeInUp" id="light">Frozen</h2>
+                  <h2 class="animated fadeInUp" id="light">The Lego Movie 2</h2>
                   <button
                     class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
                     data-toggle="modal"
@@ -51,10 +52,10 @@
               <div class="carousel-item">
                 <img
                   class="d-block img-fluid"
-                  src="https://ashevillegrit.com/sites/default/files/styles/700x400slides/public/A%20Quiet%20Place%2002.jpg?itok=EhyL_GT9"
+                  src="https://images7.alphacoders.com/931/thumb-1920-931303.png"
                 >
                 <div class="carousel-caption d-none d-md-block">
-                  <h2 class="animated fadeInUp" id="light">A Quiet Place</h2>
+                  <h2 class="animated fadeInUp" id="light">Glass</h2>
                   <button
                     class="animated fadeInUp btn btn-outline-light buy m-2 hoverable test"
                     data-toggle="modal"
@@ -99,19 +100,21 @@ export default {
 } */
 
 /* ### Carousel CSS START ### */
+button {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 #slider4 {
-  border-style: solid;
-  border-color: #36454f;
-  border-width: 8px;
-  box-shadow: 3px 3px #2a363d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 #dark {
   color: rgb(0, 11, 31);
 }
 
 #light {
   color: rgb(255, 255, 255);
+  text-shadow: 3px 3px 5px #000000;
 }
 h2 {
   animation-delay: 1s;
@@ -119,6 +122,7 @@ h2 {
 
 .buy {
   animation-delay: 1.5s;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .buy:hover {
@@ -149,9 +153,9 @@ a {
 .alert {
   margin: 10% auto;
 }
-@media only screen and (max-width: 777px) {
+/* @media only screen and (max-width: 777px) {
   .container {
     display: none;
   }
-}
+} */
 </style>

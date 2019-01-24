@@ -72,6 +72,7 @@ export default {
 .swiper-box {
   height: 30vmax;
   overflow: hidden;
+  
 }
 .swipe-item {
   height: 100%;
