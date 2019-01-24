@@ -150,6 +150,7 @@ export default {
       ticketsEqualToSeatsError: false,
       subtractError: false,
       numberOfSelectedSeats: 0,
+      selectedSeats: [],
       
     };
   },
@@ -164,16 +165,6 @@ export default {
     this.day = this.$store.shows[this.date];
     this.show = this.day.shows[this.dateIndex];
 
-/*  // selectedSeats hämtas från SeatsComponent
-    let selectedSeats = [];
-
-    for (let seat of selectedSeats) {
-      this.show.auditorium.seats[seat.row][seat.seatNr] = 1;
-    }
-      this.show.auditorium.seatsLeft -= selectedSeats.length;
-  */  
-
-    console.log('this.show SKRIVES UT HÄR: ',this.show);
   },
   /*
   mounted() {
@@ -192,26 +183,26 @@ export default {
     console.log('this.show SKRIVES UT HÄR: ',this.show);
   },*/
     components: {
-        SeatsComponent
+      SeatsComponent
     },//components
   methods: {
     showErrorMessage(){
-        //om användaren ej har valt några biljetter alls
+      //om användaren ej har valt några biljetter alls
         if (!this.totalnumber){
-                this.noTicketsAddedError = true;
+          this.noTicketsAddedError = true;
             }
         //om användaren valt lika många biljetter som säten
         else{ 
-            this.ticketsEqualToSeatsError = true;
+          this.ticketsEqualToSeatsError = true;
         }
     },
     getInfo(infoFromChild){
+        this.selectedSeats = infoFromChild.selectedSeats;
         this.numberOfSelectedSeats = infoFromChild.numberOfSelectedSeats;
         this.ticketsEqualToSeatsError = infoFromChild.error;
         this.subtractError = infoFromChild.error;
     },
 
-   /* //BEHÖVS DENNA METOD???
     updateShow() {
       // update show with current seats left and seats taken
       db.ref("visningar/" + this.date).set({
@@ -235,7 +226,17 @@ export default {
         }
       });
     },//updateShow
-        */
+    
+    booking(){
+      //sätt de bokade värdena 
+      for (let seat of this.selectedSeats) {
+        this.show.auditorium.seats[seat.row][seat.seatNr] = 1;
+      }
+      this.show.auditorium.seatsLeft -= this.selectedSeats.length;  
+
+      //skicka upp värdena till databasen
+      this.updateShow()
+    },
       
     subtractAdult() {
         //om valda biljetter är mer än valda säten
