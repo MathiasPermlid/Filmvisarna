@@ -19,11 +19,9 @@ export default {
   methods:{
     clickSeat(){ 
       // om sätet INTE är bokat  
-      if(!this.booked){   
-        console.log('I seat, valda biljetter:'+this.$parent.selectedTickets);
-            
+      if(!this.booked){  
         //om användaren har säten kvar att välja (valt fler biljetter än säten)  
-        if(this.$parent.numberOfSelectedSeats  < this.$parent.selectedTickets){   
+        if(this.$parent.selectedSeats.length  < this.$parent.selectedTickets){   
           this.selected = this.selected ? false : true; 
           let seatInfo = this.getSeatInfo();
           this.$emit('click-seat', seatInfo);

@@ -17,7 +17,6 @@ export default {
     data() {
         return {
         ticketsEqualToSeatsError: false,
-        numberOfSelectedSeats:0,
         selectedSeats: []
         };
     },//data
@@ -29,18 +28,13 @@ export default {
     
     methods: {
         selectSeat(seatInfo){
-            console.log('I seatsComponent och valda biljetter är '+this.selectedTickets);
             
             if (!seatInfo.selected){ //om sätet redan är klickat (förbokat)
                 this.unSelectSeat(seatInfo);
             }
             else{ //add the selected seat to our array
                 this.selectedSeats.push(seatInfo);
-                this.numberOfSelectedSeats++;
                 this.sendInfo();
-
-                console.log(this.selectedSeats);
-                
             }
         },//selectSeat
 
@@ -52,17 +46,14 @@ export default {
             for(let i = 0 ; i < this.selectedSeats.length ; i++){
                 if(this.selectedSeats[i].seatNr === seatInfo.seatNr && this.selectedSeats[i].row === seatInfo.row){
                     this.selectedSeats.splice(i, 1);
-                    this.numberOfSelectedSeats--; 
                     this.sendInfo();
                 }
             } 
-            console.log(this.selectedSeats);
         },//unSelectSeat
 
         sendInfo(){
             let info = {
                 selectedSeats: this.selectedSeats,
-                numberOfSelectedSeats: this.numberOfSelectedSeats,
                 error: false
             }
              this.$emit('send-info', info);
