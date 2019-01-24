@@ -42,6 +42,7 @@
         placeholder="Sök film"
         aria-label="Search"
       >
+      <p v-show="linkURL">Gå till startsidan för att söka</p>
     </div>
   </nav>
   <!-- link page toggled on hamburger -->
@@ -106,12 +107,21 @@ export default {
       searching: false,
       toggleNav: false,
       onHomePage: true,
+
       mobile: this.startMobile()
     };
   },
   watch: {
     searchMovie(input) {
       eventBus.$emit("search-query", input);
+    }
+  },
+  computed: {
+    linkURL() {
+      if (this.searchMovie && location.pathname.length > 1) {
+        return true;
+      }
+      return false;
     }
   },
   methods: {
@@ -188,6 +198,16 @@ nav {
 }
 #navbarNav input {
   width: 25%;
+}
+#navbarNav p {
+  position: absolute;
+  font-size: .7em;
+  top: 7vh;
+  right: 1%;
+  width: 25%;
+  border: 1px var(--main-element-color);
+  color: var(--main-element-color);
+  background-color:white;
 }
 #navbarNav input:focus {
   outline: none;
