@@ -4,9 +4,6 @@
 </template>
 
 <script>
-/*TO DO:
- * class: booked  - enabled select för de sätena 
-*/
 export default {
   name: "seat",
   data(){
@@ -18,23 +15,27 @@ export default {
     row: Number,
     seatNr: Number,
     booked: Number,
-    selectedTickets: Number,
   },
   methods:{
     clickSeat(){ 
       // om sätet INTE är bokat  
-      if(!this.booked){       
+      if(!this.booked){  
         //om användaren har säten kvar att välja (valt fler biljetter än säten)  
-        if(this.$parent.numberOfSelectedSeats  < this.$parent.selectedTickets){ //selectedTickets variabel ska fås från anders        
+        if(this.$parent.selectedSeats.length  < this.$parent.selectedTickets){   
           this.selected = this.selected ? false : true; 
           let seatInfo = this.getSeatInfo();
           this.$emit('click-seat', seatInfo);
         }
-        //om användaren har valt lika många säten som biljeter - kan ta bort säten men inte välja fler
-      else {
-          this.selected=false;
-          let seatInfo = this.getSeatInfo();
-          this.$emit('remove-seat', seatInfo);
+        //om användaren har valt lika många säten som biljeter eller noll - kan ta bort säten men inte välja fler
+        else {
+            if(!this.selected){ //om sätet inte var förbokat- visa felmeddelande
+              this.$emit('error-message');
+            }
+            else{ //sätet var förbokat - avvälj nu det
+              this.selected=false; //tar bort färgen för makerad stol
+              let seatInfo = this.getSeatInfo(); //hämta info om aktuellt säte
+              this.$emit('un-select-seat', seatInfo);//skicka med infon och anropa metoden i seatComponent
+            }
         }
       }
     },//clickSeat
@@ -78,7 +79,7 @@ export default {
 
 }
 .seat.booked{
-    background-color:  red;
+    background-color:  rgb(107, 5, 5);;
 
 }
 /*@media screen and (min-width:800px){

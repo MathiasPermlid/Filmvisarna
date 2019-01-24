@@ -1,15 +1,13 @@
 <template>
-  <div id="auditorium-seats">
-
-<div v-for="(row, index) in auditorium" :key="row + index">
-    <div v-for="(seat, seatNr) in auditorium[index]" :key="seat+ seatNr">
-         <Seat :row="index + 1" :seatNr="seatNr + 1" :booked="seat"
-         @click-seat="selectSeat($event)" @remove-seat="unSelectSeat($event)"
-         />
+<div id="auditorium-seats">
+        <div v-for="(row, index) in auditorium" :key="row + index">
+            <div v-for="(seat, seatNr) in auditorium[index]" :key="seatNr*seatNr">
+                <Seat :row="index" :seatNr="seatNr" :booked="seat"
+                @click-seat="selectSeat($event)" @error-message="showErrorMessage()" @un-select-seat="unSelectSeat($event)"
+                />
+            </div>
+        </div>
     </div>
-</div>
-
-  </div>
 </template>
 
 <script>
@@ -18,40 +16,55 @@ export default {
     name: "seatsComponent",
     data() {
         return {
-        auditorium: null,
-        selectedTickets: 3,
-        numberOfSelectedSeats:0,
+        ticketsEqualToSeatsError: false,
         selectedSeats: []
         };
     },//data
+
+    props: {
+        auditorium: Array,
+        selectedTickets: Number,
+    },//props
+    
     methods: {
-        selectSeat(data){
-                if (!data.selected){ //om sätet redan är klickat (förbokat)
-                    this.unSelectSeat(data);
-                }
-                else{ //select seat by adding it to our array
-                    this.selectedSeats.push(data);
-                    this.numberOfSelectedSeats++;
-                    console.log(this.selectedSeats);
-                    
-                }
+        selectSeat(seatInfo){
+            
+            if (!seatInfo.selected){ //om sätet redan är klickat (förbokat)
+                this.unSelectSeat(seatInfo);
+            }
+            else{ //add the selected seat to our array
+                this.selectedSeats.push(seatInfo);
+                this.sendInfo();
+            }
         },//selectSeat
 
-        unSelectSeat(data){
+        unSelectSeat(seatInfo){ //här vet vi att sätet var förbokat och ska nu ta bort det
+            //ta bort felmeddelandet om det finns utskrivet
+             this.sendInfo();
+
+            //ta bort aktuellt säte från arrayen (om det finns i arrayen)
             for(let i = 0 ; i < this.selectedSeats.length ; i++){
-                if(this.selectedSeats[i].seatNr === data.seatNr && this.selectedSeats[i].row === data.row){
+                if(this.selectedSeats[i].seatNr === seatInfo.seatNr && this.selectedSeats[i].row === seatInfo.row){
                     this.selectedSeats.splice(i, 1);
-                    this.numberOfSelectedSeats--;  
+                    this.sendInfo();
                 }
             } 
-            console.log(this.selectedSeats);
+        },//unSelectSeat
 
-        }//unSelectSeat
+        sendInfo(){
+            let info = {
+                selectedSeats: this.selectedSeats,
+                error: false
+            }
+             this.$emit('send-info', info);
+        },
+
+        showErrorMessage(){
+            // visa felmeddelande 
+            this.$emit('error-message');
+
+        }
     }, //methods
-
-    created() {
-        this.auditorium = this.$store.shows["-LWl4d2Fs9Y-q1RqYgDZ"].shows[0].auditorium.seats;
-    },//created
 
     components: {
         Seat
@@ -60,6 +73,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 #auditorium-seats{
     display: flex;
     justify-content: center;
