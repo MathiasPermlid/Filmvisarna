@@ -3,8 +3,8 @@
     <header>
       <h1 class="mobile-title home-title">GRAND</h1>
     </header>
-    <Carousel id="carousel"/>
     <div v-if="!searchMovie">
+    <Carousel id="carousel"/>
       <h3 class="category-text mb-0">Topplista</h3>
       <div class="category-line mb-2"></div>
       <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
