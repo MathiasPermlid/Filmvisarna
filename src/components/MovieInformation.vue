@@ -91,7 +91,7 @@
             </div>
             <div class="row m-1">
                 <p class="mobile-p">
-                    <i>{{ movie.Plot }}</i>
+                    <p class="mobile-p">{{ movie.Plot }}</p>
                 </p>
             </div>
         </div>
@@ -99,7 +99,7 @@
     <div class="col-md-12 mt-2 mb-4 desktop-margin-info mobile-margin-info">
         <div class="row">
             <p class="mobile-p hide-on-desktop">
-                <i>{{ movie.Plot }}</i>
+                <p class="mobile-p hide-on-desktop">{{ movie.Plot }}</p>
             </p>
         </div>
         <div class="row">
@@ -154,17 +154,17 @@
             <h3 class="mobile-p hide-on-mobile">Recensioner</h3>
         </div>
         <div v-for="(ratings, index) in movie.Ratings" :key="ratings.Source + ratings.Value + index" class="hide-on-mobile">
-            <p class="mobile-p row hide-on-mobile">
-                <i>{{ ratings.Source }} {{ ratings.Value }}</i>
+            <p class="mobile-p hide-on-mobile">
+                <p class="mobile-p row">{{ ratings.Source }} {{ ratings.Value }}</p>
             </p>
         </div>
     </div>
     <!-- MOBIL RECENSIONER -->
     <div class="col-sm-12 col-md-12 hide-on-desktop mobile-margin-info">
-        <h2 class="row mobile-margin-info ml-2">Recensioner</h2>
-        <div class="row" v-for="(ratings, index) in movie.Ratings" :key="ratings.Source + ratings.Value + index">
+        <h3 class="row mobile-margin-info ml-2">Recensioner</h3>
+        <div class="col m-0 p-0" v-for="(ratings, index) in movie.Ratings" :key="ratings.Source + ratings.Value + index">
             <p class="mobile-p">
-                <i>{{ ratings.Source }} {{ ratings.Value }}</i>
+                <p class="row mobile-p row ml-2 p-0">{{ ratings.Source }} {{ ratings.Value }}</p>
             </p>
         </div>
     </div>
