@@ -12,18 +12,15 @@
   </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" v-for="info in week" href="#">{{ info.day }} {{ info.date }} </a>
                 </div>
-            <button
+                <button
         type="button"
         class="text-white btn-brass adjust-btn ml-4"
         data-toggle="modal"
         data-target="#exampleModal"
       >Trailer</button>
             </div>
-
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -162,7 +159,36 @@ import {
 export default {
     name: "MovieInformation",
     data() {
-        return {};
+        return {
+            week: [
+                {
+                    day: 'fre',
+                    date: '2019-01-25'
+                },
+                {
+                    day: 'lör',
+                    date: '2019-01-26'
+                },
+                {
+                    day: 'sön',
+                    date: '2019-01-27'
+                },
+                {
+                    day: 'mån',
+                    date: '2019-01-28'
+                },
+                {
+                    day: 'tis',
+                    date: '2019-01-29'
+                },
+                {
+                    day: 'ons',
+                    date: '2019-01-30'
+                },
+                
+            ]
+
+        };
     },
     computed: {
         movie() {
