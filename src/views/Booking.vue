@@ -3,12 +3,14 @@
     <div class="container-fluid">
 
     
-        <h1 class="row align-items-center booking-title text-center">{{movie.title}}</h1>
+        <h1 class="row align-items-center booking-title text-center">{{show.movie}}</h1>
 
-        <h2 class="booking-subtitle row align-items-center text-center">
-          <span class="booking-subtitle-span">{{movie.weekday}}</span>
-          <span class="booking-subtitle-span">{{movie.date}}</span>
-          <span class="booking-subtitle-span">{{movie.time}}</span>
+        <h2 class="booking-subtitle row justify-content-center text-center">
+          <span class="col-4 booking-subtitle-span">{{this.day.date}}</span>
+          <span class="col-4 booking-subtitle-span">{{this.show.time}}</span> 
+          
+          <span class="col-6 booking-subtitle-span">{{this.show.auditorium.name}}</span>
+          <span class="col-6 booking-subtitle-span">{{this.show.auditorium.seatsLeft}} av {{this.show.auditorium.maxSeats}} platser kvar </span>
         </h2>
 
 
@@ -72,14 +74,16 @@
         </a>
       </div>
         <div class="booking-error" :class="{ hide: !this.subtractError }">Du måste avvälja säten innan du kan ta bort biljetter</div>
+        <div class="booking-warning" :class="{ hide: !this.maximumSeatsError }">Du får inte boka fler än tio biljetter</div>
 
 
       <hr>
 
-      <p>Antal biljetter: {{totalnumber}}</p>
-
+      <p>Antal biljetter: {{totalnumber}}.</p>
+      <p>Summa: {{totalAmount}} kronor.</p>
       <div class="booking-error" :class="{ hide: !this.noTicketsAddedError }">Välj antal biljetter innan du väljer säten</div>
       <div class="booking-error" :class="{ hide: !this.ticketsEqualToSeatsError }">Lägg till fler biljetter för att kunna välja fler säten</div>
+      
       
       <div class="row justify-content-center">
         <div id="screen" class=""></div>
@@ -89,7 +93,7 @@
                 <SeatsComponent :auditorium="this.show.auditorium.seats" :selectedTickets="totalnumber" @send-info="getInfo($event)" @error-message="showErrorMessage()" />
             </div>
 
-      <div class="row justify-content-around">
+      <div class="row justify-content-around mb-4">
         <div class="row justify-content-center">
           <input
             v-model="userEmail"
@@ -97,21 +101,13 @@
             class="form-control booking-button-row col-12"
             id="input-email"
             aria-describedby="emailHelp"
-            placeholder="Skriv in din e-postadress"
-          >
+            placeholder="Skriv in din e-postadress">
         </div>
       </div>
-
-      <div class="row justify-content-around">
-        <div class="col-12 booking-button-row">
-          <button class="col-5 btn btn-large btn-success" id="boka-button">Boka</button>
-        </div>
-        <div class="col-12 booking-button-row">
-          <button class="col-5 btn btn-large btn-danger" id="cancel-button">
-            <router-link to="/">Avbryt</router-link>
-          </button>
-        </div>
-      </div>
+      
+          <button class="col-12 btn btn-success mb-3" id="boka-button">Boka</button>
+          <button class="col-12 btn btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button>
+      
     </div>
   </div>
 </template>
@@ -129,16 +125,7 @@ export default {
       dateIndex: 0,
       day: {},
       show: {},
-      movie: {
-        /* MOCKDATA  BELOW*/
-        title: "John Wick",
-        weekday: "Fredag",
-        date: "25/1",
-        time: "21:00",
-        posterURL:
-          "https://i.pinimg.com/474x/6e/1d/48/6e1d484aae1e5edfd456de52c6772244.jpg"
-      },
-      /* END OF MOCKDATA */
+      movie: {},
 
       adultsnumber: 0,
       childnumber: 0,
@@ -149,6 +136,7 @@ export default {
       noTicketsAddedError: false,
       ticketsEqualToSeatsError: false,
       subtractError: false,
+      maximumSeatsError: false,
       selectedSeats: [],
       
     };
@@ -254,14 +242,20 @@ export default {
         this.adultsnumber++;
         this.addToTotalNumber();
       }
+       else {
+          this.maximumSeatsError = true;
+        }
+
     },
     subtractSenior() {
         //om valda biljetter är mer än valda säten
         if(this.totalnumber > this.selectedSeats.length){
+          if (totalnumber === 10)
             if (this.seniorsnumber > 0 && this.totalnumber > 0) {
               this.seniorsnumber--;
               this.subtractToTotalNumber();
             }
+            
         }
        //om valda biljetter är desamma som valda säten och mer än 0
         else if (this.totalnumber === this.selectedSeats.length && this.totalnumber > 0){
@@ -273,6 +267,9 @@ export default {
         this.seniorsnumber++;
         this.addToTotalNumber();
       }
+       else {
+          this.maximumSeatsError = true;
+        }
     },
       subtractChild() {
         //om valda biljetter är mer än valda säten
@@ -292,6 +289,9 @@ export default {
         this.childnumber++;
         this.addToTotalNumber();
       }
+       else {
+          this.maximumSeatsError = true;
+        }
     },
     addToTotalNumber() {
         this.noTicketsAddedError = false;
@@ -311,6 +311,7 @@ export default {
       this.totalAmount = 0;
       this.totalAmount += this.seniorsnumber * 80;
       this.totalAmount += this.adultsnumber * 100;
+      this.totalAmount += this.childnumber * 60;
     }
   }
 };
@@ -336,7 +337,6 @@ export default {
 .booking {
   min-height: 100vh;
   width: 100%;
-  margin-bottom: 70px;
 }
 
 .hide{
@@ -374,12 +374,15 @@ a:hover {
 .booking-subtitle-span {
   margin-right: 10px;
   margin-left: 10px;
+  font-size: 0.8em;
+  font-weight: 400;
 }
 
 
 .booking-button-row {
   margin-bottom: 10px;
   height: 20px;
+  
 }
 
 .add-subtract-button {
@@ -391,6 +394,12 @@ a:hover {
 
 .booking-error{
   color: crimson;
+  font-weight: 400;
+  font-size: 0.8em;
+  margin: 10px;
+}
+.booking-warning{
+  color: orangered;
   font-weight: 400;
   font-size: 0.8em;
   margin: 10px;
@@ -414,40 +423,47 @@ a:hover {
   color: var(--special-element-color);
 }
 
-#boka-button {
-  width: 200px;
-}
-#cancel-button {
-  width: 200px;
-}
 
 #boka-button{
-    width: 200px;
-    margin: 30px;
+    
+    
 }
 #cancel-button {
-    width: 200px;
-    margin: 30px;
+    
+
 }
 #screen {
-  width: 200px;
-  height: 10px;
+  margin-top: 30px;
+  margin-bottom: 0;
+  width: 50%;
+  height: 5px;
   background-color: var(--special-element-color);
-  border-color: var(--special-element-color);
-  
+  border-top-color: var(--main-element-color);
   border-radius: 10px;
 
 }
 #input-email{
-  height: 35px
+  height: 35px;
+  margin: 0;
 }
 
 #seatsPlaceholder {
+ margin-top: -40px;
+ margin-bottom: -40px;
   width: 100%;
-  height: 200px;
+  min-height: 100px;
   object-fit:contain;
   justify-content: center;
   align-content: center;  
-  margin-bottom: 20px;    }
-        
+      }
+
+
+
+@media only screen and (min-width: 600px) {
+
+  #seatsPlaceholder {
+     margin-top: -75px;
+     margin-bottom: -75px;
+  }
+}
 </style>
