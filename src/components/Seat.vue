@@ -72,6 +72,8 @@ export default {
 }
 .seat:hover{
   cursor: pointer;
+  background-color: var(--special-element-color);
+
 }
 
 .seat.selected{
@@ -79,7 +81,7 @@ export default {
 
 }
 .seat.booked{
-    background-color:  red;
+    background-color:  rgb(107, 5, 5);;
 
 }
 /*@media screen and (min-width:800px){

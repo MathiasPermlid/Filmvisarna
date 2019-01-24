@@ -5,20 +5,20 @@
     
         <h1 class="row align-items-center booking-title text-center">{{show.movie}}</h1>
 
-        <h2 class="booking-subtitle row justify-content-center text-center">
-          <span class="col-4 booking-subtitle-span">{{this.day.date}}</span>
-          <span class="col-4 booking-subtitle-span">{{this.show.time}}</span> 
-          
-          <span class="col-6 booking-subtitle-span">{{this.show.auditorium.name}}</span>
-          <span class="col-6 booking-subtitle-span">{{this.show.auditorium.seatsLeft}} av {{this.show.auditorium.maxSeats}} platser kvar </span>
+        <h2 class="row booking-subtitle justify-content-around text-center">
+          <span class="col-4 col-m-12 booking-subtitle-span mb-2 ml-4 text-center">{{this.day.date}}</span>
+          <span class="col-4 col-m-12 booking-subtitle-span mb-3 mr-4">{{this.show.time}}</span> 
+
+          <span class="col-6 booking-subtitle-span mb-2">{{this.show.auditorium.name}}</span>
+          <span class="col-6 booking-subtitle-span mb-2 mr-2">{{this.show.auditorium.seatsLeft}} av {{this.show.auditorium.maxSeats}} platser kvar </span>
         </h2>
 
 
       <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
       <div class="booking-button-row row justify-content-between ml-4">
         <span class="col-4 text-left">Vuxna:</span>
-        <div  class=""></div>
-        <a v-on:click="subtractAdult" class="">
+
+        <a v-on:click="subtractAdult" class="ml-4">
           <img
             src="../assets/minusbutton.svg"
             class="add-subtract-button"
@@ -37,40 +37,45 @@
         </a>
       </div>
 
+
       <div class="booking-button-row row justify-content-between ml-4">
         <span class="col-4 text-left">Pensionärer:</span>
+        
         <a v-on:click="subtractSenior" class="ml-4">
           <img
             src="../assets/minusbutton.svg"
             class="add-subtract-button"
             alt="Ta bort en pensionärs-biljett">
         </a>
-        
+
         <span class="ticket-number">{{seniorsnumber}}</span>
         <a v-on:click="addSenior" class="mr-4">
           <img
             src="../assets/plusbutton.svg"
             class="add-subtract-button"
-            alt="Lägg till en pensionärs-biljett"
-          >
+            alt="Lägg till en pensionärs-biljett">
         </a>
+
       </div>
+
+
       <div class="booking-button-row row justify-content-between ml-4">
+        
         <span class="col-4 text-left">Barn:</span>
+       
         <a v-on:click="subtractChild" class="ml-4">
           <img
             src="../assets/minusbutton.svg"
             class="add-subtract-button"
             alt="Ta bort en pensionärs-biljett">
         </a>
-        
+
         <span class="ticket-number">{{childnumber}}</span>
         <a v-on:click="addChild" class="mr-4">
           <img
             src="../assets/plusbutton.svg"
             class="add-subtract-button"
-            alt="Lägg till en pensionärs-biljett"
-          >
+            alt="Lägg till en pensionärs-biljett">
         </a>
       </div>
         <div class="booking-error" :class="{ hide: !this.subtractError }">Du måste avvälja säten innan du kan ta bort biljetter</div>
@@ -105,7 +110,7 @@
         </div>
       </div>
       
-          <button class="col-12 btn btn-success mb-3" id="boka-button">Boka</button>
+          <button v-on: click="booking" class="col-12 btn btn-success mb-3" id="boka-button">Boka</button>
           <button class="col-12 btn btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button>
       
     </div>
@@ -228,6 +233,9 @@ export default {
         //om valda biljetter är mer än valda säten
         if(this.totalnumber > this.selectedSeats.length){
             if (this.adultsnumber > 0 && this.totalnumber > 0) {
+                if(this.totalnumber === 10){
+                  this.maximumSeatsError = false;
+                }
                 this.adultsnumber--;
                 this.subtractToTotalNumber();
             }
@@ -250,8 +258,11 @@ export default {
     subtractSenior() {
         //om valda biljetter är mer än valda säten
         if(this.totalnumber > this.selectedSeats.length){
-          if (totalnumber === 10)
+          if (this.totalnumber === 10)
             if (this.seniorsnumber > 0 && this.totalnumber > 0) {
+              if(this.totalnumber === 10){
+                  this.maximumSeatsError = false;
+                }
               this.seniorsnumber--;
               this.subtractToTotalNumber();
             }
@@ -275,6 +286,9 @@ export default {
         //om valda biljetter är mer än valda säten
         if(this.totalnumber > this.selectedSeats.length){
             if (this.childnumber > 0 && this.totalnumber > 0) {
+              if(this.totalnumber === 10){
+                  this.maximumSeatsError = false;
+                }
               this.childnumber--;
               this.subtractToTotalNumber();
             }
@@ -372,8 +386,8 @@ a:hover {
   font-weight: 100;
 }
 .booking-subtitle-span {
-  margin-right: 10px;
-  margin-left: 10px;
+  
+  
   font-size: 0.8em;
   font-weight: 400;
 }
@@ -414,13 +428,16 @@ a:hover {
   margin: 0;  
 }
 .seat {
-  color: var(--main-element-color);
+  background-color: var(--main-element-color);
+}
+.seat:hover {
+  background-color: var(--special-element-color);
 }
 .seat-blocked {
-  color: rgb(107, 5, 5);
+  background-color: rgb(107, 5, 5);
 }
 .seat-selected {
-  color: var(--special-element-color);
+  background-color: var(--special-element-color);
 }
 
 
