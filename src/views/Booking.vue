@@ -236,10 +236,26 @@ export default {
       //skicka upp värdena till databasen
       this.updateShow();
 
+      // and change page to start
       this.$router.push("/");
+      // send the user the receipt
+      this.sendReceipt(bookingNumber.key);
     },
-    sendReceipt() {
+    sendReceipt(bookingNumber) {
       let chairs = [];
+
+      for (let seat of this.selectedSeats) {
+        let seatNumber = 0;
+        for (let i = 0; i < seat.row; i++) {
+          seatNumber += this.show.auditorium.seats[i].length;
+        }
+        seatNumber += seat.seatNr + 1;
+        chairs.push({
+          row: seat.row + 1,
+          seatNr: seatNumber
+        });
+      }
+      console.log(chairs);
     },
     updateShow() {
       // update show with current seats left and seats taken
