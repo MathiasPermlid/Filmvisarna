@@ -109,8 +109,8 @@
             placeholder="Skriv in din e-postadress">
         </div>
       </div>
-      
-          <button v-show="!bookingComplete" v-on:click="bookingComplete = true" class="col-12 btn btn-success mb-3" id="boka-button">Boka</button>
+       <div class="booking-error" v-show="bookingCompleteError">Du måste välja säten innan du kan boka.</div>
+          <button v-show="!bookingComplete" v-on:click="finishBooking" class="col-12 btn btn-success mb-3" id="boka-button">Boka</button>
           <button v-show="!bookingComplete" class="col-12 btn btn-danger" id="cancel-button"><router-link to="/">Avbryt</router-link></button>
       
       
@@ -121,8 +121,8 @@
     <div id="booking-verification" v-show="bookingComplete">
             <h3 class="brass-color">Bokning slutförd!</h3>
             <p>Du har bokat {{totalnumber}} biljetter till {{show.movie}} i {{this.show.auditorium.name}}  klockan {{this.show.time}} {{this.day.date}}.</p>
-            <p>En bokningsbekräftelse med all information har skickats till din {{this.userEmail}}</p>
-            <p>Vi hoppas du uppskattar ditt besök på Grand.</p> 
+            <p>En bokningsbekräftelse med all information har skickats till {{this.userEmail}}</p>
+            <p>Vi hoppas du uppskattar ditt besök på biograf Grand.</p> 
             <p><strong>Välkommen åter!</strong></p>
     </div>
 
@@ -146,7 +146,6 @@ export default {
       day: {},
       show: {},
       movie: {},
-
       adultsnumber: 0,
       childnumber: 0,
       seniorsnumber: 0,
@@ -155,6 +154,7 @@ export default {
       userEmail: "",
       noTicketsAddedError: false,
       ticketsEqualToSeatsError: false,
+      bookingCompleteError: false,
       subtractError: false,
       maximumSeatsError: false,
       selectedSeats: [],
@@ -234,10 +234,15 @@ export default {
       });
     },//updateShow
 
-    bookingCompleted(){
-      if (this.userEmail.length > 5 && this.userEmail.includes('@') && this.userEmail.includes('.')){
+    finishBooking(){
+      if (this.totalnumber > 0 && this.totalnumber === this.selectedSeats.length && this.userEmail.length > 5){
            this.bookingComplete=true;
+           /* booking() */ 
       }
+      else {
+        bookingCompleteError=true;
+      }
+
     },
     booking(){
       //sätt de bokade värdena 
