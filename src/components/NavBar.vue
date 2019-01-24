@@ -130,13 +130,11 @@ export default {
       this.searching = false;
     });
     // toggles off the nav page on page change
-    $(".mobile-links a").on("click", () => {
-      this.toggleNav = false;
-    });
+
     $("a").on("click", () => {
       if (location.pathname === "/") {
         this.onHomePage = true;
-        } else {
+      } else {
         this.onHomePage = false;
       }
     });
