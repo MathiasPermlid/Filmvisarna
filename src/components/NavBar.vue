@@ -114,6 +114,13 @@ export default {
     },
     startMobile() {
       return window.innerWidth < 600 ? true : false;
+    },
+    toggleSearchButton() {
+      if (location.pathname === "/") {
+        this.onHomePage = true;
+      } else {
+        this.onHomePage = false;
+      }
     }
   },
   created() {
@@ -122,6 +129,8 @@ export default {
     });
   },
   mounted() {
+    this.toggleSearchButton();
+
     $("nav a").on("click", () => {
       $("#navbarNav").removeClass("show");
     });
@@ -132,11 +141,8 @@ export default {
     // toggles off the nav page on page change
 
     $("a").on("click", () => {
-      if (location.pathname === "/") {
-        this.onHomePage = true;
-      } else {
-        this.onHomePage = false;
-      }
+      this.toggleSearchButton();
+      this.toggleNav = false;
     });
   }
 };
