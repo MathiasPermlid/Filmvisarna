@@ -72,8 +72,6 @@ export default {
 }
 .seat:hover{
   cursor: pointer;
-  background-color: var(--special-element-color);
-
 }
 
 .seat.selected{
