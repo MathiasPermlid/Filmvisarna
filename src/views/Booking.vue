@@ -164,7 +164,14 @@ export default {
     this.day = this.$store.shows[this.date];
     this.show = this.day.shows[this.dateIndex];
 
-    //this.show.auditorium.seats[row][seat] = 1;
+/*  // selectedSeats hämtas från SeatsComponent
+    let selectedSeats = [];
+
+    for (let seat of selectedSeats) {
+      this.show.auditorium.seats[seat.row][seat.seatNr] = 1;
+    }
+      this.show.auditorium.seatsLeft -= selectedSeats.length;
+  */  
 
     console.log('this.show SKRIVES UT HÄR: ',this.show);
   },
