@@ -148,6 +148,9 @@
         <p>
           <strong>Välkommen åter!</strong>
         </p>
+        <p>Bokningsnr: {{ bookNumber }}</p>
+        <!-- seat numbers with rows -->
+        <p v-for="seat in seatNumbers">Rad: {{ seat.row }}, Stol: {{ seat.seatNr }}</p>
       </div>
     </div>
   </div>
@@ -168,6 +171,7 @@ export default {
       show: {},
       movie: {},
       seatNumbers: [],
+      bookNumber: '',
       adultsnumber: 0,
       childnumber: 0,
       seniorsnumber: 0,
@@ -211,39 +215,6 @@ export default {
       this.selectedSeats = infoFromChild.selectedSeats;
       this.ticketsEqualToSeatsError = infoFromChild.error;
       this.subtractError = infoFromChild.error;
-    },
-    booking() {
-      //sätt de bokade värdena
-      let chairs = [];
-      for (let seat of this.selectedSeats) {
-        this.show.auditorium.seats[seat.row][seat.seatNr] = 1;
-      }
-      this.show.auditorium.seatsLeft -= this.selectedSeats.length;
-
-      let bookingInfo = {
-        email: this.userEmail,
-        show: {
-          showMovie: this.show.movie,
-          showAuditorium: this.show.auditorium.name,
-          showDate: this.day.date,
-          showTime: this.show.time
-        },
-        tickets: {
-          price: this.totalAmount,
-          adult: this.adultsnumber,
-          child: this.childnumber,
-          senior: this.seniorsnumber
-        }
-      };
-
-      let bookingNumber = db.ref("bookings").push(bookingInfo);
-      //skicka upp värdena till databasen
-      this.updateShow();
-
-      this.$router.push("/");
-    },
-    sendReceipt() {
-      let chairs = [];
     },
     updateShow() {
       // update show with current seats left and seats taken
@@ -302,6 +273,8 @@ export default {
       };
 
       let bookingNumber = db.ref("bookings").push(bookingInfo);
+      this.bookNumber = bookingNumber.key;
+
       //skicka upp värdena till databasen
       this.updateShow();
 
