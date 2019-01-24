@@ -4,32 +4,23 @@
       <h1 class="mobile-title home-title">GRAND</h1>
     </header>
     <Carousel id="carousel"/>
+    <div v-if="!searchMovie">
+      <h3 class="category-text mb-0">Topplista</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
 
-    <transform
-      name="movie-categories"
-      v-if="!searchMovie"
-      enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut"
-      mode="out-in"
-    >
-      <div>
-        <h3 class="category-text mb-0">Topplista</h3>
-        <div class="category-line mb-2"></div>
-        <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
+      <h3 class="category-text mb-0">Drama</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
 
-        <h3 class="category-text mb-0">Drama</h3>
-        <div class="category-line mb-2"></div>
-        <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
+      <h3 class="category-text mb-0">Action</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
 
-        <h3 class="category-text mb-0">Action</h3>
-        <div class="category-line mb-2"></div>
-        <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
-
-        <h3 class="category-text mb-0">Barn</h3>
-        <div class="category-line mb-2"></div>
-        <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>
-      </div>
-    </transform>
+      <h3 class="category-text mb-0">Barn</h3>
+      <div class="category-line mb-2"></div>
+      <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>
+    </div>
 
     <div v-else>
       <GraphicList :searchedMovies="[...filteredMovies]" id="graphic-list"/>

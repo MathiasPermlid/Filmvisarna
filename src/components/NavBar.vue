@@ -35,6 +35,13 @@
           <router-link to="/contact">Kontakt</router-link>
         </li>
       </ul>
+      <input
+        class="form-control mr-sm-2"
+        v-model="searchMovie"
+        type="text"
+        placeholder="Sök film"
+        aria-label="Search"
+      >
     </div>
   </nav>
   <!-- link page toggled on hamburger -->
@@ -178,6 +185,13 @@ nav {
   font-family: var(--main-font-family);
   font-weight: 100;
   font-size: 1.3em;
+}
+#navbarNav input {
+  width: 25%;
+}
+#navbarNav input:focus {
+  outline: none;
+  box-shadow: none;
 }
 #nav-mobile-links > section {
   width: 100%;
