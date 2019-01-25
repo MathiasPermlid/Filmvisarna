@@ -15,15 +15,19 @@
         {{this.show.auditorium.seatsLeft}} av {{this.show.auditorium.maxSeats}} platser kvar</span>
       </h2>
 
-      <div class="col-sm-12 col-12 row">
+      <div class="col-sm-12 col-12 row ">
 
 
 
 
       <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
-      <div v-show="!bookingComplete" class="booking-button-row text-left">
-        <span class="text-left">Vuxna:</span>
-        
+      <div v-show="!bookingComplete" class="booking-button-row col-12 row m-0 p-0">
+        <div class="col-sm-12 col-md-6 col text-right m-0 p-0">
+        <span>Vuxna:</span>
+
+        </div>
+        <div class="col-sm-12 col-md-6 col text-left m-0 p-0">
+
         <a v-on:click="subtractAdult" class="ml-2">
           <img
             src="../assets/minusbutton.svg"
@@ -41,11 +45,17 @@
             alt="Lägg till en vuxen-biljett"
           >
         </a>
+        </div>
       </div>
 
-      <div v-show="!bookingComplete" class="booking-button-row text-left col-12">
+      <div v-show="!bookingComplete" class="booking-button-row col-12 row m-0 p-0">
+                <div class="col-sm-12 col-md-6 col text-right m-0 p-0">
         <span class="">Pensionärer:</span>
-        
+
+                </div>
+
+                        <div class="col-sm-6 col-md-6 col text-left m-0 p-0">
+
         <a v-on:click="subtractSenior" class="ml-2">
           <img
             src="../assets/minusbutton.svg"
@@ -62,11 +72,16 @@
             alt="Lägg till en pensionärs-biljett"
           >
         </a>
+                        </div>
+        
       </div>
 
-      <div v-show="!bookingComplete" class="booking-button-row mb-4 text-left col-12">
-        <span class=" text-left">Barn:</span>
-        
+      <div v-show="!bookingComplete" class="booking-button-row mb-4 col-12 row m-0 p-0">
+                <div class="col-sm-12 col-md-6 col text-right m-0 p-0">
+        <span>Barn:</span>
+
+                </div>
+        <div class="col-sm-12 col-md-6 col text-left m-0 p-0">
         <a v-on:click="subtractChild" class="ml-2">
           <img
             src="../assets/minusbutton.svg"
@@ -83,6 +98,8 @@
             alt="Lägg till en pensionärs-biljett"
           >
         </a>
+
+        </div>
       </div>
       </div>
       <div
