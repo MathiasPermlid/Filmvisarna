@@ -57,7 +57,13 @@ export default {
   methods: {
     //
     startMobile() {
-      return window.innerWidth < 700 ? 2.3 : 5.3;
+      return window.innerWidth < 768
+        ? 2.3
+        : window.innerWidth < 992
+        ? 4.3
+        : window.innerWidth < 1200
+        ? 5.3
+        : 6.3;
     }
   },
   created() {
@@ -72,7 +78,6 @@ export default {
 .swiper-box {
   height: 30vmax;
   overflow: hidden;
-  
 }
 .swipe-item {
   height: 100%;
