@@ -5,19 +5,19 @@
     </header>
     <div v-if="!searchMovie">
     <Carousel id="carousel"/>
-      <h3 class="category-text mb-0 mt-3">Topplista</h3>
+      <h3 class="category-text mb-0 mt-3 ml-3">Topplista</h3>
       
       <MovieSwiper :movies="[...topMovies()]" class="col-12"/>
 
-      <h3 class="category-text mb-0 mt-3">Drama</h3>
+      <h3 class="category-text mb-0 mt-3 ml-3">Drama</h3>
       
       <MovieSwiper :movies="[...moviesByGenre('Drama')]" class="col-12"/>
 
-      <h3 class="category-text mb-0 mt-3">Action</h3>
+      <h3 class="category-text mb-0 mt-3 ml-3">Action</h3>
       
       <MovieSwiper :movies="[...moviesByGenre('Action')]" class="col-12"/>
 
-      <h3 class="category-text mb-0 mt-3">Barn</h3>
+      <h3 class="category-text mb-0 mt-3 ml-3">Barn</h3>
       
       <MovieSwiper :movies="[...moviesByGenre('Family')]" class="col-12"/>
     </div>
