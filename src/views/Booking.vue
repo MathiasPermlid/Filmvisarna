@@ -138,7 +138,10 @@
           @error-message="showErrorMessage()"
         />
       </div>
-
+      <div
+        v-if="bookingCompleteError"
+        class="booking-error"
+      >Fel E-post</div>
       <div v-show="!bookingComplete" class="row justify-content-around mb-4">
         <div class="row justify-content-center">
           <input
@@ -161,7 +164,7 @@
       </router-link>
       <button
         v-show="!bookingComplete"
-        v-on:click="booking"
+        v-on:click="bookingCompleted"
         class="col-5 col-md-3 btn btn-success"
         id="boka-button"
       >Boka</button>
@@ -209,7 +212,8 @@ export default {
       subtractError: false,
       maximumSeatsError: false,
       selectedSeats: [],
-      bookingComplete: false
+      bookingComplete: false,
+      bookingCompleteError: false
     };
   },
   created() {
@@ -265,14 +269,20 @@ export default {
         }
       });
     }, //updateShow
+     isEmailValid: function(userEmail) {
+      return this.userEmail.match(
+        /^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i
+      );
+    },//isEmailValid
 
     bookingCompleted() {
-      if (
-        this.userEmail.length > 5 &&
-        this.userEmail.includes("@") &&
-        this.userEmail.includes(".")
-      ) {
-        this.bookingComplete = true;
+     if (this.totalnumber > 0 && this.totalnumber === this.selectedSeats.length && this.isEmailValid()){
+        this.bookingCompleteError=false; 
+        this.bookingComplete=true;
+        this.booking() 
+      }
+      else {
+        this.bookingCompleteError=true;
       }
     },
     booking() {
