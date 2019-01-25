@@ -21,7 +21,7 @@
 
 
       <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
-      <div v-show="!bookingComplete" class="booking-button-row col-12 row m-0 p-0">
+      <div v-show="!bookingComplete" class="booking-button-row col-12 row m-0 p-0 mb-1">
         <div class="col-sm-12 col-md-6 col text-right m-0 p-0">
         <span>Vuxna:</span>
 
@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div v-show="!bookingComplete" class="booking-button-row col-12 row m-0 p-0">
+      <div v-show="!bookingComplete" class="booking-button-row col-12 row m-0 p-0 mb-1">
                 <div class="col-sm-12 col-md-6 col text-right m-0 p-0">
         <span class="">Pensionärer:</span>
 
