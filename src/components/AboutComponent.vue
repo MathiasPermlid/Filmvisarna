@@ -1,6 +1,6 @@
 <template>
 <div class="container row m-0 p-0">
-    <h1 class="col-12 pt-3 pb-3 m-0 p-0 h1-custom-size">Om oss</h1>
+    <h1 class="col-12 pt-3 pb-3 m-0 p-0 h1-custom-size">Om bion</h1>
     <div class="col-12 row m-0 p-0">
         <div class="col-sm-12 col-md-6 hide-on-mobile col">
             <picture class="img-fluid hide-on-mobile">
