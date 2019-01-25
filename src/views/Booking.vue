@@ -6,21 +6,29 @@
         class="row align-items-center booking-title text-center"
       >{{show.movie}}</h1>
 
-      <h2 v-show="!bookingComplete" class="row booking-subtitle justify-content-around text-center">
-        <span class="col-4 col-m-12 booking-subtitle-span mb-2 ml-4 text-center">{{this.day.date}}</span>
-        <span class="col-4 col-m-12 booking-subtitle-span mb-3 mr-4">{{this.show.time}}</span>
+      <h2 v-show="!bookingComplete" class="row booking-subtitle justify-content-center">
+        <span class="col-sm-12 col-md-12 booking-subtitle-span mb-2">{{this.show.auditorium.name}}</span>
+        <span class="col-sm-12 col-md-12 booking-subtitle-span mb-2">{{this.day.date}} kl {{this.show.time}}</span>
+        <span class="col-sm-12 col-md-12 booking-subtitle-span mb-2"></span>
         
-        <span class="col-6 booking-subtitle-span mb-2">{{this.show.auditorium.name}}</span>
-        <span
-          class="col-6 booking-subtitle-span mb-2 mr-2"
-        >{{this.show.auditorium.seatsLeft}} av {{this.show.auditorium.maxSeats}} platser kvar</span>
+        <span class="col-sm-12 col-md-12 booking-subtitle-span">
+        {{this.show.auditorium.seatsLeft}} av {{this.show.auditorium.maxSeats}} platser kvar</span>
       </h2>
 
+      <div class="col-sm-12 col-12 row ">
+
+
+
+
       <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
-      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
-        <span class="col-4 text-left">Vuxna:</span>
-        
-        <a v-on:click="subtractAdult" class="ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row col-12 row m-0 p-0 mb-1">
+        <div class="col-sm-12 col-md-6 col text-right m-0 p-0">
+        <span>Vuxna:</span>
+
+        </div>
+        <div class="col-sm-12 col-md-6 col text-left m-0 p-0">
+
+        <a v-on:click="subtractAdult" class="ml-2">
           <img
             src="../assets/minusbutton.svg"
             class="add-subtract-button"
@@ -28,21 +36,27 @@
           >
         </a>
         
-        <span class="ticket-number">{{adultsnumber}}</span>
+        <span class="ticket-number mr-2 ml-2">{{adultsnumber}}</span>
         
-        <a v-on:click="addAdult" class="mr-4">
+        <a v-on:click="addAdult" class="">
           <img
             src="../assets/plusbutton.svg"
             class="add-subtract-button"
             alt="Lägg till en vuxen-biljett"
           >
         </a>
+        </div>
       </div>
 
-      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
-        <span class="col-4 text-left">Pensionärer:</span>
-        
-        <a v-on:click="subtractSenior" class="ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row col-12 row m-0 p-0 mb-1">
+                <div class="col-sm-12 col-md-6 col text-right m-0 p-0">
+        <span class="">Pensionärer:</span>
+
+                </div>
+
+                        <div class="col-sm-6 col-md-6 col text-left m-0 p-0">
+
+        <a v-on:click="subtractSenior" class="ml-2">
           <img
             src="../assets/minusbutton.svg"
             class="add-subtract-button"
@@ -50,20 +64,25 @@
           >
         </a>
         
-        <span class="ticket-number">{{seniorsnumber}}</span>
-        <a v-on:click="addSenior" class="mr-4">
+        <span class="ticket-number mr-2 ml-2">{{seniorsnumber}}</span>
+        <a v-on:click="addSenior" class="">
           <img
             src="../assets/plusbutton.svg"
             class="add-subtract-button"
             alt="Lägg till en pensionärs-biljett"
           >
         </a>
+                        </div>
+        
       </div>
 
-      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
-        <span class="col-4 text-left">Barn:</span>
-        
-        <a v-on:click="subtractChild" class="ml-4">
+      <div v-show="!bookingComplete" class="booking-button-row mb-4 col-12 row m-0 p-0">
+                <div class="col-sm-12 col-md-6 col text-right m-0 p-0">
+        <span>Barn:</span>
+
+                </div>
+        <div class="col-sm-12 col-md-6 col text-left m-0 p-0">
+        <a v-on:click="subtractChild" class="ml-2">
           <img
             src="../assets/minusbutton.svg"
             class="add-subtract-button"
@@ -71,14 +90,17 @@
           >
         </a>
         
-        <span class="ticket-number">{{childnumber}}</span>
-        <a v-on:click="addChild" class="mr-4">
+        <span class="ticket-number mr-2 ml-2">{{childnumber}}</span>
+        <a v-on:click="addChild" class="">
           <img
             src="../assets/plusbutton.svg"
             class="add-subtract-button"
             alt="Lägg till en pensionärs-biljett"
           >
         </a>
+
+        </div>
+      </div>
       </div>
       <div
         v-show="!bookingComplete"
@@ -91,8 +113,8 @@
         :class="{ hide: !this.maximumSeatsError }"
       >Du får inte boka fler än tio biljetter</div>
 
-      <p v-show="!bookingComplete">Antal biljetter: {{totalnumber}}.</p>
-      <p v-show="!bookingComplete">Summa: {{totalAmount}} kronor.</p>
+      <p class="mb-1" v-show="!bookingComplete">Antal biljetter: {{totalnumber}}.</p>
+      <p class="mb-0" v-show="!bookingComplete">Summa: {{totalAmount}} kronor.</p>
       <div
         v-show="!bookingComplete"
         class="booking-error"
@@ -450,7 +472,7 @@ a:hover {
   align-content: flex-start;
   margin-top: 45px;
   margin-bottom: 15px;
-  font-weight: 100;
+  font-weight: 600;
 }
 .booking-subtitle {
   justify-content: center;
