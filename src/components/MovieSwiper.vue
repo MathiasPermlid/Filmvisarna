@@ -58,6 +58,15 @@ export default {
     //
     startMobile() {
       return window.innerWidth < 700 ? 2.3 : 5.3;
+
+      let numOfPosters;
+      if (window.innerWidth < 700) {
+        numOfPosters = 2.3;
+      } else if (window.innerWidth >= 700 && window.innerWidth < 1500) {
+        numOfPosters = 5.3;
+      } else {
+        numOfPosters = 6.3;
+      }
     }
   },
   created() {
