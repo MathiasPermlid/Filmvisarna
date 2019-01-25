@@ -8,10 +8,6 @@
   </footer>
 </template>
 
-<script>
-/* eslint-disable */
-</script>
-
 <style scoped>
 footer {
   height: 50px;
