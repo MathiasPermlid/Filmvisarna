@@ -78,9 +78,10 @@ export default {
     justify-content: center;
     align-items: center;
     transform: rotate(90deg);
-    width: 100%;
+    max-width: 50%;  
     height: 100%;
-}
+    margin-left: 27%;
+    }
 #auditorium-seats > div {
 display: inline-block;
 }
