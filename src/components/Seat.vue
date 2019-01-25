@@ -9,13 +9,15 @@ export default {
   data(){
     return{
       selected: false,
-      }
+    }
   },
+
   props: {
     row: Number,
     seatNr: Number,
     booked: Number,
   },
+  
   methods:{
     clickSeat(){ 
       // om sätet INTE är bokat  

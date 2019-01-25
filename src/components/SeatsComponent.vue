@@ -27,8 +27,7 @@ export default {
     },//props
     
     methods: {
-        selectSeat(seatInfo){
-            
+        selectSeat(seatInfo){ 
             if (!seatInfo.selected){ //om sätet redan är klickat (förbokat)
                 this.unSelectSeat(seatInfo);
             }
@@ -40,7 +39,7 @@ export default {
 
         unSelectSeat(seatInfo){ //här vet vi att sätet var förbokat och ska nu ta bort det
             //ta bort felmeddelandet om det finns utskrivet
-             this.sendInfo();
+            this.sendInfo();
 
             //ta bort aktuellt säte från arrayen (om det finns i arrayen)
             for(let i = 0 ; i < this.selectedSeats.length ; i++){
@@ -56,13 +55,12 @@ export default {
                 selectedSeats: this.selectedSeats,
                 error: false
             }
-             this.$emit('send-info', info);
+            this.$emit('send-info', info);
         },
 
         showErrorMessage(){
             // visa felmeddelande 
             this.$emit('error-message');
-
         }
     }, //methods
 

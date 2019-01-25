@@ -174,40 +174,27 @@ export default {
     this.show = this.day.shows[this.dateIndex];
 
   },
-  /*
-  mounted() {
-    //  get date and the dates show from path param
-    let link = location.pathname.replace("/book/", "");
-    this.dateIndex = link.split("").pop();
-    this.date = link.split("");
-    this.date.pop();
-    this.date = this.date.join("");
 
-    this.day = this.$store.shows[this.date];
-    this.show = this.day.shows[this.dateIndex];
+  components: {
+    SeatsComponent
+  },//components
 
-    //this.show.auditorium.seats[row][seat] = 1;
-
-    console.log('this.show SKRIVES UT HÄR: ',this.show);
-  },*/
-    components: {
-      SeatsComponent
-    },//components
   methods: {
     showErrorMessage(){
       //om användaren ej har valt några biljetter alls
-        if (!this.totalnumber){
-          this.noTicketsAddedError = true;
-            }
-        //om användaren valt lika många biljetter som säten
-        else{ 
-          this.ticketsEqualToSeatsError = true;
-        }
+      if (!this.totalnumber){
+        this.noTicketsAddedError = true;
+      }
+      //om användaren valt lika många biljetter som säten
+      else{ 
+        this.ticketsEqualToSeatsError = true;
+      }
     },
+
     getInfo(infoFromChild){
-        this.selectedSeats = infoFromChild.selectedSeats;
-        this.ticketsEqualToSeatsError = infoFromChild.error;
-        this.subtractError = infoFromChild.error;
+      this.selectedSeats = infoFromChild.selectedSeats;
+      this.ticketsEqualToSeatsError = infoFromChild.error;
+      this.subtractError = infoFromChild.error;
     },
 
     updateShow() {
@@ -236,14 +223,15 @@ export default {
 
     finishBooking(){
       if (this.totalnumber > 0 && this.totalnumber === this.selectedSeats.length && this.userEmail.length > 5){
-           this.bookingComplete=true;
-           /* booking() */ 
+        this.bookingComplete=true;
+        /* booking() */ 
       }
       else {
         bookingCompleteError=true;
       }
 
     },
+
     booking(){
       //sätt de bokade värdena 
       for (let seat of this.selectedSeats) {
@@ -256,73 +244,76 @@ export default {
     },
       
     subtractAdult() {
-        //om valda biljetter är mer än valda säten
-        if(this.totalnumber > this.selectedSeats.length){
-            if (this.adultsnumber > 0 && this.totalnumber > 0) {
-                if(this.totalnumber === 10){
-                  this.maximumSeatsError = false;
-                }
-                this.adultsnumber--;
-                this.subtractToTotalNumber();
-            }
+      //om valda biljetter är mer än valda säten
+      if(this.totalnumber > this.selectedSeats.length){
+        if (this.adultsnumber > 0 && this.totalnumber > 0) {
+          if(this.totalnumber === 10){
+            this.maximumSeatsError = false;
+          }
+          this.adultsnumber--;
+          this.subtractToTotalNumber();
         }
-        //om valda biljetter är desamma som valda säten och mer än 0
-        else if (this.totalnumber === this.selectedSeats.length && this.totalnumber > 0){
-            this.subtractError = true;
-        }
+      }
+      //om valda biljetter är desamma som valda säten och mer än 0
+      else if (this.totalnumber === this.selectedSeats.length && this.totalnumber > 0){
+          this.subtractError = true;
+      }
     },
+
     addAdult() {
       if (this.adultsnumber < 10 && this.totalnumber < 10) {
         this.adultsnumber++;
         this.addToTotalNumber();
       }
-       else {
-          this.maximumSeatsError = true;
-        }
+      else {
+        this.maximumSeatsError = true;
+      }
+    },
 
-    },
     subtractSenior() {
-        //om valda biljetter är mer än valda säten
-        if(this.totalnumber > this.selectedSeats.length){
-          if (this.seniorsnumber > 0 && this.totalnumber > 0) {
-              if(this.totalnumber === 10){
-                  this.maximumSeatsError = false;
-                }
-              this.seniorsnumber--;
-              this.subtractToTotalNumber();
-            }
-            
+      //om valda biljetter är mer än valda säten
+      if(this.totalnumber > this.selectedSeats.length){
+        if (this.seniorsnumber > 0 && this.totalnumber > 0) {
+          if(this.totalnumber === 10){
+            this.maximumSeatsError = false;
+          }
+          this.seniorsnumber--;
+          this.subtractToTotalNumber();
+          }   
         }
-       //om valda biljetter är desamma som valda säten och mer än 0
+        //om valda biljetter är desamma som valda säten och mer än 0
         else if (this.totalnumber === this.selectedSeats.length && this.totalnumber > 0){
-            this.subtractError = true;
+          this.subtractError = true;
         }
     },
+
     addSenior() {
       if (this.seniorsnumber < 10 && this.totalnumber < 10) {
         this.seniorsnumber++;
         this.addToTotalNumber();
       }
-       else {
-          this.maximumSeatsError = true;
-        }
+      else {
+        this.maximumSeatsError = true;
+      }
     },
-      subtractChild() {
-        //om valda biljetter är mer än valda säten
-        if(this.totalnumber > this.selectedSeats.length){
-            if (this.childnumber > 0 && this.totalnumber > 0) {
-              if(this.totalnumber === 10){
-                  this.maximumSeatsError = false;
-                }
-              this.childnumber--;
-              this.subtractToTotalNumber();
-            }
+
+    subtractChild() {
+      //om valda biljetter är mer än valda säten
+      if(this.totalnumber > this.selectedSeats.length){
+        if (this.childnumber > 0 && this.totalnumber > 0) {
+          if(this.totalnumber === 10){
+            this.maximumSeatsError = false;
+          }
+          this.childnumber--;
+          this.subtractToTotalNumber();
         }
-        //om valda biljetter är desamma som valda säten och mer än 0
-        else if (this.totalnumber === this.selectedSeats.length && this.totalnumber > 0){
-            this.subtractError = true;
-        }
+      }
+      //om valda biljetter är desamma som valda säten och mer än 0
+      else if (this.totalnumber === this.selectedSeats.length && this.totalnumber > 0){
+        this.subtractError = true;
+      }
     },
+
     addChild() {
       if (this.childnumber < 10 && this.totalnumber < 10) {
         this.childnumber++;
@@ -332,20 +323,23 @@ export default {
           this.maximumSeatsError = true;
         }
     },
-    addToTotalNumber() {
-        this.noTicketsAddedError = false;
-        this.ticketsEqualToSeatsError = false;
-        this.subtractError = false;
 
-        if (this.totalnumber < 10) {
-            this.totalnumber++;
-            this.calculatePrice();
-        }
+    addToTotalNumber() {
+      this.noTicketsAddedError = false;
+      this.ticketsEqualToSeatsError = false;
+      this.subtractError = false;
+
+      if (this.totalnumber < 10) {
+        this.totalnumber++;
+        this.calculatePrice();
+      }
     },
+
     subtractToTotalNumber() {
       this.totalnumber--;
       this.calculatePrice();
     },
+
     calculatePrice() {
       this.totalAmount = 0;
       this.totalAmount += this.seniorsnumber * 80;
