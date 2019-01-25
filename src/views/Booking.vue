@@ -1,28 +1,26 @@
-
-<!-- 
-/* 
-# Lägg in html för säte i Seat.Vue
-#  SeatsComponent.vue innehåller array för salong.
-*/
- -->
-
-
-
 <template>
   <div class="booking">
     <div class="container-fluid">
-      <h1 class="row booking-title">{{movie.title}}</h1>
+      <h1
+        v-show="!bookingComplete"
+        class="row align-items-center booking-title text-center"
+      >{{show.movie}}</h1>
 
-      <h2 class="booking-subtitle">
-        <span class="col-4">{{movie.weekday}}</span>
-        <span class="col-4">{{movie.date}}</span>
-        <span class="col-4">{{movie.time}}</span>
-      </h2>
-      <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
-      <div class="booking-button-row">
-        <span class="col-1">Vuxna:</span>
+      <h2 v-show="!bookingComplete" class="row booking-subtitle justify-content-around text-center">
+        <span class="col-4 col-m-12 booking-subtitle-span mb-2 ml-4 text-center">{{this.day.date}}</span>
+        <span class="col-4 col-m-12 booking-subtitle-span mb-3 mr-4">{{this.show.time}}</span>
         
-        <a v-on:click="subtractAdult" class="col-1">
+        <span class="col-6 booking-subtitle-span mb-2">{{this.show.auditorium.name}}</span>
+        <span
+          class="col-6 booking-subtitle-span mb-2 mr-2"
+        >{{this.show.auditorium.seatsLeft}} av {{this.show.auditorium.maxSeats}} platser kvar</span>
+      </h2>
+
+      <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
+        <span class="col-4 text-left">Vuxna:</span>
+        
+        <a v-on:click="subtractAdult" class="ml-4">
           <img
             src="../assets/minusbutton.svg"
             class="add-subtract-button"
@@ -30,9 +28,9 @@
           >
         </a>
         
-        <span class="ticket-number col-1">{{adultsnumber}}</span>
+        <span class="ticket-number">{{adultsnumber}}</span>
         
-        <a v-on:click="addAdult" class="col-1">
+        <a v-on:click="addAdult" class="mr-4">
           <img
             src="../assets/plusbutton.svg"
             class="add-subtract-button"
@@ -41,9 +39,10 @@
         </a>
       </div>
 
-      <div class="flex-row booking-button-row">
-        <span class="col-12">Pensionärer:</span>
-        <a v-on:click="subtractSenior" class="col-1">
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
+        <span class="col-4 text-left">Pensionärer:</span>
+        
+        <a v-on:click="subtractSenior" class="ml-4">
           <img
             src="../assets/minusbutton.svg"
             class="add-subtract-button"
@@ -51,8 +50,8 @@
           >
         </a>
         
-        <span class="ticket-number col-1">{{seniorsnumber}}</span>
-        <a v-on:click="addSenior" class="col-1">
+        <span class="ticket-number">{{seniorsnumber}}</span>
+        <a v-on:click="addSenior" class="mr-4">
           <img
             src="../assets/plusbutton.svg"
             class="add-subtract-button"
@@ -61,15 +60,64 @@
         </a>
       </div>
 
-      <hr>
+      <div v-show="!bookingComplete" class="booking-button-row row justify-content-between ml-4">
+        <span class="col-4 text-left">Barn:</span>
+        
+        <a v-on:click="subtractChild" class="ml-4">
+          <img
+            src="../assets/minusbutton.svg"
+            class="add-subtract-button"
+            alt="Ta bort en pensionärs-biljett"
+          >
+        </a>
+        
+        <span class="ticket-number">{{childnumber}}</span>
+        <a v-on:click="addChild" class="mr-4">
+          <img
+            src="../assets/plusbutton.svg"
+            class="add-subtract-button"
+            alt="Lägg till en pensionärs-biljett"
+          >
+        </a>
+      </div>
+      <div
+        v-show="!bookingComplete"
+        class="booking-error"
+        :class="{ hide: !this.subtractError }"
+      >Du måste avvälja säten innan du kan ta bort biljetter</div>
+      <div
+        v-show="!bookingComplete"
+        class="booking-warning"
+        :class="{ hide: !this.maximumSeatsError }"
+      >Du får inte boka fler än tio biljetter</div>
 
-      <p>Antal biljetter: {{totalnumber}}</p>
+      <p v-show="!bookingComplete">Antal biljetter: {{totalnumber}}.</p>
+      <p v-show="!bookingComplete">Summa: {{totalAmount}} kronor.</p>
+      <div
+        v-show="!bookingComplete"
+        class="booking-error"
+        :class="{ hide: !this.noTicketsAddedError }"
+      >Välj antal biljetter innan du väljer säten</div>
+      <div
+        v-show="!bookingComplete"
+        class="booking-error"
+        :class="{ hide: !this.ticketsEqualToSeatsError }"
+      >Lägg till fler biljetter för att kunna välja fler säten</div>
 
-      <p>Summa: {{totalAmount}} kronor.</p>
+      <div v-show="!bookingComplete" class="row justify-content-center">
+        <div id="screen" class></div>
+      </div>
 
-      <div id="seatsPlaceholder">SÄTENA TILL SALONGEN HAMNAR HÄR</div>
+      <div v-show="!bookingComplete" id="seatsPlaceholder">
+        <SeatsComponent
+          :auditorium="this.show.auditorium.seats"
+          :selectedTickets="totalnumber"
+          @send-info="getInfo($event)"
+          @error-message="showErrorMessage()"
+        />
+      </div>
 
-      <div class="row justify-content-around">
+      <div v-show="!bookingComplete" class="row justify-content-around mb-4">
         <div class="row justify-content-center">
           <input
             v-model="userEmail"
@@ -82,15 +130,24 @@
         </div>
       </div>
 
-      <div class="row justify-content-around">
-        <div class="col-12 booking-button-row">
-          <button class="col-5 btn btn-large btn-success" id="boka-button">Boka</button>
-        </div>
-        <div class="col-12 booking-button-row">
-          <button class="col-5 btn btn-large btn-danger" id="cancel-button">
-            <router-link to="/">Avbryt</router-link>
-          </button>
-        </div>
+      <button
+        v-show="!bookingComplete"
+        v-on:click="booking"
+        class="col-12 btn btn-success mb-3"
+        id="boka-button"
+      >Boka</button>
+      <button v-show="!bookingComplete" class="col-12 btn btn-danger" id="cancel-button">
+        <router-link to="/">Avbryt</router-link>
+      </button>
+
+      <div id="booking-verification" v-show="bookingComplete">
+        <h3 class="brass-color">Bokning slutförd!</h3>
+        <p>Du har bokat {{totalnumber}} biljetter till {{show.movie}} i {{this.show.auditorium.name}} klockan {{this.show.time}} {{this.day.date}}.</p>
+        <p>En bokningsbekräftelse med all information har skickats till denna epost: {{this.userEmail}}</p>
+        <p>Vi hoppas du uppskattar ditt besök på Grand.</p>
+        <p>
+          <strong>Välkommen åter!</strong>
+        </p>
       </div>
     </div>
   </div>
@@ -100,6 +157,7 @@
 <script>
 import { db } from "@/plugins/cloud";
 
+import SeatsComponent from "@/components/SeatsComponent.vue";
 export default {
   name: "booking",
   data() {
@@ -108,27 +166,24 @@ export default {
       dateIndex: 0,
       day: {},
       show: {},
-      movie: {
-        /* MOCKDATA  BELOW*/
-        title: "John Wick",
-        weekday: "Fredag",
-        date: "25/1",
-        time: "21:00",
-        posterURL:
-          "https://i.pinimg.com/474x/6e/1d/48/6e1d484aae1e5edfd456de52c6772244.jpg"
-      },
-      /* END OF MOCKDATA */
-
+      movie: {},
+      seatNumbers: [],
       adultsnumber: 0,
-      studentsnumber: 0,
+      childnumber: 0,
       seniorsnumber: 0,
       totalnumber: 0,
       totalAmount: 0,
-      userEmail: ""
+      userEmail: "",
+      noTicketsAddedError: false,
+      ticketsEqualToSeatsError: false,
+      subtractError: false,
+      maximumSeatsError: false,
+      selectedSeats: [],
+      bookingComplete: false
     };
   },
-  mounted() {
-    //  get date and the dates show from path param
+  created() {
+    // get date and the dates show from path param
     let link = location.pathname.replace("/book/", "");
     this.dateIndex = link.split("").pop();
     this.date = link.split("");
@@ -137,10 +192,59 @@ export default {
 
     this.day = this.$store.shows[this.date];
     this.show = this.day.shows[this.dateIndex];
-
-    console.log(this.show);
   },
+  components: {
+    SeatsComponent
+  }, //components
   methods: {
+    showErrorMessage() {
+      //om användaren ej har valt några biljetter alls
+      if (!this.totalnumber) {
+        this.noTicketsAddedError = true;
+      }
+      //om användaren valt lika många biljetter som säten
+      else {
+        this.ticketsEqualToSeatsError = true;
+      }
+    },
+    getInfo(infoFromChild) {
+      this.selectedSeats = infoFromChild.selectedSeats;
+      this.ticketsEqualToSeatsError = infoFromChild.error;
+      this.subtractError = infoFromChild.error;
+    },
+    booking() {
+      //sätt de bokade värdena
+      let chairs = [];
+      for (let seat of this.selectedSeats) {
+        this.show.auditorium.seats[seat.row][seat.seatNr] = 1;
+      }
+      this.show.auditorium.seatsLeft -= this.selectedSeats.length;
+
+      let bookingInfo = {
+        email: this.userEmail,
+        show: {
+          showMovie: this.show.movie,
+          showAuditorium: this.show.auditorium.name,
+          showDate: this.day.date,
+          showTime: this.show.time
+        },
+        tickets: {
+          price: this.totalAmount,
+          adult: this.adultsnumber,
+          child: this.childnumber,
+          senior: this.seniorsnumber
+        }
+      };
+
+      let bookingNumber = db.ref("bookings").push(bookingInfo);
+      //skicka upp värdena till databasen
+      this.updateShow();
+
+      this.$router.push("/");
+    },
+    sendReceipt() {
+      let chairs = [];
+    },
     updateShow() {
       // update show with current seats left and seats taken
       db.ref("visningar/" + this.date).set({
@@ -163,32 +267,150 @@ export default {
           }
         }
       });
+    }, //updateShow
+
+    bookingCompleted() {
+      if (
+        this.userEmail.length > 5 &&
+        this.userEmail.includes("@") &&
+        this.userEmail.includes(".")
+      ) {
+        this.bookingComplete = true;
+      }
+    },
+    booking() {
+      //sätt de bokade värdena
+      for (let seat of this.selectedSeats) {
+        this.show.auditorium.seats[seat.row][seat.seatNr] = 1;
+      }
+      this.show.auditorium.seatsLeft -= this.selectedSeats.length;
+
+      let bookingInfo = {
+        email: this.userEmail,
+        show: {
+          showMovie: this.show.movie,
+          showAuditorium: this.show.auditorium.name,
+          showDate: this.day.date,
+          showTime: this.show.time
+        },
+        tickets: {
+          price: this.totalAmount,
+          adult: this.adultsnumber,
+          child: this.childnumber,
+          senior: this.seniorsnumber
+        }
+      };
+
+      let bookingNumber = db.ref("bookings").push(bookingInfo);
+      //skicka upp värdena till databasen
+      this.updateShow();
+
+      // send the user the receipt
+      this.sendReceipt(bookingNumber.key);
+    },
+    sendReceipt(bookingNumber) {
+  
+      for (let seat of this.selectedSeats) {
+        let seatNumber = 0;
+        for (let i = 0; i < seat.row; i++) {
+          seatNumber += this.show.auditorium.seats[i].length;
+        }
+        seatNumber += seat.seatNr + 1;
+        this.seatNumbers.push({
+          row: seat.row + 1,
+          seatNr: seatNumber
+        });
+        console.log(this.seatNumbers);
+        
+        this.bookingComplete = true;
+      }
     },
     subtractAdult() {
-      if (this.adultsnumber > 0 && this.totalnumber > 0) {
-        this.adultsnumber--;
-        this.subtractToTotalNumber();
+      //om valda biljetter är mer än valda säten
+      if (this.totalnumber > this.selectedSeats.length) {
+        if (this.adultsnumber > 0 && this.totalnumber > 0) {
+          if (this.totalnumber === 10) {
+            this.maximumSeatsError = false;
+          }
+          this.adultsnumber--;
+          this.subtractToTotalNumber();
+        }
+      }
+      //om valda biljetter är desamma som valda säten och mer än 0
+      else if (
+        this.totalnumber === this.selectedSeats.length &&
+        this.totalnumber > 0
+      ) {
+        this.subtractError = true;
       }
     },
     addAdult() {
       if (this.adultsnumber < 10 && this.totalnumber < 10) {
         this.adultsnumber++;
         this.addToTotalNumber();
+      } else {
+        this.maximumSeatsError = true;
       }
     },
     subtractSenior() {
-      if (this.seniorsnumber > 0 && this.totalnumber > 0) {
-        this.seniorsnumber--;
-        this.subtractToTotalNumber();
+      //om valda biljetter är mer än valda säten
+      if (this.totalnumber > this.selectedSeats.length) {
+        if (this.seniorsnumber > 0 && this.totalnumber > 0) {
+          if (this.totalnumber === 10) {
+            this.maximumSeatsError = false;
+          }
+          this.seniorsnumber--;
+          this.subtractToTotalNumber();
+        }
+      }
+      //om valda biljetter är desamma som valda säten och mer än 0
+      else if (
+        this.totalnumber === this.selectedSeats.length &&
+        this.totalnumber > 0
+      ) {
+        this.subtractError = true;
       }
     },
     addSenior() {
       if (this.seniorsnumber < 10 && this.totalnumber < 10) {
         this.seniorsnumber++;
         this.addToTotalNumber();
+      } else {
+        this.maximumSeatsError = true;
+      }
+    },
+    subtractChild() {
+      //om valda biljetter är mer än valda säten
+      if (this.totalnumber > this.selectedSeats.length) {
+        if (this.childnumber > 0 && this.totalnumber > 0) {
+          if (this.totalnumber === 10) {
+            this.maximumSeatsError = false;
+          }
+          this.childnumber--;
+          this.subtractToTotalNumber();
+        }
+      }
+      //om valda biljetter är desamma som valda säten och mer än 0
+      else if (
+        this.totalnumber === this.selectedSeats.length &&
+        this.totalnumber > 0
+      ) {
+        this.subtractError = true;
+      }
+    },
+    addChild() {
+      if (this.childnumber < 10 && this.totalnumber < 10) {
+        this.childnumber++;
+        this.addToTotalNumber();
+      } else {
+        this.maximumSeatsError = true;
       }
     },
     addToTotalNumber() {
+      this.noTicketsAddedError = false;
+      this.ticketsEqualToSeatsError = false;
+      this.subtractError = false;
+
       if (this.totalnumber < 10) {
         this.totalnumber++;
         this.calculatePrice();
@@ -202,6 +424,7 @@ export default {
       this.totalAmount = 0;
       this.totalAmount += this.seniorsnumber * 80;
       this.totalAmount += this.adultsnumber * 100;
+      this.totalAmount += this.childnumber * 60;
     }
   }
 };
@@ -225,46 +448,28 @@ export default {
   font-family: "Montserrat", sans-serif;
 }
 
+.hide {
+  display: none;
+}
+
 a {
   color: inherit;
 }
+
 a:visited {
   color: inherit;
 }
+
 a:hover {
   font-style: none;
 }
-.booking {
-  margin-bottom: 100px;
-}
-
-.booking-line {
-  justify-content: space-evenly;
-  margin-bottom: 10px;
-  font-weight: 400;
-}
-
-.booking-button-row {
-  margin-bottom: 30px;
-  height: 25px;
-  justify-content: baseline;
-  align-content: unset;
-}
-
-.add-subtract-button {
-  width: 50px;
-  height: auto;
-  object-fit: scale-down;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  margin: 0;
+.brass-color {
+  color: var(--special-element-color);
 }
 
 .booking-title {
   text-align: center;
-  justify-content: center;
+  justify-content: space-around;
   font-size: 2em;
   align-content: flex-start;
   margin-top: 45px;
@@ -278,34 +483,93 @@ a:hover {
   margin-bottom: 30px;
   font-weight: 100;
 }
+.booking-subtitle-span {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+.booking-button-row {
+  margin-bottom: 10px;
+  height: 20px;
+}
+
+.add-subtract-button {
+  height: 19px;
+  width: auto;
+  margin: 0;
+  justify-self: center;
+}
+
+.booking-error {
+  color: crimson;
+  font-weight: 400;
+  font-size: 0.8em;
+  margin: 10px;
+}
+.booking-warning {
+  color: orangered;
+  font-weight: 400;
+  font-size: 0.8em;
+  margin: 10px;
+}
 
 .ticket-number {
-  font-weight: 700;
+  font-weight: 400;
+  height: 19px;
+
+  color: var(--main-element-color);
+  margin: 0;
 }
 .seat {
-  color: var(--main-element-color);
+  background-color: var(--main-element-color);
+}
+.seat:hover {
+  background-color: var(--special-element-color);
 }
 .seat-blocked {
-  color: rgb(107, 5, 5);
+  background-color: rgb(107, 5, 5);
 }
 .seat-selected {
-  color: var(--special-element-color);
+  background-color: var(--special-element-color);
+}
+
+#booking-verification {
+  margin-top: 20vh;
+  margin-bottom: 10vh;
 }
 
 #boka-button {
-  width: 200px;
 }
 #cancel-button {
-  width: 200px;
+}
+#screen {
+  margin-top: 30px;
+  margin-bottom: 0;
+  width: 50%;
+  height: 5px;
+  background-color: var(--special-element-color);
+  border-top-color: var(--main-element-color);
+  border-radius: 10px;
+}
+#input-email {
+  height: 35px;
+  margin: 0;
 }
 
 #seatsPlaceholder {
-  height: 200px;
+  margin-top: -40px;
+  margin-bottom: -40px;
   width: 100%;
-  background-color: blueviolet;
-  color: white;
-  text-align: center;
+  min-height: 100px;
+  object-fit: contain;
+  justify-content: center;
+  align-content: center;
+}
 
-  margin-bottom: 25px;
+@media only screen and (min-width: 600px) {
+  #seatsPlaceholder {
+    margin-top: -75px;
+    margin-bottom: -75px;
+  }
 }
 </style>
