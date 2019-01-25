@@ -61,7 +61,7 @@ export default {
         ? 2.3
         : window.innerWidth < 992
         ? 4.3
-        : window.innerWidth < 1200
+        : window.innerWidth < 1500
         ? 5.3
         : 6.3;
     }
