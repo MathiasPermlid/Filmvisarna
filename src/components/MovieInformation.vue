@@ -139,8 +139,8 @@
         </div>
         <div class="row">
             <p class="mobile-p">
-                <strong>Från:</strong>
-                {{ movie.Rated }} år
+                <strong>Åldersrating:</strong>
+                {{ movie.Rated }}
             </p>
         </div>
         <div class="row">

@@ -1,5 +1,45 @@
 <template>
-  <div id="calendar-shows">
+  <div v-if="onDesktop" id="calendar-shows">
+    <div>
+      <!-- 
+        loop and outputs the 3 movies on selected date
+      -->
+      <div v-for="(show, index) in day.shows" :key="day + show.movie + index" class="row">
+        <figure class="col-3">
+          <!-- 
+              when clicking on picture the user gets
+              sent to the movies info page
+          -->
+          <router-link v-bind:to="'/movieinfo/' + movies[index].Link">
+            <img v-bind:src="movies[index].Poster" class="img-fluid">
+          </router-link>
+        </figure>
+        <article class="col-9">
+          <!-- 
+              creates a unique route path on each movie
+          -->
+          <router-link v-bind:to="'/book/' + day.link + index">
+            <h5 class="mb-0">{{ day.shows[index].movie }}</h5>
+          </router-link>
+          <p class="mb-2">Genre: {{ movies[index].Genre }}</p>
+          <article class="d-flex justify-content-between">
+            <p>
+              <strong>{{ day.shows[index].auditorium.name }}</strong>
+            </p>
+            <p
+              class="text-right"
+            >Platser kvar: {{ day.shows[index].auditorium.seatsLeft }} av {{ day.shows[index].auditorium.maxSeats }}</p>
+          </article>
+          <article class="d-flex justify-content-between">
+            <p>Tid: {{ day.shows[index].time }}</p>
+            <p class="text-right">Speltid: {{ movies[index].Runtime }}</p>
+          </article>
+        </article>
+        <span v-if="index < 2" id="break-line"></span>
+      </div>
+    </div>
+  </div>
+  <div v-else id="calendar-shows">
     <transition-group
       name="date-movie-list"
       mode="out-in"
@@ -58,7 +98,8 @@ export default {
   },
   data() {
     return {
-      day: {}
+      day: {},
+      onDesktop: this.startDesktop()
     };
   },
   computed: {
@@ -80,6 +121,9 @@ export default {
           return film;
         }
       }
+    },
+    startDesktop() {
+      return window.innerWidth > 600 ? true : false;
     }
   },
   created() {
@@ -98,6 +142,10 @@ export default {
           this.day.link = day;
         }
       }
+    });
+
+$(window).on("resize", () => {
+      this.onDesktop = window.innerWidth < 600 ? true : false;
     });
   }
 };
