@@ -125,7 +125,9 @@ export default {
   #schedule-comp {
     width: 100%;
   }
-  .mobile-title {
+}
+@media screen and (max-width: 600px) {
+.mobile-title {
     display: block;
   }
 }
