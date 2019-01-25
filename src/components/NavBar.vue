@@ -29,7 +29,7 @@
           <router-link to="/kalender">Kalender</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about">Om oss</router-link>
+          <router-link to="/about">Om Bion</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/contact">Kontakt</router-link>
