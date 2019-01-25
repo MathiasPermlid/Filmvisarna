@@ -567,6 +567,7 @@ a:hover {
 #seatsPlaceholder {
   margin-top: -40px;
   margin-bottom: -40px;
+  overflow: hidden;
   width: 100%;
   min-height: 100px;
   object-fit: contain;
