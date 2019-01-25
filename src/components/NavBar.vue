@@ -196,7 +196,7 @@ nav {
   font-weight: 100;
   font-size: 1.3em;
 }
-.navbar{
+.navbar {
   border-bottom: 1px solid #cca358;
 }
 #navbarNav input {
@@ -204,13 +204,13 @@ nav {
 }
 #navbarNav p {
   position: absolute;
-  font-size: .7em;
+  font-size: 0.7em;
   top: 7vh;
   right: 1%;
   width: 25%;
   border: 1px var(--main-element-color);
   color: var(--main-element-color);
-  background-color:white;
+  background-color: white;
 }
 #navbarNav input:focus {
   outline: none;
@@ -244,7 +244,7 @@ nav {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 7vh;
+  height: 50px;
   z-index: 1000;
   color: var(--special-element-color);
   background-color: var(--main-element-color);
@@ -274,7 +274,7 @@ i {
   align-items: center;
   bottom: 0;
   width: 100%;
-  height: 7vh;
+  height: 50px;
   z-index: 1100;
   color: var(--special-element-color);
   background-color: var(--main-element-color);
