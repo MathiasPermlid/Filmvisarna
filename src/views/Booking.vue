@@ -15,8 +15,13 @@
         {{this.show.auditorium.seatsLeft}} av {{this.show.auditorium.maxSeats}} platser kvar</span>
       </h2>
 
+      <div class="col-sm-12 col-12 row">
+
+
+
+
       <!-- <img class="img-fluid booking-poster" v-bind:src="movie.posterURL"> -->
-      <div v-show="!bookingComplete" class="booking-button-row justify-content-center">
+      <div v-show="!bookingComplete" class="booking-button-row text-left">
         <span class="text-left">Vuxna:</span>
         
         <a v-on:click="subtractAdult" class="ml-2">
@@ -38,7 +43,7 @@
         </a>
       </div>
 
-      <div v-show="!bookingComplete" class="booking-button-row justify-content-center">
+      <div v-show="!bookingComplete" class="booking-button-row text-left col-12">
         <span class="">Pensionärer:</span>
         
         <a v-on:click="subtractSenior" class="ml-2">
@@ -59,7 +64,7 @@
         </a>
       </div>
 
-      <div v-show="!bookingComplete" class="booking-button-row justify-content-center mb-4">
+      <div v-show="!bookingComplete" class="booking-button-row mb-4 text-left col-12">
         <span class=" text-left">Barn:</span>
         
         <a v-on:click="subtractChild" class="ml-2">
@@ -78,6 +83,7 @@
             alt="Lägg till en pensionärs-biljett"
           >
         </a>
+      </div>
       </div>
       <div
         v-show="!bookingComplete"
