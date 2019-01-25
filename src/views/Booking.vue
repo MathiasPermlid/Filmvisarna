@@ -130,15 +130,19 @@
         </div>
       </div>
 
+      <router-link to="/">
+        <button
+          v-show="!bookingComplete"
+          class="col-5 col-md-3 btn btn-danger mr-5"
+          id="cancel-button"
+        >Avbryt</button>
+      </router-link>
       <button
         v-show="!bookingComplete"
         v-on:click="booking"
-        class="col-12 btn btn-success mb-3"
+        class="col-5 col-md-3 btn btn-success"
         id="boka-button"
       >Boka</button>
-      <button v-show="!bookingComplete" class="col-12 btn btn-danger" id="cancel-button">
-        <router-link to="/">Avbryt</router-link>
-      </button>
 
       <div id="booking-verification" v-show="bookingComplete">
         <h3 class="brass-color">Bokning slutförd!</h3>
@@ -171,7 +175,7 @@ export default {
       show: {},
       movie: {},
       seatNumbers: [],
-      bookNumber: '',
+      bookNumber: "",
       adultsnumber: 0,
       childnumber: 0,
       seniorsnumber: 0,
@@ -282,7 +286,6 @@ export default {
       this.sendReceipt(bookingNumber.key);
     },
     sendReceipt(bookingNumber) {
-  
       for (let seat of this.selectedSeats) {
         let seatNumber = 0;
         for (let i = 0; i < seat.row; i++) {
@@ -294,7 +297,7 @@ export default {
           seatNr: seatNumber
         });
         console.log(this.seatNumbers);
-        
+
         this.bookingComplete = true;
       }
     },
