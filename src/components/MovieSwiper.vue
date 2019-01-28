@@ -61,7 +61,7 @@ export default {
         ? 2.3
         : window.innerWidth < 992
         ? 4.3
-        : window.innerWidth < 1500
+        : window.innerWidth < 1200
         ? 5.3
         : 6.3;
     }
@@ -121,8 +121,7 @@ export default {
   .posters img {
     height: auto;
     width: auto;
-    max-width: 55vw;
-    max-height: 55vw;
+    max-width: 45vw;
   }
 
   .swiper-box {

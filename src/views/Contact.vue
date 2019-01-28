@@ -1,5 +1,5 @@
 <template>
-  <div class="container row m-0 p-0">
+  <div class="container row m-0 p-1 p-md-5">
     <div class="col-12" id="modal" v-if="showFail">
       <div id="div" v-on:click="close">
         <p class="p-1" id="fail">{{ message }}</p>

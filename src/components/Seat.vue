@@ -67,9 +67,9 @@ export default {
 }
 .seat {
   display: inline-block;
-  width: 4vmin;
-  height: 4vmin;
-  margin: 2px;
+  width: 5.5vmin;
+  height: 5vmin;
+  margin: 1px;
   background-color: var(--main-element-color);
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
@@ -84,9 +84,10 @@ export default {
 .seat.booked {
   background-color: rgb(107, 5, 5);
 }
-/*@media screen and (min-width:800px){
-  .seat:hover{
-    background-color: #4e6372;
+@media screen and (max-width:350px){
+  .seat{
+    width: 5.3vmin;
+  height: 4.5vmin;
   }
-}*/
+}
 </style>

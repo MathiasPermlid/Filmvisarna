@@ -569,7 +569,7 @@ a:hover {
   margin-bottom: -40px;
   overflow: hidden;
   width: 100%;
-  min-height: 100px;
+  height: 100%;
   object-fit: contain;
   justify-content: center;
   align-content: center;
